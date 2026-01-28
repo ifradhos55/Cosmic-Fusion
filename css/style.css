@@ -1,0 +1,294 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;700&display=swap');
+
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #050505;
+    font-family: 'Exo 2', sans-serif;
+}
+#canvas-container {
+    width: 100vw;
+    height: 100vh;
+    display: block;
+}
+
+/* Modern UI Common Styles */
+.glass-panel {
+    background: rgba(16, 24, 45, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    color: #e0e6ed;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+#loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #88DDFF;
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    transition: opacity 0.5s;
+    z-index: 20;
+    text-shadow: 0 0 10px rgba(136, 221, 255, 0.5);
+}
+
+/* Planet Labels */
+.planet-label {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 4px;
+    pointer-events: none;
+    transform: translate(-50%, -180%);
+    border-bottom: 2px solid rgba(136, 221, 255, 0.6);
+    transition: opacity 0.2s;
+    z-index: 5;
+    text-shadow: 0 2px 4px black;
+}
+
+/* Planet Info Panel */
+#planet-info-panel {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 320px;
+    border-radius: 16px;
+    padding: 24px;
+    transform: translateX(130%);
+    z-index: 20;
+}
+
+#planet-info-panel.active {
+    transform: translateX(0);
+}
+
+#planet-info-panel h2 {
+    margin: 0 0 20px 0;
+    font-size: 1.8rem;
+    font-weight: 300;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+    color: #ffffff;
+    letter-spacing: 1px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 12px 0;
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    padding-bottom: 8px;
+}
+
+.info-label {
+    color: #88DDFF;
+    font-weight: 400;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-value {
+    font-weight: 300;
+    text-align: right;
+    color: #fff;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    color: white;
+}
+
+/* Galaxy Buttons - Centered */
+.view-btn {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    z-index: 15;
+    color: #88DDFF;
+    border: 1px solid rgba(136, 221, 255, 0.3);
+    background: rgba(16, 24, 45, 0.85);
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.view-btn:hover {
+    background: rgba(136, 221, 255, 0.15);
+    box-shadow: 0 0 25px rgba(136, 221, 255, 0.5);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+#view-solar-btn {
+    display: none; /* Hidden initially */
+}
+
+/* Lock Button */
+#lock-orbit-btn {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    z-index: 15;
+    color: #88DDFF;
+    border: 1px solid rgba(136, 221, 255, 0.3);
+    background: rgba(16, 24, 45, 0.85);
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+#lock-orbit-btn:hover {
+    background: rgba(136, 221, 255, 0.15);
+    box-shadow: 0 0 25px rgba(136, 221, 255, 0.5);
+    color: white;
+}
+
+#lock-orbit-btn.active {
+    background: rgba(255, 80, 80, 0.2);
+    border-color: #ff5555;
+    color: #ff8888;
+    box-shadow: 0 0 25px rgba(255, 80, 80, 0.4);
+}
+
+/* Zoom Controls */
+#zoom-controls {
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    width: 44px;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-radius: 22px;
+    z-index: 15;
+}
+
+.zoom-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(136, 221, 255, 0.3);
+    color: #88DDFF;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 700;
+}
+
+.zoom-btn:hover {
+    background: rgba(136, 221, 255, 0.3);
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Vertical Slider Styling */
+.zoom-slider-container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 10px 0;
+}
+
+#zoom-slider {
+    -webkit-appearance: slider-vertical; /* WebKit */
+    writing-mode: bt-lr; /* IE/Edge */
+    width: 6px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+}
+
+#zoom-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    background: #88DDFF;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(136, 221, 255, 0.6);
+    border: 2px solid rgba(255,255,255,0.8);
+}
+
+/* Infographic Button */
+#infographic-btn {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    z-index: 15;
+    color: #C7B492; /* Highlighting it slightly differently, maybe Gold/Saturn color? Or Galaxy Purple? Let's stick to theme but distinct. */
+    border: 1px solid rgba(199, 180, 146, 0.3);
+    background: rgba(16, 24, 45, 0.85);
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    text-decoration: none; /* For the anchor tag */
+    font-size: 13px; /* Match button size roughly */
+    display: block;
+}
+
+#infographic-btn:hover {
+    background: rgba(199, 180, 146, 0.15);
+    box-shadow: 0 0 25px rgba(199, 180, 146, 0.5);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.6);
+}

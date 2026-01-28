@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Solar System Simulation</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Buttons -->
+    <button id="view-galaxy-btn" class="view-btn">View Galaxy</button>
+    <button id="view-solar-btn" class="view-btn">Back to Solar System</button>
+
+    <!-- Lock Orbit Button -->
+    <button id="lock-orbit-btn">Lock Orbit</button>
+
+    <!-- Infographic Button -->
+    <a id="infographic-btn" href="infographic.html" target="_blank">View Infographic</a>
+
+    <!-- Zoom Controls -->
+    <div id="zoom-controls" class="glass-panel">
+        <button id="zoom-in" class="zoom-btn">+</button>
+        <div class="zoom-slider-container">
+            <input type="range" id="zoom-slider" min="0" max="100" value="50" orient="vertical">
+        </div>
+        <button id="zoom-out" class="zoom-btn">−</button>
+    </div>
+
+    <div id="loading">Initializing Solar System...</div>
+
+    <div id="planet-info-panel" class="glass-panel">
+        <button class="close-btn">&times;</button>
+        <h2 id="panel-name">Planet Name</h2>
+        <div class="info-row"><span class="info-label">Type</span><span class="info-value" id="panel-type">-</span>
+        </div>
+        <div class="info-row"><span class="info-label">Orbital Period</span><span class="info-value"
+                id="panel-year">-</span></div>
+        <div class="info-row"><span class="info-label">Day Length</span><span class="info-value" id="panel-day">-</span>
+        </div>
+        <div class="info-row"><span class="info-label">Avg Temp</span><span class="info-value" id="panel-temp">-</span>
+        </div>
+        <div class="info-row"><span class="info-label">Orbit Speed</span><span class="info-value"
+                id="panel-speed">-</span></div>
+        <div class="info-row"><span class="info-label">Atmosphere</span><span class="info-value"
+                id="panel-atmo">-</span></div>
+        <div class="info-row"><span class="info-label">Features</span><span class="info-value" id="panel-wind">-</span>
+        </div>
+    </div>
+
+    <div id="canvas-container"></div>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+    }
+</script>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
