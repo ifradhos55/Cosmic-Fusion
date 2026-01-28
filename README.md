@@ -33,5 +33,3 @@
 ## Rendering Pipeline
 
 The simulation follows a linear data flow to generate the scene every frame.
-
-```mermaid
