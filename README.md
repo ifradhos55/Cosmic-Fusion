@@ -16,10 +16,10 @@
 > **100,000+** Particles in Galaxy View &nbsp;|&nbsp; **Real-time** Orbital Physics &nbsp;|&nbsp; **Procedural** Textures
 
 <br>
-## By Ifrad Hossain
 </div>
 
 ---
+## By Ifrad Hossain
 
 ## Technology Stack
 
