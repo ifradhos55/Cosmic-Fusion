@@ -2,8 +2,6 @@
 
 <img src="https://placehold.co/800x250/050505/88DDFF?text=COSMIC+FUSION&font=montserrat" alt="Cosmic Fusion Banner" width="100%">
 
-# Cosmic Fusion
-
 ### 🪐 Interactive 3D Solar System & Galaxy Simulation
 
 <a href="#">
