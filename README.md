@@ -22,7 +22,7 @@
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 This project is built on a **monolithic architecture** using standard ES Modules. It requires **zero build steps** (no Webpack/Vite needed).
 
