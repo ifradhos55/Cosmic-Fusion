@@ -24,8 +24,8 @@ export const planetData = [
         orbitalPeriod: 1.88, rotationPeriod: 1.03,
         details: { temp: "-65°C", speed: "24.1 km/s", atmo: "CO2 (Thin)", wind: "Dust Storms" },
         moons: [
-            { name: "Phobos", size: 0.8, distance: 6.5, color: "#886655", speed: 0.3, details: { temp: "-4°C", speed: "2.13 km/s", atmo: "None", wind: "Doomed Orbit" } },
-            { name: "Deimos", size: 0.8, distance: 7, color: "#997766", speed: 0.15, details: { temp: "-40°C", speed: "1.35 km/s", atmo: "None", wind: "Asteroid-like" } }
+            { name: "Phobos", size: 0.8, distance: 8.5, color: "#886655", speed: 0.3, details: { temp: "-4°C", speed: "2.13 km/s", atmo: "None", wind: "Doomed Orbit" } },
+            { name: "Deimos", size: 0.8, distance: 9, color: "#997766", speed: 0.15, details: { temp: "-40°C", speed: "1.35 km/s", atmo: "None", wind: "Asteroid-like" } }
         ]
     },
     {
