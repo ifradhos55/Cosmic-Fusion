@@ -6,8 +6,6 @@
 
 <br>
 
-![System Visualization](https://placehold.co/800x20/050505/88DDFF?text=SUN+MER+VEN+EAR+MAR+JUP+SAT+URA+NEP)
-
 **100,000+** Particles in Galaxy View | **Real-time** Orbital Physics | **Procedural** Textures
 
 <br>
@@ -37,8 +35,3 @@
 The simulation follows a linear data flow to generate the scene every frame.
 
 ```mermaid
-graph LR
-    A[planetData<br>JSON Config] --> B[Texture Gen<br>Canvas 2D]
-    B --> C[Three.js Mesh<br>SphereGeometry]
-    C --> D[Scene Graph<br>Groups & Pivots]
-    D --> E[WebGL Render<br>60 FPS Loop]
