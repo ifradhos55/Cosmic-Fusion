@@ -12,9 +12,6 @@
 <a href="#">
     <img src="https://img.shields.io/badge/WebGL-Accelerated-88DDFF?style=for-the-badge&logo=webgl&logoColor=black&labelColor=88DDFF" alt="WebGL">
 </a>
-<a href="#">
-    <img src="https://img.shields.io/badge/License-MIT-9933FF?style=for-the-badge" alt="License">
-</a>
 
 <br><br>
 
