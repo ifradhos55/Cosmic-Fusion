@@ -4,6 +4,8 @@
 
 ### 🪐 Interactive 3D Solar System & Galaxy Simulation
 
+[Visit Cosmic Fusion](https://cosmicfusionsimulator-six.vercel.app)
+
 <a href="#">
     <img src="https://img.shields.io/badge/Three.js-r160-white?style=for-the-badge&logo=three.js&color=000000" alt="Three.js">
 </a>
