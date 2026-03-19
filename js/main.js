@@ -99,6 +99,52 @@ lockOrbitBtn.addEventListener('click', () => {
     }
 });
 
+// --- Portal Transition Assets ---
+const portalGroup = new THREE.Group();
+camera.add(portalGroup);
+scene.add(camera); // Ensure camera is in scene if parents needed
+
+// Warp Tunnel (Star Streaks)
+function createWarpTunnel() {
+    const count = 400;
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(count * 3);
+    const colors = new Float32Array(count * 3);
+
+    for (let i = 0; i < count; i++) {
+        const theta = Math.random() * Math.PI * 2;
+        const r = 5 + Math.random() * 25;
+        positions[i * 3] = r * Math.cos(theta);
+        positions[i * 3 + 1] = r * Math.sin(theta);
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 2000;
+        
+        const c = new THREE.Color().setHSL(0.6, 0.8, 0.5 + Math.random() * 0.5);
+        colors[i * 3] = c.r; colors[i * 3 + 1] = c.g; colors[i * 3 + 2] = c.b;
+    }
+
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+    const material = new THREE.PointsMaterial({
+        size: 0.8, transparent: true, opacity: 0, blending: THREE.AdditiveBlending,
+        vertexColors: true, depthWrite: false, sizeAttenuation: true
+    });
+
+    return new THREE.Points(geometry, material);
+}
+
+const warpTunnel = createWarpTunnel();
+portalGroup.add(warpTunnel);
+
+// Portal Flash
+const portalFlash = new THREE.Sprite(new THREE.SpriteMaterial({
+    map: createSunFlareTexture(), color: 0xffffff, transparent: true, opacity: 0,
+    blending: THREE.AdditiveBlending, depthTest: false
+}));
+portalFlash.position.z = -5;
+portalFlash.scale.set(50, 50, 1);
+portalGroup.add(portalFlash);
+
 // --- Lighting ---
 const sunLight = new THREE.PointLight(0xffffff, 3.0, 1500, 1);
 sunLight.position.set(0, 0, 0);
@@ -609,21 +655,47 @@ function animate() {
     if (isTransitioning) {
         transitionTime += dt;
         let t = Math.min(transitionTime / transitionDuration, 1);
-        t = t < .5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+        
+        // Sharp Cinematic Ease
+        const easedT = t < 0.5 ? 8 * t * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2;
 
         if (isGalaxyView) {
-            camera.position.lerpVectors(SOLAR_CAM_POS, GALAXY_CAM_POS, t);
-            solarSystemGroup.scale.setScalar(1 - t);
-            galaxyGroup.scale.setScalar(t);
+            camera.position.lerpVectors(SOLAR_CAM_POS, GALAXY_CAM_POS, easedT);
+            solarSystemGroup.scale.setScalar(Math.max(0.001, 1 - easedT * 1.5)); // Shrink faster
+            galaxyGroup.scale.setScalar(easedT);
         } else {
-            camera.position.lerpVectors(GALAXY_CAM_POS, SOLAR_CAM_POS, t);
-            solarSystemGroup.scale.setScalar(t);
-            galaxyGroup.scale.setScalar(1 - t);
+            camera.position.lerpVectors(GALAXY_CAM_POS, SOLAR_CAM_POS, easedT);
+            solarSystemGroup.scale.setScalar(Math.max(0.001, easedT));
+            galaxyGroup.scale.setScalar(1 - easedT);
+        }
+
+        // --- Portal Warp Effects ---
+        const warpInt = Math.sin(t * Math.PI);
+        camera.fov = 60 + warpInt * 45; // FOV Jump
+        camera.updateProjectionMatrix();
+
+        warpTunnel.material.opacity = warpInt * 0.8;
+        warpTunnel.rotation.z += 0.08;
+        warpTunnel.position.z = (t * 3000) % 2000 - 1000;
+
+        const flashIntensity = Math.pow(warpInt, 12);
+        portalFlash.material.opacity = flashIntensity;
+        portalFlash.scale.setScalar(10 + flashIntensity * 100);
+
+        // Add subtle camera shake at the height of the warp
+        if (flashIntensity > 0.1) {
+            camera.position.x += (Math.random() - 0.5) * flashIntensity * 2;
+            camera.position.y += (Math.random() - 0.5) * flashIntensity * 2;
         }
 
         if (transitionTime >= transitionDuration) {
             isTransitioning = false;
             transitionTime = 0;
+            camera.fov = 60;
+            camera.updateProjectionMatrix();
+            warpTunnel.material.opacity = 0;
+            portalFlash.material.opacity = 0;
+
             if (isGalaxyView) {
                 solarSystemGroup.visible = false;
                 viewSolarBtn.style.display = 'block';
@@ -855,5 +927,19 @@ function updateLabel(planet) {
 
 document.getElementById('loading').style.opacity = 0;
 setTimeout(() => document.getElementById('loading').remove(), 500);
+
+// --- Cinematic Full-Screen Mode ---
+const fullscreenBtn = document.getElementById('fullscreen-btn');
+const fullscreenExitBtn = document.getElementById('fullscreen-exit-btn');
+const infoPanel = document.getElementById('planet-info-panel');
+
+fullscreenBtn.addEventListener('click', () => {
+    document.body.classList.add('fullscreen-mode');
+    if (infoPanel) infoPanel.classList.remove('active');
+});
+
+fullscreenExitBtn.addEventListener('click', () => {
+    document.body.classList.remove('fullscreen-mode');
+});
 
 animate();

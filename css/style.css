@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;700;900&display=swap');
 
 :root {
-    --ui-font-size: clamp(10px, 1.1vw, 17px);
+    --ui-font-size: clamp(8px, 1.1vw, 17px);
     --glass-bg: rgba(16, 24, 45, 0.88);
     --glass-border: rgba(255, 255, 255, 0.15);
     --accent-blue: #88DDFF;
     --accent-gold: #C7B492;
     --accent-red: #ff5555;
+    --mini-margin: clamp(5px, 2vw, 30px);
 }
 
 body {
@@ -25,7 +26,7 @@ body {
 }
 
 /* UNIVERSAL UI PILLS */
-.view-btn, #lock-orbit-btn, #infographic-btn, #zoom-controls, .planet-label {
+.view-btn, #lock-orbit-btn, #infographic-btn, #zoom-controls, .planet-label, #fullscreen-btn {
     box-sizing: border-box;
     z-index: 1000;
     backdrop-filter: blur(12px);
@@ -40,13 +41,19 @@ body {
 }
 
 /* Corner Positions (Responsive) */
-.view-btn, #infographic-btn { top: 30px; position: fixed; padding: 12px 28px; font-size: 13px; }
-.view-btn { left: 30px; color: var(--accent-blue); border: 2px solid rgba(136, 221, 255, 0.4); }
-#infographic-btn { right: 30px; color: var(--accent-gold); border: 2px solid rgba(199, 180, 146, 0.3); text-decoration: none; }
+.view-btn, #infographic-btn { top: var(--mini-margin); position: fixed; padding: 12px 28px; font-size: 13px; }
+.view-btn { left: var(--mini-margin); color: var(--accent-blue); border: 2px solid rgba(136, 221, 255, 0.4); }
+#infographic-btn { right: var(--mini-margin); color: var(--accent-gold); border: 2px solid rgba(199, 180, 146, 0.3); text-decoration: none; }
 
-#lock-orbit-btn, #zoom-controls { bottom: 30px; position: fixed; }
+#bottom-left-controls, #zoom-controls { bottom: var(--mini-margin); position: fixed; }
+#bottom-left-controls {
+    left: var(--mini-margin);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 1000;
+}
 #lock-orbit-btn { 
-    left: 30px; 
     padding: 14px 30px; 
     font-size: 14px; 
     color: var(--accent-blue);
@@ -55,8 +62,76 @@ body {
 }
 #lock-orbit-btn.active { border-color: var(--accent-red); color: var(--accent-red); box-shadow: 0 0 30px rgba(255, 85, 85, 0.4); }
 
-#zoom-controls {
+/* Full Screen Button */
+#fullscreen-btn {
+    padding: 14px 30px;
+    height: auto;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(136, 221, 235, 0.4);
+    box-shadow: 0 0 25px rgba(136, 221, 255, 0.2);
+}
+#fullscreen-btn img {
+    width: 20px;
+    height: 20px;
+    /* Glowing Bloodorange Filter */
+    filter: invert(27%) sepia(91%) saturate(2352%) hue-rotate(351deg) brightness(98%) contrast(117%) drop-shadow(0 0 5px rgba(255, 69, 0, 0.9));
+    transition: transform 0.3s;
+}
+#fullscreen-btn:hover img { transform: scale(1.1); }
+
+/* Full Screen Exit X */
+#fullscreen-exit-btn {
+    position: fixed;
+    top: 30px;
     right: 30px;
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    font-size: 28px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10001;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Fullscreen Mode State Swapping */
+body.fullscreen-mode #fullscreen-exit-btn { visibility: visible; }
+body.fullscreen-mode:hover #fullscreen-exit-btn { opacity: 1; }
+
+/* ENSURE INFO PANEL IS VISIBLE IN FULLSCREEN WHEN ACTIVE */
+body.fullscreen-mode #planet-info-panel.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translate(0, -50%) !important;
+    pointer-events: auto !important;
+}
+
+body.fullscreen-mode .view-btn,
+body.fullscreen-mode #bottom-left-controls,
+body.fullscreen-mode #infographic-btn,
+body.fullscreen-mode #zoom-controls,
+body.fullscreen-mode .planet-label,
+body.fullscreen-mode .geo-label {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity 0.8s ease; 
+}
+
+#zoom-controls {
+    right: var(--mini-margin);
     width: 240px;
     height: 48px;
     padding: 0 16px;
@@ -111,9 +186,9 @@ body {
 
 /* INFO PANEL - RESTORED FOR WHITE TEXT & TOP RIGHT X */
 #planet-info-panel {
-    position: fixed; top: 50%; right: 30px; 
-    width: 224px;
-    max-height: 80vh; 
+    position: fixed; top: 50%; right: var(--mini-margin); 
+    width: clamp(140px, 90vw, 224px);
+    max-height: 85vh; 
     transform: translate(140%, -50%); 
     padding: 16px;
     border-radius: 14px; z-index: 5000; overflow-y: auto;
@@ -166,7 +241,8 @@ body {
         bottom: auto; padding: 8px 16px; font-size: 10px; 
     }
     #infographic-btn { right: max(10px, env(safe-area-inset-right)); left: auto; }
-    #lock-orbit-btn { bottom: max(10px, env(safe-area-inset-bottom)); top: auto; padding: 8px 16px; font-size: 10px; }
+    #bottom-left-controls { bottom: max(10px, env(safe-area-inset-bottom)); top: auto; left: max(10px, env(safe-area-inset-left)); gap: 10px; }
+    #lock-orbit-btn { padding: 8px 16px; font-size: 10px; }
     #zoom-controls { bottom: max(10px, env(safe-area-inset-bottom)); top: auto; right: max(10px, env(safe-area-inset-right)); left: auto; width: 130px; height: 30px; padding: 0 8px; }
     .zoom-btn { font-size: 16px; }
     
@@ -207,3 +283,25 @@ body {
 }
 
 @media (orientation: portrait) and (max-width: 600px) { #rotate-device-overlay { display: flex; color: white; } }
+
+/* APPLE WATCH / ULTRA-MICRO SCREENS */
+@media (max-width: 350px) {
+    .view-btn, #infographic-btn, #lock-orbit-btn { padding: 6px 12px; font-size: 8px; letter-spacing: 0.05em; }
+    #zoom-controls { width: 90px; height: 24px; padding: 0 4px; gap: 4px; font-size: 8px; }
+    .zoom-btn { font-size: 12px; }
+    #planet-info-panel { width: 92vw; right: 4vw; padding: 8px; font-size: 7px; top: 50%; }
+    #planet-info-panel h2 { font-size: 11px; margin-bottom: 5px; }
+    .info-row { margin: 3px 0; padding-bottom: 2px; }
+    .info-label { font-size: 6px; }
+    .info-value { font-size: 6px; }
+    .planet-label { padding: 3px 8px; font-size: 8px; }
+    
+    #bottom-left-controls { left: 5px; bottom: 5px; gap: 5px; }
+    #lock-orbit-btn { padding: 6px 12px; font-size: 8px; }
+    #fullscreen-btn { 
+        width: auto; height: auto; min-height: 28px; 
+        padding: 5px 12px;
+    }
+    #fullscreen-btn img { width: 14px; height: 14px; }
+    #fullscreen-exit-btn { top: 10px; right: 10px; width: 34px; height: 34px; font-size: 20px; }
+}
