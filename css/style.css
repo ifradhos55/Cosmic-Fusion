@@ -268,12 +268,17 @@ body {
     .full-text { display: none; }
 
     #planet-info-panel {
-        width: calc(100% - 30px);
-        right: 15px;
-        top: 70px;
-        padding: 16px;
-        max-height: 45vh;
-        overflow-y: auto;
+        width: min(300px, calc(100vw - 30px)) !important;
+        right: 15px !important;
+        top: 70px !important;
+        padding: 16px !important;
+        max-height: 70vh !important;
+        overflow-y: auto !important;
+        transform: translateX(130%);
+    }
+
+    #planet-info-panel.active {
+        transform: translateX(0) !important;
     }
 
     #planet-info-panel h2 {
@@ -309,19 +314,22 @@ body {
     }
 
     #planet-info-panel {
-        top: 10px;
-        right: 10px;
-        width: 180px;
-        padding: 10px;
-        max-height: 100vh;
+        top: 10px !important;
+        right: 10px !important;
+        width: 250px !important;
+        padding: 12px !important;
+        max-height: calc(100vh - 20px) !important;
     }
     
     #planet-info-panel h2 {
-        font-size: 1rem;
+        font-size: 1.1rem !important;
+        margin-bottom: 8px !important;
+        padding-bottom: 6px !important;
     }
 
-    .info-label { font-size: 0.65rem; }
-    .info-value { font-size: 0.75rem; }
+    .info-label { font-size: 0.65rem !important; }
+    .info-value { font-size: 0.75rem !important; }
+    .info-row { margin: 3px 0 !important; }
 }
 
 /* Rotate Device Overlay */
@@ -362,12 +370,12 @@ body {
     }
 }
 
-/* Micro-Viewport Fixes (for embedded views/tiny windows) */
-@media screen and (max-width: 400px), (max-height: 350px) {
+/* Micro-Viewport Fixes (for tiny portrait embedded views only) */
+@media screen and (max-width: 400px) and (orientation: portrait) {
     .view-btn, #infographic-btn {
         top: 10px !important;
         padding: 4px 8px !important;
-        font-size: 8px !important;
+        font-size: 9px !important;
         min-width: 60px !important;
     }
     
@@ -375,7 +383,7 @@ body {
         bottom: 10px !important;
         left: 10px !important;
         padding: 4px 8px !important;
-        font-size: 8px !important;
+        font-size: 9px !important;
     }
     
     #zoom-controls {
@@ -386,7 +394,7 @@ body {
     }
 
     #planet-info-panel {
-        top: 50px !important;
+        top: 60px !important;
         width: calc(100% - 20px) !important;
         right: 10px !important;
         padding: 10px !important;
