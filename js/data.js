@@ -16,7 +16,21 @@ export const planetData = [
         orbitalPeriod: 1.0, rotationPeriod: 1.0,
         details: { temp: "15°C", speed: "29.8 km/s", atmo: "N2, O2", wind: "Life Sustaining" },
         moons: [
-            { name: "The Moon", size: 1.0, distance: 12, color: "#CCCCCC", speed: 0.1, details: { temp: "-53°C", speed: "1.02 km/s", atmo: "None", wind: "Tidally Locked" } }
+            { name: "The Moon", size: 1.0, distance: 15, color: "#CCCCCC", speed: 0.1, details: { temp: "-53°C", speed: "1.02 km/s", atmo: "None", wind: "Tidally Locked" } }
+        ],
+        geoLabels: [
+            { name: "North America", lat: 38, lon: -97 },
+            { name: "South America", lat: -15, lon: -55 },
+            { name: "Europe", lat: 50, lon: 15 },
+            { name: "Africa", lat: 5, lon: 20 },
+            { name: "Asia", lat: 35, lon: 100 },
+            { name: "Australia", lat: -25, lon: 133 },
+            { name: "Antarctica", lat: -82, lon: 0 },
+            { name: "Pacific Ocean", lat: 0, lon: -160 },
+            { name: "Atlantic Ocean", lat: 0, lon: -30 },
+            { name: "Indian Ocean", lat: -20, lon: 80 },
+            { name: "Southern Ocean", lat: -65, lon: 0 },
+            { name: "Arctic Ocean", lat: 85, lon: 0 }
         ]
     },
     {
@@ -24,8 +38,8 @@ export const planetData = [
         orbitalPeriod: 1.88, rotationPeriod: 1.03,
         details: { temp: "-65°C", speed: "24.1 km/s", atmo: "CO2 (Thin)", wind: "Dust Storms" },
         moons: [
-            { name: "Phobos", size: 0.8, distance: 8.5, color: "#886655", speed: 0.3, details: { temp: "-4°C", speed: "2.13 km/s", atmo: "None", wind: "Doomed Orbit" } },
-            { name: "Deimos", size: 0.8, distance: 9, color: "#997766", speed: 0.15, details: { temp: "-40°C", speed: "1.35 km/s", atmo: "None", wind: "Asteroid-like" } }
+            { name: "Phobos", size: 0.8, distance: 10, color: "#886655", speed: 0.3, details: { temp: "-4°C", speed: "2.13 km/s", atmo: "None", wind: "Doomed Orbit" } },
+            { name: "Deimos", size: 0.8, distance: 13, color: "#997766", speed: 0.15, details: { temp: "-40°C", speed: "1.35 km/s", atmo: "None", wind: "Asteroid-like" } }
         ]
     },
     {
@@ -33,10 +47,10 @@ export const planetData = [
         orbitalPeriod: 11.86, rotationPeriod: 0.41,
         details: { temp: "-110°C", speed: "13.1 km/s", atmo: "H2, He", wind: "Great Red Spot" },
         moons: [
-            { name: "Io", size: 0.8, distance: 23, color: "#DDCC55", speed: 0.2, details: { temp: "-143°C", speed: "17 km/s", atmo: "Sulfur", wind: "Volcanic" } },
-            { name: "Europa", size: 0.7, distance: 26, color: "#AACCFF", speed: 0.15, details: { temp: "-160°C", speed: "13 km/s", atmo: "Oxygen (Trace)", wind: "Ice Shell" } },
-            { name: "Ganymede", size: 1.2, distance: 30, color: "#998877", speed: 0.1, details: { temp: "-163°C", speed: "10 km/s", atmo: "Oxygen (Trace)", wind: "Magnetic Field" } },
-            { name: "Callisto", size: 1.1, distance: 35, color: "#665544", speed: 0.08, details: { temp: "-171°C", speed: "8 km/s", atmo: "CO2 (Trace)", wind: "Ancient Surface" } }
+            { name: "Io", size: 0.8, distance: 25, color: "#DDCC55", speed: 0.2, details: { temp: "-143°C", speed: "17 km/s", atmo: "Sulfur", wind: "Volcanic" } },
+            { name: "Europa", size: 0.7, distance: 30, color: "#AACCFF", speed: 0.15, details: { temp: "-160°C", speed: "13 km/s", atmo: "Oxygen (Trace)", wind: "Ice Shell" } },
+            { name: "Ganymede", size: 1.2, distance: 36, color: "#998877", speed: 0.1, details: { temp: "-163°C", speed: "10 km/s", atmo: "Oxygen (Trace)", wind: "Magnetic Field" } },
+            { name: "Callisto", size: 1.1, distance: 42, color: "#665544", speed: 0.08, details: { temp: "-171°C", speed: "8 km/s", atmo: "CO2 (Trace)", wind: "Ancient Surface" } }
         ]
     },
     {
@@ -44,8 +58,8 @@ export const planetData = [
         orbitalPeriod: 29.45, rotationPeriod: 0.45,
         details: { temp: "-140°C", speed: "9.7 km/s", atmo: "H2, He", wind: "Hexagon Storm" },
         moons: [
-            { name: "Titan", size: 1.1, distance: 18, color: "#DDAA44", speed: 0.1, details: { temp: "-179°C", speed: "5.57 km/s", atmo: "Nitrogen (Thick)", wind: "Methane Lakes" } },
-            { name: "Enceladus", size: 0.4, distance: 12, color: "#EEEEFF", speed: 0.3, details: { temp: "-201°C", speed: "12.6 km/s", atmo: "Water Vapor", wind: "Ice Geysers" } }
+            { name: "Titan", size: 1.1, distance: 26, color: "#DDAA44", speed: 0.1, details: { temp: "-179°C", speed: "5.57 km/s", atmo: "Nitrogen (Thick)", wind: "Methane Lakes" } },
+            { name: "Enceladus", size: 0.4, distance: 22, color: "#EEEEFF", speed: 0.3, details: { temp: "-201°C", speed: "12.6 km/s", atmo: "Water Vapor", wind: "Ice Geysers" } }
         ]
     },
     {
@@ -53,8 +67,8 @@ export const planetData = [
         orbitalPeriod: 84.0, rotationPeriod: -0.72,
         details: { temp: "-195°C", speed: "6.8 km/s", atmo: "H2, He, CH4", wind: "Sideways World" },
         moons: [
-            { name: "Titania", size: 0.5, distance: 8, color: "#CCCCCC", speed: 0.1, details: { temp: "-203°C", speed: "3.6 km/s", atmo: "None", wind: "Canyons" } },
-            { name: "Oberon", size: 0.5, distance: 10, color: "#BBBBBB", speed: 0.08, details: { temp: "-203°C", speed: "3.1 km/s", atmo: "None", wind: "Craters" } }
+            { name: "Titania", size: 0.5, distance: 15, color: "#CCCCCC", speed: 0.1, details: { temp: "-203°C", speed: "3.6 km/s", atmo: "None", wind: "Canyons" } },
+            { name: "Oberon", size: 0.5, distance: 19, color: "#BBBBBB", speed: 0.08, details: { temp: "-203°C", speed: "3.1 km/s", atmo: "None", wind: "Craters" } }
         ]
     },
     {
@@ -62,7 +76,18 @@ export const planetData = [
         orbitalPeriod: 164.8, rotationPeriod: 0.67,
         details: { temp: "-200°C", speed: "5.4 km/s", atmo: "H2, He, CH4", wind: "Supersonic Winds" },
         moons: [
-            { name: "Triton", size: 0.8, distance: 8, color: "#FFDDDD", speed: -0.1, details: { temp: "-235°C", speed: "4.3 km/s", atmo: "Nitrogen", wind: "Retrograde Orbit" } } // Retrograde
+        ]
+    },
+    {
+        name: "Pluto", size: 1.5, distance: 330, color: "#C0A080", type: "pluto", tilt: 122.5,
+        isDwarf: true, orbitalPeriod: 248.0, rotationPeriod: -6.4,
+        details: { temp: "-225°C", speed: "4.7 km/s", atmo: "N2, CH4, CO", wind: "[Dwarf Planet] Methane Ice" },
+        moons: [
+            { name: "Charon", size: 0.6, distance: 8, color: "#999999", speed: 0.2, details: { temp: "-220°C", speed: "0.2 km/s", atmo: "None", wind: "Binary System" } },
+            { name: "Styx", size: 0.3, distance: 11, color: "#777777", speed: 0.35, details: { temp: "-225°C", speed: "0.5 km/s", atmo: "None", wind: "Tiny" } },
+            { name: "Nix", size: 0.4, distance: 14, color: "#AAAAAA", speed: 0.28, details: { temp: "-225°C", speed: "0.5 km/s", atmo: "None", wind: "Icy" } },
+            { name: "Kerberos", size: 0.3, distance: 17, color: "#666666", speed: 0.24, details: { temp: "-225°C", speed: "0.5 km/s", atmo: "None", wind: "Dark" } },
+            { name: "Hydra", size: 0.4, distance: 20, color: "#CCCCCC", speed: 0.2, details: { temp: "-225°C", speed: "0.5 km/s", atmo: "None", wind: "Bright" } }
         ]
     }
 ];

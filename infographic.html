@@ -406,8 +406,12 @@
                         class="p-label">URA</span>
                 </div>
                 <div class="planet-node">
-                    <div class="planet-circle" style="width: 17px; height: 17px; background: #2933CF;"></div><span
+                    <div class="planet-circle" style="width: 17px; height: 17px; background: #2933CF; box-shadow: 0 0 10px rgba(41, 51, 207, 0.4);"></div><span
                         class="p-label">NEP</span>
+                </div>
+                <div class="planet-node">
+                    <div class="planet-circle" style="width: 7px; height: 7px; background: #C0A080; border: 1px solid #ff4d4d;"></div><span
+                        class="p-label" style="color: #ff4d4d;">PLU</span>
                 </div>
             </div>
             <div style="font-size: 0.9rem; color: var(--text-dim); text-align: center;">
@@ -445,12 +449,9 @@
             <div class="card">
                 <div class="card-title">Code Architecture</div>
                 <div class="feature-list">
-                    <li><strong>Monolith Structure:</strong> Logic contained in single file
-                        <code>cosmicfusion.html</code>
-                    </li>
-                    <li><strong>Procedural Assets:</strong> Textures generated via <code>Canvas API</code> (No external
-                        image downloads)</li>
-                    <li><strong>Scene Graph:</strong> Tiered Groups (Solar Group, Tilt Group, Moon Pivot)</li>
+                    <li><strong>Modular Structure:</strong> Refactored into specialized ES6 modules (<code>main.js</code>, <code>textures.js</code>, <code>galaxy.js</code>, <code>data.js</code>)</li>
+                    <li><strong>Procedural Engine:</strong> Dynamic texture generation via <code>Canvas API</code> (No external image downloads)</li>
+                    <li><strong>Scene Graph:</strong> Tiered Groups (Solar Group, Tilt Group, Moon Pivot) and prioritized click-raycasting</li>
                 </div>
             </div>
         </div>
