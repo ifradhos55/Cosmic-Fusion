@@ -3,15 +3,21 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>3D Solar System Simulation</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
     <!-- Buttons -->
-    <button id="view-galaxy-btn" class="view-btn">View Galaxy</button>
-    <button id="view-solar-btn" class="view-btn">Back to Solar System</button>
+    <button id="view-galaxy-btn" class="view-btn">
+        <span class="full-text">View Galaxy</span>
+        <span class="short-text">Galaxy</span>
+    </button>
+    <button id="view-solar-btn" class="view-btn">
+        <span class="full-text">Back to Solar System</span>
+        <span class="short-text">Solar</span>
+    </button>
 
     <!-- Lock Orbit Button -->
     <button id="lock-orbit-btn">Lock Orbit</button>
@@ -50,6 +56,11 @@
     </div>
 
     <div id="canvas-container"></div>
+
+    <div id="rotate-device-overlay">
+        <div class="phone-icon"></div>
+        <p>Please rotate your device</p>
+    </div>
 
     <script type="importmap">
     {

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>CosmicFusion - Project Infographic</title>
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
@@ -79,6 +79,7 @@
             text-transform: uppercase;
             background: linear-gradient(to right, #fff, #88DDFF);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 900;
         }
@@ -284,6 +285,75 @@
             font-family: monospace;
             color: var(--accent-primary);
         }
+
+        /* Responsive Infographic */
+        @media screen and (max-width: 850px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                width: 100%;
+                padding: 30px 20px;
+                border-radius: 10px;
+                box-sizing: border-box;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+                letter-spacing: 2px;
+            }
+
+            .subtitle {
+                font-size: 0.9rem;
+            }
+
+            .grid-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .stack-list {
+                flex-wrap: wrap;
+                height: auto;
+                gap: 20px;
+                padding: 10px 0;
+            }
+
+            .flow-diagram {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .flow-arrow {
+                width: 2px;
+                height: 20px;
+                margin: 0;
+            }
+
+            .flow-arrow::after {
+                right: -2px;
+                top: auto;
+                bottom: 0;
+                transform: rotate(90deg);
+            }
+
+            .planet-strip {
+                overflow-x: auto;
+                justify-content: flex-start;
+                gap: 15px;
+                padding-bottom: 30px;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .planet-node {
+                flex-shrink: 0;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
     </style>
 </head>
 
@@ -376,7 +446,8 @@
                 <div class="card-title">Code Architecture</div>
                 <div class="feature-list">
                     <li><strong>Monolith Structure:</strong> Logic contained in single file
-                        <code>cosmicfusion.html</code></li>
+                        <code>cosmicfusion.html</code>
+                    </li>
                     <li><strong>Procedural Assets:</strong> Textures generated via <code>Canvas API</code> (No external
                         image downloads)</li>
                     <li><strong>Scene Graph:</strong> Tiered Groups (Solar Group, Tilt Group, Moon Pivot)</li>

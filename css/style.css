@@ -4,7 +4,8 @@ body {
     margin: 0;
     overflow: hidden;
     background-color: #050505;
-    font-family: 'Exo 2', sans-serif;
+    font-family: 'Exo+2', sans-serif;
+    touch-action: none;
 }
 #canvas-container {
     width: 100vw;
@@ -64,7 +65,7 @@ body {
     border-radius: 16px;
     padding: 24px;
     transform: translateX(130%);
-    z-index: 20;
+    z-index: 21;
 }
 
 #planet-info-panel.active {
@@ -123,12 +124,9 @@ body {
     color: white;
 }
 
-/* Galaxy Buttons - Centered */
-.view-btn {
+/* Galaxy/Common Buttons */
+.view-btn, #lock-orbit-btn, #infographic-btn {
     position: absolute;
-    top: 30px;
-    left: 50%;
-    transform: translateX(-50%);
     padding: 12px 24px;
     border-radius: 30px;
     font-family: 'Exo 2', sans-serif;
@@ -137,49 +135,41 @@ body {
     letter-spacing: 2px;
     cursor: pointer;
     z-index: 15;
-    color: #88DDFF;
-    border: 1px solid rgba(136, 221, 255, 0.3);
     background: rgba(16, 24, 45, 0.85);
     backdrop-filter: blur(8px);
     transition: all 0.3s ease;
     box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.view-btn {
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #88DDFF;
+    border: 1px solid rgba(136, 221, 255, 0.3);
 }
 
 .view-btn:hover {
     background: rgba(136, 221, 255, 0.15);
     box-shadow: 0 0 25px rgba(136, 221, 255, 0.5);
     color: white;
-    border-color: rgba(255, 255, 255, 0.6);
 }
 
 #view-solar-btn {
-    display: none; /* Hidden initially */
+    display: none;
 }
 
-/* Lock Button */
+.short-text { display: none; }
+
 #lock-orbit-btn {
-    position: absolute;
     bottom: 30px;
     left: 30px;
-    padding: 12px 24px;
-    border-radius: 30px;
-    font-family: 'Exo 2', sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    cursor: pointer;
-    z-index: 15;
     color: #88DDFF;
     border: 1px solid rgba(136, 221, 255, 0.3);
-    background: rgba(16, 24, 45, 0.85);
-    backdrop-filter: blur(8px);
-    transition: all 0.3s ease;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
 }
 
 #lock-orbit-btn:hover {
     background: rgba(136, 221, 255, 0.15);
-    box-shadow: 0 0 25px rgba(136, 221, 255, 0.5);
     color: white;
 }
 
@@ -187,7 +177,19 @@ body {
     background: rgba(255, 80, 80, 0.2);
     border-color: #ff5555;
     color: #ff8888;
-    box-shadow: 0 0 25px rgba(255, 80, 80, 0.4);
+}
+
+#infographic-btn {
+    top: 30px;
+    right: 30px;
+    color: #C7B492;
+    border: 1px solid rgba(199, 180, 146, 0.3);
+    text-decoration: none;
+}
+
+#infographic-btn:hover {
+    background: rgba(199, 180, 146, 0.15);
+    color: white;
 }
 
 /* Zoom Controls */
@@ -213,36 +215,23 @@ body {
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    font-size: 18px;
-    line-height: 1;
     cursor: pointer;
-    transition: all 0.2s;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Exo 2', sans-serif;
-    font-weight: 700;
 }
 
-.zoom-btn:hover {
-    background: rgba(136, 221, 255, 0.3);
-    color: white;
-    transform: scale(1.1);
-}
-
-/* Vertical Slider Styling */
 .zoom-slider-container {
     flex-grow: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 10px 0;
 }
 
 #zoom-slider {
-    -webkit-appearance: slider-vertical; /* WebKit */
-    writing-mode: bt-lr; /* IE/Edge */
+    -webkit-appearance: slider-vertical;
+    appearance: slider-vertical;
     width: 6px;
     height: 100%;
     background: rgba(255, 255, 255, 0.1);
@@ -253,42 +242,153 @@ body {
 
 #zoom-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
+    appearance: none;
     width: 18px;
     height: 18px;
     background: #88DDFF;
     border-radius: 50%;
     cursor: pointer;
     box-shadow: 0 0 10px rgba(136, 221, 255, 0.6);
-    border: 2px solid rgba(255,255,255,0.8);
 }
 
-/* Infographic Button */
-#infographic-btn {
-    position: absolute;
-    top: 30px;
-    right: 30px;
-    padding: 12px 24px;
-    border-radius: 30px;
-    font-family: 'Exo 2', sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    cursor: pointer;
-    z-index: 15;
-    color: #C7B492; /* Highlighting it slightly differently, maybe Gold/Saturn color? Or Galaxy Purple? Let's stick to theme but distinct. */
-    border: 1px solid rgba(199, 180, 146, 0.3);
-    background: rgba(16, 24, 45, 0.85);
-    backdrop-filter: blur(8px);
-    transition: all 0.3s ease;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    text-decoration: none; /* For the anchor tag */
-    font-size: 13px; /* Match button size roughly */
-    display: block;
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .view-btn, #infographic-btn {
+        top: 20px;
+        padding: 8px 12px;
+        font-size: 10px;
+        width: auto;
+        min-width: 80px;
+    }
+
+    .view-btn { left: 15px; transform: none; }
+    #infographic-btn { right: 15px; }
+
+    .short-text { display: inline; }
+    .full-text { display: none; }
+
+    #planet-info-panel {
+        width: calc(100% - 30px);
+        right: 15px;
+        top: 70px;
+        padding: 16px;
+        max-height: 45vh;
+        overflow-y: auto;
+    }
+
+    #planet-info-panel h2 {
+        font-size: 1.4rem;
+        margin-bottom: 12px;
+    }
+
+    .info-label { font-size: 0.75rem; }
+    .info-value { font-size: 0.85rem; }
+    .info-row { margin: 6px 0; }
 }
 
-#infographic-btn:hover {
-    background: rgba(199, 180, 146, 0.15);
-    box-shadow: 0 0 25px rgba(199, 180, 146, 0.5);
+@media screen and (max-height: 480px) {
+    #zoom-controls {
+        flex-direction: row;
+        width: 160px;
+        height: 40px;
+        bottom: 10px;
+        right: 10px;
+        padding: 0 10px;
+    }
+
+    #zoom-in { order: 3; }
+    .zoom-slider-container { order: 2; }
+    #zoom-out { order: 1; }
+
+    #zoom-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 4px;
+        writing-mode: horizontal-tb;
+    }
+
+    #planet-info-panel {
+        top: 10px;
+        right: 10px;
+        width: 180px;
+        padding: 10px;
+        max-height: 100vh;
+    }
+    
+    #planet-info-panel h2 {
+        font-size: 1rem;
+    }
+
+    .info-label { font-size: 0.65rem; }
+    .info-value { font-size: 0.75rem; }
+}
+
+/* Rotate Device Overlay */
+#rotate-device-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(5, 5, 5, 0.98);
+    z-index: 9999;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     color: white;
-    border-color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.phone-icon {
+    width: 50px;
+    height: 90px;
+    border: 3px solid white;
+    border-radius: 8px;
+    position: relative;
+    animation: rotatePhone 2s ease-in-out infinite;
+}
+
+@keyframes rotatePhone {
+    0%, 100% { transform: rotate(-90deg); }
+    50% { transform: rotate(0deg); }
+}
+
+@media screen and (orientation: portrait) and (pointer: coarse) {
+    #rotate-device-overlay {
+        display: flex;
+    }
+}
+
+/* Micro-Viewport Fixes (for embedded views/tiny windows) */
+@media screen and (max-width: 400px), (max-height: 350px) {
+    .view-btn, #infographic-btn {
+        top: 10px !important;
+        padding: 4px 8px !important;
+        font-size: 8px !important;
+        min-width: 60px !important;
+    }
+    
+    #lock-orbit-btn {
+        bottom: 10px !important;
+        left: 10px !important;
+        padding: 4px 8px !important;
+        font-size: 8px !important;
+    }
+    
+    #zoom-controls {
+        bottom: 10px !important;
+        right: 10px !important;
+        transform: scale(0.8);
+        transform-origin: bottom right;
+    }
+
+    #planet-info-panel {
+        top: 50px !important;
+        width: calc(100% - 20px) !important;
+        right: 10px !important;
+        padding: 10px !important;
+    }
 }

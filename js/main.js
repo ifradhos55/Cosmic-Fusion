@@ -383,9 +383,20 @@ function showPanel(data) {
 }
 
 window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    // Small delay to ensure mobile browser bars have settled
+    setTimeout(() => {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        
+        if (width === 0 || height === 0) return;
+
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
+        
+        // Force a render if paused/transitioning to ensure state is fresh
+        renderer.render(scene, camera);
+    }, 100);
 });
 
 // --- View Transition Logic ---

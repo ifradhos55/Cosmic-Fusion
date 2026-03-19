@@ -1,0 +1,1941 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/obj/Debug/net9.0/scopedcss/projectbundle/CosmicFusion.bundle.scp.css",
+      "PackagePath": "staticwebassets/CosmicFusion.wk5esr1ij3.bundle.scp.css"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/css/site.css",
+      "PackagePath": "staticwebassets/css/site.css"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/css/style.css",
+      "PackagePath": "staticwebassets/css/style.css"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/favicon.ico",
+      "PackagePath": "staticwebassets/favicon.ico"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/import_test.html",
+      "PackagePath": "staticwebassets/import_test.html"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/js/config.js",
+      "PackagePath": "staticwebassets/js/config.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/js/data.js",
+      "PackagePath": "staticwebassets/js/data.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/js/galaxy.js",
+      "PackagePath": "staticwebassets/js/galaxy.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/js/importer.js",
+      "PackagePath": "staticwebassets/js/importer.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/js/main.js",
+      "PackagePath": "staticwebassets/js/main.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/js/site.js",
+      "PackagePath": "staticwebassets/js/site.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/js/test_module.js",
+      "PackagePath": "staticwebassets/js/test_module.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/js/textures.js",
+      "PackagePath": "staticwebassets/js/textures.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/js/utils.js",
+      "PackagePath": "staticwebassets/js/utils.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/LICENSE",
+      "PackagePath": "staticwebassets/lib/bootstrap"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.css"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.css.map"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.min.css"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.css"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.css"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.css"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.css.map"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.min.css"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.min.css.map"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.css"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.js.map"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.min.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/js/bootstrap.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/js/bootstrap.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.js.map"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.min.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.min.js.map"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
+      "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/LICENSE.txt"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/jquery-validation/LICENSE.md",
+      "PackagePath": "staticwebassets/lib/jquery-validation/LICENSE.md"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/jquery-validation/dist/additional-methods.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/additional-methods.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/jquery-validation/dist/additional-methods.min.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/additional-methods.min.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/jquery-validation/dist/jquery.validate.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/jquery.validate.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/jquery-validation/dist/jquery.validate.min.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/jquery.validate.min.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/jquery/LICENSE.txt",
+      "PackagePath": "staticwebassets/lib/jquery/LICENSE.txt"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/jquery/dist/jquery.js",
+      "PackagePath": "staticwebassets/lib/jquery/dist/jquery.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/jquery/dist/jquery.min.js",
+      "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/jquery/dist/jquery.min.map",
+      "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.map"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/jquery/dist/jquery.slim.js",
+      "PackagePath": "staticwebassets/lib/jquery/dist/jquery.slim.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/jquery/dist/jquery.slim.min.js",
+      "PackagePath": "staticwebassets/lib/jquery/dist/jquery.slim.min.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/jquery/dist/jquery.slim.min.map",
+      "PackagePath": "staticwebassets/lib/jquery/dist/jquery.slim.min.map"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/build/three.cjs",
+      "PackagePath": "staticwebassets/lib/three/build/three.cjs"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/build/three.core.js",
+      "PackagePath": "staticwebassets/lib/three/build/three.core.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/build/three.core.min.js",
+      "PackagePath": "staticwebassets/lib/three/build/three.core.min.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/build/three.module.js",
+      "PackagePath": "staticwebassets/lib/three/build/three.module.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/build/three.module.min.js",
+      "PackagePath": "staticwebassets/lib/three/build/three.module.min.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/build/three.tsl.js",
+      "PackagePath": "staticwebassets/lib/three/build/three.tsl.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/build/three.tsl.min.js",
+      "PackagePath": "staticwebassets/lib/three/build/three.tsl.min.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/build/three.webgpu.js",
+      "PackagePath": "staticwebassets/lib/three/build/three.webgpu.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/build/three.webgpu.min.js",
+      "PackagePath": "staticwebassets/lib/three/build/three.webgpu.min.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/build/three.webgpu.nodes.js",
+      "PackagePath": "staticwebassets/lib/three/build/three.webgpu.nodes.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/build/three.webgpu.nodes.min.js",
+      "PackagePath": "staticwebassets/lib/three/build/three.webgpu.nodes.min.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/Addons.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/Addons.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/animation/AnimationClipCreator.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/animation/AnimationClipCreator.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/animation/CCDIKSolver.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/animation/CCDIKSolver.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/capabilities/WebGL.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/capabilities/WebGL.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/capabilities/WebGPU.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/capabilities/WebGPU.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/controls/ArcballControls.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/controls/ArcballControls.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/controls/DragControls.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/controls/DragControls.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/controls/FirstPersonControls.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/controls/FirstPersonControls.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/controls/FlyControls.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/controls/FlyControls.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/controls/MapControls.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/controls/MapControls.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/controls/OrbitControls.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/controls/OrbitControls.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/controls/PointerLockControls.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/controls/PointerLockControls.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/controls/TrackballControls.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/controls/TrackballControls.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/controls/TransformControls.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/controls/TransformControls.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/csm/CSM.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/csm/CSM.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/csm/CSMFrustum.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/csm/CSMFrustum.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/csm/CSMHelper.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/csm/CSMHelper.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/csm/CSMShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/csm/CSMShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/csm/CSMShadowNode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/csm/CSMShadowNode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/curves/CurveExtras.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/curves/CurveExtras.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/curves/NURBSCurve.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/curves/NURBSCurve.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/curves/NURBSSurface.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/curves/NURBSSurface.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/curves/NURBSUtils.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/curves/NURBSUtils.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/curves/NURBSVolume.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/curves/NURBSVolume.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/effects/AnaglyphEffect.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/effects/AnaglyphEffect.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/effects/AsciiEffect.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/effects/AsciiEffect.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/effects/OutlineEffect.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/effects/OutlineEffect.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/effects/ParallaxBarrierEffect.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/effects/ParallaxBarrierEffect.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/effects/StereoEffect.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/effects/StereoEffect.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/environments/DebugEnvironment.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/environments/DebugEnvironment.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/environments/RoomEnvironment.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/environments/RoomEnvironment.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/exporters/DRACOExporter.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/exporters/DRACOExporter.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/exporters/EXRExporter.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/exporters/EXRExporter.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/exporters/GLTFExporter.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/exporters/GLTFExporter.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/exporters/KTX2Exporter.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/exporters/KTX2Exporter.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/exporters/OBJExporter.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/exporters/OBJExporter.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/exporters/PLYExporter.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/exporters/PLYExporter.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/exporters/STLExporter.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/exporters/STLExporter.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/exporters/USDZExporter.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/exporters/USDZExporter.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/geometries/BoxLineGeometry.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/geometries/BoxLineGeometry.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/geometries/ConvexGeometry.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/geometries/ConvexGeometry.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/geometries/DecalGeometry.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/geometries/DecalGeometry.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/geometries/ParametricFunctions.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/geometries/ParametricFunctions.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/geometries/ParametricGeometry.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/geometries/ParametricGeometry.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/geometries/RoundedBoxGeometry.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/geometries/RoundedBoxGeometry.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/geometries/TeapotGeometry.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/geometries/TeapotGeometry.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/geometries/TextGeometry.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/geometries/TextGeometry.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/gpgpu/BitonicSort.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/gpgpu/BitonicSort.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/helpers/LightProbeHelper.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/helpers/LightProbeHelper.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/helpers/LightProbeHelperGPU.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/helpers/LightProbeHelperGPU.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/helpers/OctreeHelper.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/helpers/OctreeHelper.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/helpers/PositionalAudioHelper.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/helpers/PositionalAudioHelper.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/helpers/RapierHelper.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/helpers/RapierHelper.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/helpers/RectAreaLightHelper.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/helpers/RectAreaLightHelper.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/helpers/TextureHelper.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/helpers/TextureHelper.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/helpers/TextureHelperGPU.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/helpers/TextureHelperGPU.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/helpers/VertexNormalsHelper.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/helpers/VertexNormalsHelper.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/helpers/VertexTangentsHelper.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/helpers/VertexTangentsHelper.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/helpers/ViewHelper.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/helpers/ViewHelper.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/inspector/Inspector.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/inspector/Inspector.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/inspector/RendererInspector.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/inspector/RendererInspector.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/inspector/tabs/Console.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/inspector/tabs/Console.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/inspector/tabs/Parameters.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/inspector/tabs/Parameters.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/inspector/tabs/Performance.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/inspector/tabs/Performance.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/inspector/tabs/Viewer.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/inspector/tabs/Viewer.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/inspector/ui/Graph.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/inspector/ui/Graph.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/inspector/ui/Item.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/inspector/ui/Item.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/inspector/ui/List.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/inspector/ui/List.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/inspector/ui/Profiler.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/inspector/ui/Profiler.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/inspector/ui/Style.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/inspector/ui/Style.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/inspector/ui/Tab.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/inspector/ui/Tab.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/inspector/ui/Values.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/inspector/ui/Values.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/inspector/ui/utils.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/inspector/ui/utils.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/interactive/HTMLMesh.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/interactive/HTMLMesh.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/interactive/InteractiveGroup.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/interactive/InteractiveGroup.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/interactive/SelectionBox.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/interactive/SelectionBox.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/interactive/SelectionHelper.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/interactive/SelectionHelper.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/ammo.wasm.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/ammo.wasm.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/ammo.wasm.wasm",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/ammo.wasm.wasm"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/basis/README.md",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/basis/README.md"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/basis/basis_transcoder.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/basis/basis_transcoder.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/basis/basis_transcoder.wasm",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/basis/basis_transcoder.wasm"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/chevrotain.module.min.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/chevrotain.module.min.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/demuxer_mp4.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/demuxer_mp4.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/draco/README.md",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/draco/README.md"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/draco/draco_decoder.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/draco/draco_decoder.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/draco/draco_decoder.wasm",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/draco/draco_decoder.wasm"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/draco/draco_encoder.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/draco/draco_encoder.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/draco/draco_wasm_wrapper.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/draco/draco_wasm_wrapper.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/draco/gltf/draco_decoder.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/draco/gltf/draco_decoder.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/draco/gltf/draco_decoder.wasm",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/draco/gltf/draco_decoder.wasm"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/draco/gltf/draco_encoder.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/draco/gltf/draco_encoder.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/draco/gltf/draco_wasm_wrapper.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/draco/gltf/draco_wasm_wrapper.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/ecsy.module.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/ecsy.module.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/fflate.module.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/fflate.module.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/ktx-parse.module.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/ktx-parse.module.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/lil-gui.module.min.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/lil-gui.module.min.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/lottie_canvas.module.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/lottie_canvas.module.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/meshopt_decoder.module.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/meshopt_decoder.module.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/mikktspace.module.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/mikktspace.module.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/motion-controllers.module.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/motion-controllers.module.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/opentype.module.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/opentype.module.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/potpack.module.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/potpack.module.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/rhino3dm/rhino3dm.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/rhino3dm/rhino3dm.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/rhino3dm/rhino3dm.module.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/rhino3dm/rhino3dm.module.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/rhino3dm/rhino3dm.wasm",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/rhino3dm/rhino3dm.wasm"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/stats.module.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/stats.module.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/surfaceNet.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/surfaceNet.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/tween.module.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/tween.module.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/utif.module.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/utif.module.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/libs/zstddec.module.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/libs/zstddec.module.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/lighting/TiledLighting.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/lighting/TiledLighting.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/lights/LightProbeGenerator.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/lights/LightProbeGenerator.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/lights/RectAreaLightTexturesLib.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/lights/RectAreaLightTexturesLib.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/lights/RectAreaLightUniformsLib.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/lights/RectAreaLightUniformsLib.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/lines/Line2.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/lines/Line2.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/lines/LineGeometry.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/lines/LineGeometry.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/lines/LineMaterial.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/lines/LineMaterial.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/lines/LineSegments2.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/lines/LineSegments2.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/lines/LineSegmentsGeometry.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/lines/LineSegmentsGeometry.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/lines/Wireframe.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/lines/Wireframe.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/lines/WireframeGeometry2.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/lines/WireframeGeometry2.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/lines/webgpu/Line2.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/lines/webgpu/Line2.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/lines/webgpu/LineSegments2.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/lines/webgpu/LineSegments2.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/lines/webgpu/Wireframe.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/lines/webgpu/Wireframe.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/3DMLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/3DMLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/3MFLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/3MFLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/AMFLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/AMFLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/BVHLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/BVHLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/ColladaLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/ColladaLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/DDSLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/DDSLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/DRACOLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/DRACOLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/EXRLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/EXRLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/FBXLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/FBXLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/FontLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/FontLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/GCodeLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/GCodeLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/GLTFLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/GLTFLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/HDRCubeTextureLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/HDRCubeTextureLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/HDRLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/HDRLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/IESLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/IESLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/KMZLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/KMZLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/KTX2Loader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/KTX2Loader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/KTXLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/KTXLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/LDrawLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/LDrawLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/LUT3dlLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/LUT3dlLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/LUTCubeLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/LUTCubeLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/LUTImageLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/LUTImageLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/LWOLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/LWOLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/LottieLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/LottieLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/MD2Loader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/MD2Loader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/MDDLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/MDDLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/MTLLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/MTLLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/MaterialXLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/MaterialXLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/NRRDLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/NRRDLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/OBJLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/OBJLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/PCDLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/PCDLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/PDBLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/PDBLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/PLYLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/PLYLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/PVRLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/PVRLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/RGBELoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/RGBELoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/STLLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/STLLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/SVGLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/SVGLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/TDSLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/TDSLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/TGALoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/TGALoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/TIFFLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/TIFFLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/TTFLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/TTFLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/USDLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/USDLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/USDZLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/USDZLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/UltraHDRLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/UltraHDRLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/VOXLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/VOXLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/VRMLLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/VRMLLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/VTKLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/VTKLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/XYZLoader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/XYZLoader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/lwo/IFFParser.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/lwo/IFFParser.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/lwo/LWO2Parser.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/lwo/LWO2Parser.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/lwo/LWO3Parser.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/lwo/LWO3Parser.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/usd/USDAParser.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/usd/USDAParser.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/loaders/usd/USDCParser.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/loaders/usd/USDCParser.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/materials/LDrawConditionalLineMaterial.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/materials/LDrawConditionalLineMaterial.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/materials/LDrawConditionalLineNodeMaterial.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/materials/LDrawConditionalLineNodeMaterial.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/materials/MeshGouraudMaterial.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/materials/MeshGouraudMaterial.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/materials/MeshPostProcessingMaterial.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/materials/MeshPostProcessingMaterial.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/materials/WoodNodeMaterial.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/materials/WoodNodeMaterial.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/math/Capsule.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/math/Capsule.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/math/ColorConverter.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/math/ColorConverter.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/math/ColorSpaces.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/math/ColorSpaces.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/math/ConvexHull.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/math/ConvexHull.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/math/ImprovedNoise.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/math/ImprovedNoise.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/math/Lut.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/math/Lut.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/math/MeshSurfaceSampler.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/math/MeshSurfaceSampler.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/math/OBB.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/math/OBB.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/math/Octree.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/math/Octree.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/math/SimplexNoise.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/math/SimplexNoise.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/misc/ConvexObjectBreaker.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/misc/ConvexObjectBreaker.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/misc/GPUComputationRenderer.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/misc/GPUComputationRenderer.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/misc/Gyroscope.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/misc/Gyroscope.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/misc/MD2Character.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/misc/MD2Character.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/misc/MD2CharacterComplex.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/misc/MD2CharacterComplex.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/misc/MorphAnimMesh.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/misc/MorphAnimMesh.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/misc/MorphBlendMesh.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/misc/MorphBlendMesh.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/misc/ProgressiveLightMap.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/misc/ProgressiveLightMap.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/misc/ProgressiveLightMapGPU.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/misc/ProgressiveLightMapGPU.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/misc/RollerCoaster.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/misc/RollerCoaster.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/misc/TubePainter.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/misc/TubePainter.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/misc/Volume.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/misc/Volume.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/misc/VolumeSlice.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/misc/VolumeSlice.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/modifiers/CurveModifier.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/modifiers/CurveModifier.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/modifiers/CurveModifierGPU.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/modifiers/CurveModifierGPU.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/modifiers/EdgeSplitModifier.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/modifiers/EdgeSplitModifier.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/modifiers/SimplifyModifier.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/modifiers/SimplifyModifier.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/modifiers/TessellateModifier.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/modifiers/TessellateModifier.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/objects/GroundedSkybox.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/objects/GroundedSkybox.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/objects/Lensflare.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/objects/Lensflare.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/objects/LensflareMesh.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/objects/LensflareMesh.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/objects/MarchingCubes.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/objects/MarchingCubes.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/objects/Reflector.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/objects/Reflector.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/objects/ReflectorForSSRPass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/objects/ReflectorForSSRPass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/objects/Refractor.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/objects/Refractor.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/objects/ShadowMesh.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/objects/ShadowMesh.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/objects/Sky.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/objects/Sky.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/objects/SkyMesh.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/objects/SkyMesh.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/objects/Water.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/objects/Water.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/objects/Water2.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/objects/Water2.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/objects/Water2Mesh.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/objects/Water2Mesh.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/objects/WaterMesh.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/objects/WaterMesh.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/offscreen/jank.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/offscreen/jank.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/offscreen/offscreen.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/offscreen/offscreen.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/offscreen/scene.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/offscreen/scene.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/physics/AmmoPhysics.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/physics/AmmoPhysics.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/physics/JoltPhysics.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/physics/JoltPhysics.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/physics/RapierPhysics.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/physics/RapierPhysics.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/AfterimagePass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/AfterimagePass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/BloomPass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/BloomPass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/BokehPass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/BokehPass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/ClearPass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/ClearPass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/CubeTexturePass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/CubeTexturePass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/DotScreenPass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/DotScreenPass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/EffectComposer.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/EffectComposer.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/FXAAPass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/FXAAPass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/FilmPass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/FilmPass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/GTAOPass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/GTAOPass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/GlitchPass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/GlitchPass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/HalftonePass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/HalftonePass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/LUTPass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/LUTPass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/MaskPass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/MaskPass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/OutlinePass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/OutlinePass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/OutputPass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/OutputPass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/Pass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/Pass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/RenderPass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/RenderPass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/RenderPixelatedPass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/RenderPixelatedPass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/RenderTransitionPass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/RenderTransitionPass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/SAOPass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/SAOPass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/SMAAPass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/SMAAPass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/SSAARenderPass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/SSAARenderPass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/SSAOPass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/SSAOPass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/SSRPass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/SSRPass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/SavePass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/SavePass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/ShaderPass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/ShaderPass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/TAARenderPass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/TAARenderPass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/TexturePass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/TexturePass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/postprocessing/UnrealBloomPass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/postprocessing/UnrealBloomPass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/renderers/CSS2DRenderer.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/renderers/CSS2DRenderer.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/renderers/CSS3DRenderer.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/renderers/CSS3DRenderer.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/renderers/Projector.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/renderers/Projector.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/renderers/SVGRenderer.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/renderers/SVGRenderer.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/ACESFilmicToneMappingShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/ACESFilmicToneMappingShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/AfterimageShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/AfterimageShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/BasicShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/BasicShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/BleachBypassShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/BleachBypassShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/BlendShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/BlendShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/BokehShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/BokehShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/BokehShader2.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/BokehShader2.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/BrightnessContrastShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/BrightnessContrastShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/ColorCorrectionShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/ColorCorrectionShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/ColorifyShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/ColorifyShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/ConvolutionShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/ConvolutionShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/CopyShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/CopyShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/DOFMipMapShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/DOFMipMapShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/DepthLimitedBlurShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/DepthLimitedBlurShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/DigitalGlitch.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/DigitalGlitch.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/DotScreenShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/DotScreenShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/ExposureShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/ExposureShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/FXAAShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/FXAAShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/FilmShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/FilmShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/FocusShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/FocusShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/FreiChenShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/FreiChenShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/GTAOShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/GTAOShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/GammaCorrectionShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/GammaCorrectionShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/GodRaysShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/GodRaysShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/HalftoneShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/HalftoneShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/HorizontalBlurShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/HorizontalBlurShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/HorizontalTiltShiftShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/HorizontalTiltShiftShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/HueSaturationShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/HueSaturationShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/KaleidoShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/KaleidoShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/LuminosityHighPassShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/LuminosityHighPassShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/LuminosityShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/LuminosityShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/MirrorShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/MirrorShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/NormalMapShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/NormalMapShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/OutputShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/OutputShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/PoissonDenoiseShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/PoissonDenoiseShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/RGBShiftShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/RGBShiftShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/SAOShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/SAOShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/SMAAShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/SMAAShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/SSAOShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/SSAOShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/SSRShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/SSRShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/SepiaShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/SepiaShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/SobelOperatorShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/SobelOperatorShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/SubsurfaceScatteringShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/SubsurfaceScatteringShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/TechnicolorShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/TechnicolorShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/ToonShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/ToonShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/TriangleBlurShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/TriangleBlurShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/UnpackDepthRGBAShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/UnpackDepthRGBAShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/VelocityShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/VelocityShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/VerticalBlurShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/VerticalBlurShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/VerticalTiltShiftShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/VerticalTiltShiftShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/VignetteShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/VignetteShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/VolumeShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/VolumeShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/shaders/WaterRefractionShader.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/shaders/WaterRefractionShader.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/textures/FlakesTexture.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/textures/FlakesTexture.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/transpiler/AST.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/transpiler/AST.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/transpiler/GLSLDecoder.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/transpiler/GLSLDecoder.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/transpiler/Linker.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/transpiler/Linker.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/transpiler/ShaderToyDecoder.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/transpiler/ShaderToyDecoder.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/transpiler/TSLEncoder.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/transpiler/TSLEncoder.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/transpiler/Transpiler.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/transpiler/Transpiler.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/transpiler/TranspilerUtils.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/transpiler/TranspilerUtils.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/transpiler/WGSLEncoder.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/transpiler/WGSLEncoder.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/AfterImageNode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/AfterImageNode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/AnaglyphPassNode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/AnaglyphPassNode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/AnamorphicNode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/AnamorphicNode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/BleachBypass.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/BleachBypass.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/BloomNode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/BloomNode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/ChromaticAberrationNode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/ChromaticAberrationNode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/DenoiseNode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/DenoiseNode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/DepthOfFieldNode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/DepthOfFieldNode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/DotScreenNode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/DotScreenNode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/FXAANode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/FXAANode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/FilmNode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/FilmNode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/GTAONode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/GTAONode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/GaussianBlurNode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/GaussianBlurNode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/LensflareNode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/LensflareNode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/Lut3DNode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/Lut3DNode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/MotionBlur.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/MotionBlur.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/OutlineNode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/OutlineNode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/ParallaxBarrierPassNode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/ParallaxBarrierPassNode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/PixelationPassNode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/PixelationPassNode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/RGBShiftNode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/RGBShiftNode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/SMAANode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/SMAANode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/SSAAPassNode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/SSAAPassNode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/SSGINode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/SSGINode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/SSRNode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/SSRNode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/SSSNode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/SSSNode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/Sepia.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/Sepia.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/SobelOperatorNode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/SobelOperatorNode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/StereoCompositePassNode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/StereoCompositePassNode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/StereoPassNode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/StereoPassNode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/TRAANode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/TRAANode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/TransitionNode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/TransitionNode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/boxBlur.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/boxBlur.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/hashBlur.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/hashBlur.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/display/radialBlur.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/display/radialBlur.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/lighting/TiledLightsNode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/lighting/TiledLightsNode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/math/Bayer.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/math/Bayer.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/shadows/TileShadowNode.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/shadows/TileShadowNode.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/shadows/TileShadowNodeHelper.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/shadows/TileShadowNodeHelper.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/tsl/utils/Raymarching.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/tsl/utils/Raymarching.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/utils/BufferGeometryUtils.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/utils/BufferGeometryUtils.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/utils/CameraUtils.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/utils/CameraUtils.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/utils/GeometryCompressionUtils.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/utils/GeometryCompressionUtils.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/utils/GeometryUtils.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/utils/GeometryUtils.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/utils/LDrawUtils.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/utils/LDrawUtils.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/utils/SceneOptimizer.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/utils/SceneOptimizer.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/utils/SceneUtils.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/utils/SceneUtils.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/utils/ShadowMapViewer.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/utils/ShadowMapViewer.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/utils/ShadowMapViewerGPU.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/utils/ShadowMapViewerGPU.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/utils/SkeletonUtils.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/utils/SkeletonUtils.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/utils/SortUtils.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/utils/SortUtils.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/utils/UVsDebug.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/utils/UVsDebug.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/utils/WebGLTextureUtils.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/utils/WebGLTextureUtils.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/utils/WebGPUTextureUtils.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/utils/WebGPUTextureUtils.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/utils/WorkerPool.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/utils/WorkerPool.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/webxr/ARButton.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/webxr/ARButton.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/webxr/OculusHandModel.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/webxr/OculusHandModel.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/webxr/OculusHandPointerModel.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/webxr/OculusHandPointerModel.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/webxr/Text2D.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/webxr/Text2D.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/webxr/VRButton.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/webxr/VRButton.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/webxr/XRButton.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/webxr/XRButton.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/webxr/XRControllerModelFactory.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/webxr/XRControllerModelFactory.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/webxr/XREstimatedLight.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/webxr/XREstimatedLight.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/webxr/XRHandMeshModel.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/webxr/XRHandMeshModel.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/webxr/XRHandModelFactory.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/webxr/XRHandModelFactory.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/webxr/XRHandPrimitiveModel.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/webxr/XRHandPrimitiveModel.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/examples/jsm/webxr/XRPlanes.js",
+      "PackagePath": "staticwebassets/lib/three/examples/jsm/webxr/XRPlanes.js"
+    },
+    {
+      "Id": "/Users/mastereggway/Desktop/CosmicFusion/wwwroot/lib/three/three.cjs",
+      "PackagePath": "staticwebassets/lib/three/three.cjs"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.CosmicFusion.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.CosmicFusion.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.build.CosmicFusion.props",
+      "PackagePath": "build\\CosmicFusion.props"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.buildMultiTargeting.CosmicFusion.props",
+      "PackagePath": "buildMultiTargeting\\CosmicFusion.props"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.buildTransitive.CosmicFusion.props",
+      "PackagePath": "buildTransitive\\CosmicFusion.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
