@@ -118,3 +118,33 @@ test('cockpit camera looks along vessel negative Z after a view change', () => {
   assert.ok(shipForward.distanceTo(cameraForward) < 1e-10);
   flight.dispose();
 });
+
+test('touch steering is proportional and release slows the ship', () => {
+  const measureTurn = amount => {
+    const flight = setup();
+    flight.enter();
+    const initial = flight.ship.quaternion.clone();
+    flight.setTouchSteering(amount, 0);
+    for (let i = 0; i < 60; i++) flight.update(1 / 60);
+    const angle = initial.angleTo(flight.ship.quaternion);
+    flight.dispose();
+    return angle;
+  };
+  assert.ok(measureTurn(.25) < measureTurn(1) * .3, 'Small thumb movement must allow precise steering');
+  const flight = setup();
+  flight.enter();
+  flight.touchAssist = true;
+  flight.setTouchThrottle(.7);
+  for (let i = 0; i < 60; i++) flight.update(1 / 60);
+  const speed = flight.velocity.length();
+  assert.ok(speed > 10);
+  flight.setTouchThrottle(0);
+  for (let i = 0; i < 120; i++) flight.update(1 / 60);
+  assert.ok(flight.velocity.length() < speed * .02, 'Releasing thrust slows touch flight');
+  flight.setTouchSteering(.7, -.5);
+  flight.setTouchThrottle(-1);
+  flight._onBlur();
+  assert.equal(flight.touchThrottle, 0);
+  assert.equal(flight.touchSteering.length(), 0);
+  flight.dispose();
+});

@@ -1,4 +1,5 @@
 import './ui/styles.css';
+import './ui/touch.css';
 import { App } from './app/App.js';
 
 try {

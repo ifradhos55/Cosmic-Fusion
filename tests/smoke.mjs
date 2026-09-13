@@ -101,7 +101,7 @@ try {
   // is the useful boundary here; the explicit canvas and render checks below
   // prove that the WebGL surface is actually alive.
   await page.goto(baseURL, { waitUntil: 'domcontentloaded' });
-  await page.locator('canvas').waitFor({ state: 'visible' });
+  await page.locator('canvas').waitFor({ state: 'visible', timeout: 60000 });
   await page.waitForTimeout(1000);
   const rendering = await assertRenderedScene(page);
 
@@ -109,24 +109,24 @@ try {
   assert.equal(await page.evaluate(() => window.__COSMIC__.app.selectedBody), null, 'The initial scene should open as an overview without a selected planet');
   assert.equal(await page.locator('.body-button.active').count(), 0, 'No planet should be marked active on first load');
   assert.match(await page.locator('#body-title').textContent(), /Our solar/i);
-  await page.locator('[data-action="galaxy"]').first().click();
+  await page.locator('[data-action="galaxy"]:visible').first().click();
   await page.waitForFunction(() => document.body.dataset.view === 'galaxy' && window.__COSMIC__.app.galaxy.group.visible);
   assert.match(await page.locator('#body-title').textContent(), /Milky\s*Way/);
-  await page.locator('[data-action="explore"]').first().click();
+  await page.locator('[data-action="explore"]:visible').first().click();
   await page.waitForFunction(() => document.body.dataset.view === 'solar' && window.__COSMIC__.app.universe.group.visible);
-  await page.locator('[data-action="lock-orbit"]').click();
+  await page.locator('[data-action="lock-orbit"]:visible').click();
   assert.equal(await page.evaluate(() => window.__COSMIC__.app.cameraRig.controls.enabled), false, 'Lock orbit must disable orbital camera input');
-  await page.locator('[data-action="lock-orbit"]').click();
+  await page.locator('[data-action="lock-orbit"]:visible').click();
   assert.equal(await page.evaluate(() => window.__COSMIC__.app.cameraRig.controls.enabled), true, 'Unlock orbit must restore orbital camera input');
   const initialDays = await page.evaluate(() => window.__COSMIC__.app.clock.days);
-  await page.locator('[data-action="pause"]').click();
+  await page.locator('[data-action="pause"]:visible').click();
   await page.waitForFunction(() => window.__COSMIC__.app.clock.paused);
   const pausedDays = await page.evaluate(() => window.__COSMIC__.app.clock.days);
   await page.waitForTimeout(250);
   assert.equal(await page.evaluate(() => window.__COSMIC__.app.clock.days), pausedDays, 'Pause must stop simulation time');
   await page.locator('#time-speed').selectOption('10');
   assert.equal(await page.evaluate(() => window.__COSMIC__.app.clock.speed), 10);
-  await page.locator('[data-action="pause"]').click();
+  await page.locator('[data-action="pause"]:visible').click();
   await page.waitForFunction(previousDays => window.__COSMIC__.app.clock.days > previousDays, pausedDays);
   assert.ok(pausedDays >= initialDays);
 
@@ -135,7 +135,7 @@ try {
   await page.waitForTimeout(500);
   await page.screenshot({ path: path.join(outputDirectory, 'saturn.png') });
 
-  await page.locator('[data-action="flight"]').click();
+  await page.locator('[data-action="flight"]:visible').click();
   await page.waitForFunction(() => document.body.dataset.mode === 'flight');
   await page.locator('#flight-speed').waitFor({ state: 'visible' });
   await page.keyboard.down('w');
@@ -143,49 +143,49 @@ try {
   await page.keyboard.up('w');
   await page.waitForFunction(() => parseFloat(document.querySelector('#flight-speed').textContent.replace(/,/g, '')) > 0);
   await page.screenshot({ path: path.join(outputDirectory, 'flight.png') });
-  await page.locator('[data-action="brake"]').click();
+  await page.locator('[data-action="brake"]:visible').click();
   await page.waitForFunction(() => window.__COSMIC__.app.flight.velocity.length() < 0.001);
-  await page.locator('[data-action="view"]').click();
+  await page.locator('[data-action="view"]:visible').click();
   await page.waitForFunction(() => window.__COSMIC__.app.flight.view === 'cockpit');
   await page.screenshot({ path: path.join(outputDirectory, 'cockpit.png') });
-  await page.locator('[data-action="view"]').click();
+  await page.locator('[data-action="view"]:visible').click();
   await page.waitForFunction(() => window.__COSMIC__.app.flight.view === 'chase');
-  await page.locator('[data-action="autopilot"]').click();
+  await page.locator('[data-action="autopilot"]:visible').click();
   await page.waitForFunction(() => window.__COSMIC__.app.flight._telemetry.autopilot);
   await page.waitForTimeout(600);
   assert.equal(await page.evaluate(() => document.body.dataset.mode), 'flight');
   await page.screenshot({ path: path.join(outputDirectory, 'autopilot.png') });
   await page.keyboard.press('a');
   await page.waitForFunction(() => !window.__COSMIC__.app.flight._telemetry.autopilot);
-  await page.locator('[data-action="reset-flight"]').click();
+  await page.locator('[data-action="reset-flight"]:visible').click();
   await page.waitForFunction(() => window.__COSMIC__.app.flight.velocity.length() < 0.001);
-  await page.locator('[data-action="explore"]').click();
+  await page.locator('[data-action="explore"]:visible').click();
   await page.waitForFunction(() => document.body.dataset.mode === 'explore');
 
   // Inner-planet regression: assisted journeys must settle outside Earth and
   // Mars instead of launching into an uncontrolled orbit.
   for (const destination of ['earth', 'mars']) {
     await page.locator(`[data-body="${destination}"]`).first().click();
-    await page.locator('[data-action="autopilot"]').click();
+    await page.locator('[data-action="autopilot"]:visible').click();
     await page.waitForFunction(() => window.__COSMIC__.app.flight._telemetry.arrived, { timeout: 15000 });
     const approach = await page.evaluate(() => { const app = window.__COSMIC__.app; return { distance: app.flight._telemetry.distance, speed: app.flight._telemetry.speed, target: app.flight._telemetry.targetName }; });
     assert.ok(approach.distance > 0 && approach.speed < 0.1 && approach.target.toLowerCase() === destination, `${destination} autopilot should settle safely: ${JSON.stringify(approach)}`);
-    await page.locator('[data-action="explore"]').click();
+    await page.locator('[data-action="explore"]:visible').click();
     await page.waitForFunction(() => document.body.dataset.mode === 'explore');
   }
 
-  await page.locator('[data-action="help"]').click();
+  await page.locator('[data-action="help"]:visible').click();
   await page.locator('#modal').waitFor({ state: 'visible' });
-  await page.locator('[data-action="close-modal"]').click();
+  await page.locator('[data-action="close-modal"]:visible').click();
   await page.locator('#modal').waitFor({ state: 'hidden' });
-  await page.locator('[data-action="overview"]').click();
+  await page.locator('[data-action="overview"]:visible').click();
   await page.waitForFunction(() => window.__COSMIC__.app.selectedBody === null);
-  await page.locator('[data-action="flight"]').click();
+  await page.locator('[data-action="flight"]:visible').click();
   await page.waitForFunction(() => document.body.dataset.mode === 'flight');
   assert.equal(await page.evaluate(() => window.__COSMIC__.app.selectedBody), null, 'Free flight should not silently target Earth');
   assert.match(await page.locator('#body-title').textContent(), /Free flight/i);
   assert.match(await page.locator('.scene-location').textContent(), /Free flight/i);
-  await page.locator('[data-action="explore"]').click();
+  await page.locator('[data-action="explore"]:visible').click();
   await page.waitForFunction(() => document.body.dataset.mode === 'explore');
 
   await page.screenshot({ path: path.join(outputDirectory, 'desktop.png') });
@@ -198,37 +198,36 @@ try {
   mobile.setDefaultTimeout(15000);
   mobile.setDefaultNavigationTimeout(60000);
   await mobile.goto(baseURL, { waitUntil: 'domcontentloaded' });
-  await mobile.locator('canvas').waitFor({ state: 'visible' });
+  await mobile.waitForFunction(() => window.__COSMIC__?.app);
   await mobile.waitForTimeout(1000);
-  await assertRenderedScene(mobile);
   const layout = await mobile.evaluate(() => ({ width: innerWidth, scrollWidth: document.documentElement.scrollWidth }));
   assert.ok(layout.scrollWidth <= layout.width + 1, `Mobile layout must not overflow horizontally: ${JSON.stringify(layout)}`);
   await mobile.locator('#rotate-device').waitFor({ state: 'visible' });
   assert.match(await mobile.locator('#rotate-device').innerText(), /Rotate your device/i);
   await mobile.screenshot({ path: path.join(outputDirectory, 'mobile.png') });
   await mobile.setViewportSize({ width: 844, height: 390 });
+  await mobile.locator('canvas').waitFor({ state: 'visible' });
+  await assertRenderedScene(mobile);
   await mobile.waitForTimeout(300);
   assert.equal(await mobile.locator('#rotate-device').evaluate((element) => getComputedStyle(element).display), 'none', 'Rotate prompt should hide in landscape');
-  await mobile.locator('[data-action="flight"]').click();
+  await mobile.locator('[data-action="flight"]:visible').click();
   await mobile.waitForFunction(() => document.body.dataset.mode === 'flight');
   await mobile.locator('#flight-speed').waitFor({ state: 'visible' });
-  const canvas = mobile.locator('#scene canvas');
-  await canvas.dispatchEvent('pointerdown', { pointerId: 1, pointerType: 'touch', clientX: 160, clientY: 170, bubbles: true });
+  const steer = mobile.locator('[data-touch-steer]');
+  await steer.dispatchEvent('pointerdown', { pointerId: 1, pointerType: 'touch', clientX: 70, clientY: 180, bubbles: true });
   await mobile.locator('#virtual-joystick.active').waitFor({ state: 'visible' });
-  await canvas.dispatchEvent('pointermove', { pointerId: 1, pointerType: 'touch', clientX: 220, clientY: 120, bubbles: true });
-  await mobile.waitForFunction(() => window.__COSMIC__.app.flight.inputs.has('right'));
+  await steer.dispatchEvent('pointermove', { pointerId: 1, pointerType: 'touch', clientX: 110, clientY: 160, bubbles: true });
+  await mobile.waitForFunction(() => window.__COSMIC__.app.flight.touchSteering.x > .5);
   const thrustZone = mobile.locator('[data-touch-thrust]');
   await thrustZone.dispatchEvent('pointerdown', { pointerId: 2, pointerType: 'touch', clientX: 760, clientY: 180, bubbles: true });
-  await mobile.waitForFunction(() => window.__COSMIC__.app.flight.inputs.has('forward'));
-  await mobile.waitForFunction(() => window.__COSMIC__.app.flight.inputs.has('boost'));
+  await mobile.waitForFunction(() => window.__COSMIC__.app.flight.touchThrottle > 0);
+  assert.equal(await mobile.evaluate(() => window.__COSMIC__.app.flight.inputs.has('boost')), false, 'Using both thumbs must not silently boost');
   await thrustZone.dispatchEvent('pointerup', { pointerId: 2, pointerType: 'touch', clientX: 760, clientY: 180, bubbles: true });
-  await mobile.waitForFunction(() => !window.__COSMIC__.app.flight.inputs.has('forward'));
-  await mobile.waitForFunction(() => !window.__COSMIC__.app.flight.inputs.has('boost'));
-  await canvas.dispatchEvent('pointerup', { pointerId: 1, pointerType: 'touch', clientX: 220, clientY: 120, bubbles: true });
-  await mobile.waitForFunction(() => !window.__COSMIC__.app.flight.inputs.has('right'));
+  await steer.dispatchEvent('pointercancel', { pointerId: 1, pointerType: 'touch', bubbles: true });
+  await mobile.waitForFunction(() => window.__COSMIC__.app.flight.touchSteering.length() === 0 && window.__COSMIC__.app.flight.touchThrottle === 0);
   await mobile.locator('#virtual-joystick.active').waitFor({ state: 'hidden' });
   await mobile.screenshot({ path: path.join(outputDirectory, 'mobile-flight.png') });
-  await mobile.locator('[data-action="explore"]').click();
+  await mobile.locator('[data-action="explore"]:visible').click();
   await mobile.waitForFunction(() => document.body.dataset.mode === 'explore');
   assert.deepEqual(problems, [], 'The app must load and run without browser or resource errors');
   console.log(JSON.stringify({ status: 'passed', baseURL, rendering, screenshots: outputDirectory }, null, 2));

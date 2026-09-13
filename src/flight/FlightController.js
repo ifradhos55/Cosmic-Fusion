@@ -30,6 +30,9 @@ export class FlightController {
     this.velocity = new THREE.Vector3();
     this.angularVelocity = new THREE.Vector3();
     this.inputs = new Set();
+    this.touchSteering = new THREE.Vector2();
+    this.touchThrottle = 0;
+    this.touchAssist = false;
     this.view = 'chase';
     this._destination = null;
     this._autopilot = false;
@@ -112,6 +115,16 @@ export class FlightController {
     } else this.inputs.delete(action);
   }
 
+  setTouchSteering(x, y) {
+    this.touchSteering.set(clamp(x, -1, 1), clamp(y, -1, 1));
+    if (this.touchSteering.lengthSq() > 0) this.cancelAutopilot();
+  }
+
+  setTouchThrottle(value) {
+    this.touchThrottle = clamp(value, -1, 1);
+    if (value) this.cancelAutopilot();
+  }
+
   setView(view) {
     if (view !== 'chase' && view !== 'cockpit') return;
     this.view = view;
@@ -172,7 +185,7 @@ export class FlightController {
     this._showWarning('All stop · velocity cancelled', 2);
   }
 
-  _clearInputs() { this.inputs.clear(); this._mouse.set(0, 0); }
+  _clearInputs() { this.inputs.clear(); this._mouse.set(0, 0); this.touchSteering.set(0, 0); this.touchThrottle = 0; }
 
   _showWarning(message, duration = 1) {
     this._warning = message;
@@ -218,7 +231,7 @@ export class FlightController {
 
   _updateManual(dt, boosting) {
     const input = (positive, negative) => Number(this.inputs.has(positive)) - Number(this.inputs.has(negative));
-    const desiredAngular = new THREE.Vector3(input('pitchUp', 'pitchDown'), input('left', 'right'), input('rollLeft', 'rollRight')).multiplyScalar(boosting ? .75 : 1.12);
+    const desiredAngular = new THREE.Vector3(clamp(input('pitchUp', 'pitchDown') - this.touchSteering.y, -1, 1), clamp(input('left', 'right') - this.touchSteering.x, -1, 1), input('rollLeft', 'rollRight')).multiplyScalar(boosting ? .75 : 1.12);
     this.angularVelocity.lerp(desiredAngular, dampFactor(8, dt));
     this._rotate(this.angularVelocity.x * dt, this.angularVelocity.y * dt, this.angularVelocity.z * dt);
     if (this.inputs.has('brake')) {
@@ -226,13 +239,13 @@ export class FlightController {
       if (this.velocity.lengthSq() < .0025) this.velocity.set(0, 0, 0);
       return;
     }
-    const thrust = input('forward', 'reverse');
+    const thrust = clamp(input('forward', 'reverse') + this.touchThrottle, -1, 1);
     const forward = FORWARD.clone().applyQuaternion(this.ship.quaternion);
     this.velocity.addScaledVector(forward, thrust * (boosting ? 95 : 26) * dt);
     // Flight assist damps lateral drift while preserving useful forward momentum.
     const axial = forward.clone().multiplyScalar(this.velocity.dot(forward));
     this.velocity.lerp(axial, dampFactor(1.35, dt));
-    this.velocity.multiplyScalar(Math.exp(-.1 * dt));
+    this.velocity.multiplyScalar(Math.exp(-(this.touchAssist && !thrust ? 2.4 : .1) * dt));
     this.velocity.clampLength(0, boosting ? 180 : 52);
   }
 
@@ -336,7 +349,8 @@ export class FlightController {
       cameraPoint = this.ship.localToWorld(new THREE.Vector3(0, .68, -.82));
       orientation = this.ship.quaternion.clone();
     } else {
-      cameraPoint = this.ship.localToWorld(new THREE.Vector3(0, 3.1, 10.4));
+      const framing = clamp(1 / this.camera.aspect, 1, 1.9);
+      cameraPoint = this.ship.localToWorld(new THREE.Vector3(0, 3.1 * framing, 10.4 * framing));
       const lookAt = this.ship.localToWorld(new THREE.Vector3(0, .3, -7));
       const up = UP.clone().applyQuaternion(this.ship.quaternion);
       orientation = new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().lookAt(cameraPoint, lookAt, up));

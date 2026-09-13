@@ -19,9 +19,12 @@ jobs:
       - run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: npm run test:smoke
+      - run: npm run test:touch
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: browser-smoke-screenshots
-          path: work/smoke/
+          path: |
+            work/smoke/
+            work/touch/
           if-no-files-found: ignore

@@ -81,16 +81,17 @@ npm test
 npm run build
 npx playwright install chromium
 npm run test:smoke
+npm run test:touch
 ```
 
 The unit tests cover simulation time, flight mathematics, navigation, and collision protection. The browser smoke test launches Chromium, verifies nonblank WebGL rendering, exercises planet selection and time controls, checks thrust, braking, autopilot and camera modes, and captures desktop and mobile layouts. It fails on uncaught browser errors or failed local resources.
 
 The smoke test reuses a server at `http://127.0.0.1:5173`, or starts and stops its own Vite server. Screenshots are written to `work/smoke/`. Set `SMOKE_BASE_URL` to use another development server, `SMOKE_OUTPUT_DIR` to change the screenshot directory, or `CHROME_PATH` to use an existing Chromium/Chrome executable. `PLAYWRIGHT_MODULE_PATH` optionally points to an external Playwright package directory.
 
-On phones, the flight deck is designed for landscape orientation. Portrait mode shows an animated rotate-device prompt; after rotating, touch-drag anywhere in the scene to summon a temporary virtual joystick, and hold the right side of the deck to thrust. A second finger held at the same time engages boost. The joystick and touch affordances fade away as soon as the gesture ends.
+Phones, tablets, and foldables use a compact touch interface. The Worlds drawer keeps every planet available in portrait and landscape, and the details drawer scrolls independently of the scene. Controls are at least 44 pixels tall. Narrow phones show an animated rotation suggestion with a Continue in portrait option; tablets work in either orientation.
 
-GitHub Actions installs dependencies, runs unit tests, builds the web application, and runs the browser smoke test with Chromium. Browser screenshots are retained as a workflow artifact.
+Drag with one finger to rotate, pinch to zoom, and move two fingers together to pan. Zoom and recenter buttons are also available. Hide UI fills the screen with the scene; double-tap to restore the controls.
 
-## Data and assets
+In flight, touch the left steering area to reveal a temporary joystick. Small movements turn slowly; longer drags turn faster. Hold the right area to thrust, slide up for more thrust, or slide down to reverse. Releasing thrust slows the ship. Boost is a separate hold button and Stop cancels movement. Selecting a planet previews the destination; Fly to starts assisted navigation. Rotation, folding, losing pointer capture, and leaving the app clear held controls.
 
-Planet facts are maintained in `src/data/bodies.js`, which links to the NASA and JPL source tables. The active rendering system and its assets are local to the application; no remote graphics service is required at runtime. See [LICENSE](LICENSE) for the project's license.
+The touch browser tests exercise eight viewport configurations from 344-pixel folded screens to 1366-pixel tablets, using Chromium touch input for drag, pinch, pan, scrolling, steering, and simultaneous thrust. These are emulation checks, not physical-device certification.

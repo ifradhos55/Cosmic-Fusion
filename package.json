@@ -9,7 +9,8 @@
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
     "test": "node --test tests/clock.test.mjs src/flight/*.test.js src/simulation/*.test.js src/rendering/*.test.js",
-    "test:smoke": "node tests/smoke.mjs"
+    "test:smoke": "node tests/smoke.mjs",
+    "test:touch": "node tests/touch.mjs"
   },
   "dependencies": {
     "three": "^0.182.0"

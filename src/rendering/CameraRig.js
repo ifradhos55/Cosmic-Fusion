@@ -39,7 +39,7 @@ export class CameraRig {
     this.skyTouches.clear();
     this.camera.fov = 42;
     this.camera.updateProjectionMatrix();
-    Object.assign(this.controls, { maxDistance: 480, enablePan: true, enableZoom: true, rotateSpeed: .6 });
+    Object.assign(this.controls, { maxDistance: 1000, enablePan: true, enableZoom: true, rotateSpeed: .6 });
   }
   focus(body, immediate = false) {
     this.orbitalMode();
@@ -50,14 +50,14 @@ export class CameraRig {
     if (outward.lengthSq() === 0) outward.set(1, 0, 0);
     const offset = outward.multiplyScalar(-1).applyAxisAngle(new THREE.Vector3(0, 1, 0), -0.8);
     offset.y = 0.35;
-    offset.normalize().multiplyScalar(body.radius * (body.id === 'saturn' ? 7.7 : 4.8));
+    offset.normalize().multiplyScalar(body.radius * (body.id === 'saturn' ? 7.7 : 4.8) * Math.max(1, .95 / this.camera.aspect));
     this.moveTo(body.position, offset, immediate);
   }
   overview(immediate = false) {
     this.orbitalMode();
     this.body = null;
     this.controls.minDistance = 15;
-    this.moveTo(new THREE.Vector3(), new THREE.Vector3(25, 142, 170), immediate);
+    this.moveTo(new THREE.Vector3(), new THREE.Vector3(25, 142, 170).multiplyScalar(Math.max(1, 1.55 / this.camera.aspect)), immediate);
   }
   galaxy(immediate = false, perspective = 'structure') {
     this.orbitalMode();

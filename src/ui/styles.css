@@ -114,48 +114,6 @@ body.clean-view .galaxy-perspectives, body.clean-view .sky-credit { display: non
   @keyframes rotate-device-arrow { from { opacity: .48; translate: 0 5px; } to { opacity: 1; translate: 0 -5px; } }
 }
 
-/* GTA-style touch flight: the thumbstick is created at touch-down and is
-   removed on release. The right-side thrust area is invisible until held. */
-.flight-touch-layer { display: none; }
-@media (pointer: coarse) and (orientation: landscape) and (max-width: 900px) {
-  :root { --sidebar: 0px; --panel: 0px; }
-  .sidebar { display: none; }
-  .main-shell { left: 0; }
-  .topbar { height: 50px; min-height: 50px; padding: 0 16px; }
-  .breadcrumb, .topbar-tools { display: none; }
-  .mode-switch { position: static; transform: none; margin: 0 auto; }
-  .mode-switch button { padding: 7px 12px; font-size: 9px; }
-  .viewport { min-height: 0; }
-  .scene-heading { top: 18px; left: 18px; }
-  .scene-location { font-size: 14px; }
-  .object-panel { right: 18px; top: 18px; width: 205px; }
-  .object-panel .body-description, .object-panel .distance-display, .object-panel .body-facts, .object-panel .field-note, .object-panel .panel-footnote { display: none; }
-  .object-panel h1 { font-size: 36px; margin: 10px 0 4px; }
-  .object-panel .primary-button { height: 34px; margin-top: 12px; font-size: 9px; }
-  .timeline { height: 52px; min-height: 52px; padding: 0 16px; }
-  .timeline-note { display: none; }
-  .time-speed .eyebrow { display: none; }
-  body[data-mode=flight] .object-panel { top: 18px; right: 18px; width: 150px; }
-  body[data-mode=flight] .flight-heading { top: 68px; left: 18px; }
-  body[data-mode=flight] .flight-telemetry { left: 18px; bottom: 76px; }
-  body[data-mode=flight] .flight-actions { left: 18px; bottom: 18px; }
-  body[data-mode=flight] .flight-guide { display: none; }
-  #scene canvas { touch-action: none; }
-  .touch-controls { display: none !important; }
-  .flight-touch-layer { display: block; position: absolute; inset: 0; z-index: 8; pointer-events: none; touch-action: none; user-select: none; }
-  .virtual-joystick { display: none; position: absolute; width: 112px; height: 112px; translate: -50% -50%; pointer-events: none; }
-  .virtual-joystick.active { display: block; }
-  .virtual-joystick-ring { position: absolute; inset: 0; border: 1px solid #d8e4ee70; border-radius: 50%; background: #6d84951c; box-shadow: inset 0 0 0 16px #51657912, 0 0 30px #7fa8c51c; }
-  .virtual-joystick-knob { position: absolute; left: 50%; top: 50%; width: 47px; height: 47px; translate: -50% -50%; border: 1px solid #e8c98f; border-radius: 50%; background: #dcb878b8; box-shadow: 0 2px 18px #0009; }
-  .touch-thrust-zone { position: absolute; top: 9%; right: 4%; width: 28%; height: 78%; display: flex; align-items: center; justify-content: center; flex-direction: column; border: 1px solid transparent; border-radius: 35px; color: #eccf96; opacity: 0; pointer-events: auto; transition: opacity .2s, border-color .2s, background .2s; }
-  .touch-thrust-zone.active { opacity: .88; border-color: #dcb87885; background: #dcb87814; }
-  .touch-thrust-zone span { font-size: 10px; letter-spacing: 2px; }
-  .touch-thrust-zone small { margin-top: 6px; color: #aab6c4; font-size: 8px; }
-  .touch-flight-hint { position: absolute; left: 50%; bottom: 17px; translate: -50% 0; padding: 7px 12px; border: 1px solid #b3c5d51c; border-radius: 20px; background: #0d1722b8; color: #93a5b8; font-size: 9px; white-space: nowrap; }
-  .touch-flight-hint[hidden] { display: none; }
-  body.clean-view .flight-touch-layer { display: none; }
-}
-
 @media (pointer: fine) {
   #scene canvas { cursor: grab; touch-action: none; }
   #scene canvas:active { cursor: grabbing; }

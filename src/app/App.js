@@ -9,6 +9,7 @@ import { SimulationClock } from '../core/SimulationClock.js';
 import { mountShell, modalContent } from '../ui/Shell.js';
 import { objectPanel, overviewPanel, galaxyPanel, flightPanel } from '../ui/ObjectPanel.js';
 import { icon } from '../ui/icons.js';
+import { TouchInterface } from '../ui/TouchInterface.js';
 
 const STORAGE_KEY = 'cosmic-fusion-settings';
 
@@ -17,7 +18,7 @@ export class App {
   constructor(root) {
     this.root = root;
     this.clock = new SimulationClock();
-    this.settings = { orbits: true, labels: true, quality: 'high' };
+    this.settings = { orbits: true, labels: true, quality: matchMedia('(any-pointer: coarse)').matches ? 'balanced' : 'high' };
     try { this.settings = { ...this.settings, ...JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}') }; } catch { /* private browsing */ }
     this.selectedId = null;
     this.selectedBody = null;
@@ -33,10 +34,6 @@ export class App {
     this.pointer = new THREE.Vector2();
     this.dragStart = null;
     this.preFlightPaused = false;
-    this.touchPointers = new Set();
-    this.virtualJoystick = null;
-    this.virtualActions = new Set();
-    this.touchThrustPointers = new Set();
     this.bound = [];
   }
 
@@ -61,12 +58,14 @@ export class App {
     this.flight = new FlightController({ camera: this.camera, domElement: this.renderer.domElement, scene: this.scene });
     this.overview();
     this.cameraRig.overview(true);
+    this.touchUI = new TouchInterface(this);
     this.bindEvents();
     this.updateLabels();
     this.running = true;
     this.lastFrame = performance.now();
     this.frameId = requestAnimationFrame(this.frame);
     this.resize();
+    this.cameraRig.overview(true);
     if (import.meta.env?.DEV) window.__COSMIC__ = { app: this };
   }
 
@@ -103,15 +102,6 @@ export class App {
     }, true);
     on(this.root, 'click', this.handleClick);
     on(this.root, 'change', this.handleChange);
-    on(this.root, 'pointerdown', this.handlePointerDown);
-    on(this.root, 'pointermove', this.handlePointerMove);
-    on(this.root, 'pointerup', this.handlePointerUp);
-    on(this.root, 'pointercancel', this.handlePointerUp);
-    // Pointer capture can retarget a release outside the app root (especially
-    // on iOS Safari). Capture the lifecycle at window level as a fallback.
-    on(window, 'pointermove', this.handlePointerMove, true);
-    on(window, 'pointerup', this.handlePointerUp, true);
-    on(window, 'pointercancel', this.handlePointerUp, true);
     on(window, 'resize', this.resize);
     on(window, 'keydown', this.handleKeyDown);
     on(this.renderer.domElement, 'click', this.handleSceneClick);
@@ -133,6 +123,7 @@ export class App {
   }
 
   handleClick = (event) => {
+    if (this.touchUI?.handleClick(event)) return;
     const perspective = event.target.closest('[data-galaxy-view]');
     if (perspective) { this.setGalaxyPerspective(perspective.dataset.galaxyView); return; }
     const bodyButton = event.target.closest('[data-body]');
@@ -169,8 +160,8 @@ export class App {
     else if (action === 'orbits') { this.settings.orbits = !this.settings.orbits; this.universe.setOrbits(this.settings.orbits); actionButton.classList.toggle('active', this.settings.orbits); this.persistSettings(); }
     else if (action === 'lock-orbit') this.toggleOrbitLock();
     else if (action === 'labels') { this.settings.labels = !this.settings.labels; this.updateLabels(); this.persistSettings(); actionButton.classList.toggle('active', this.settings.labels); }
-    else if (action === 'autopilot') { if (this.mode !== 'flight') this.enterFlight(true); else this.flight.setDestination(this.selectedBody); this.showToast(`Navigation assist engaged · ${this.selectedBody?.data.name || 'Target'}`); }
-    else if (action === 'brake') this.flight.brake();
+    else if (action === 'autopilot') { this.touchUI?.closeSheet(); if (this.mode !== 'flight') this.enterFlight(true); else this.flight.setDestination(this.selectedBody); this.showToast(`Navigation assist engaged · ${this.selectedBody?.data.name || 'Target'}`); }
+    else if (action === 'brake') { this.touchUI?.resetGestures(); this.flight.brake(); }
     else if (action === 'pointer-lock') this.flight.engagePointerLock();
     else if (action === 'view') { this.flight.setView(this.flight.view === 'chase' ? 'cockpit' : 'chase'); this.updateFlightUI(this.flight._telemetry); }
     else if (action === 'reset-flight') { this.flight.reset(this.selectedBody); this.showToast('Spacecraft reset to a safe approach distance'); }
@@ -181,6 +172,7 @@ export class App {
     else if (action === 'close-modal') this.closeModal();
     else if (action === 'close-panel') {
       this.root.querySelector('#object-panel').hidden = true;
+      this.touchUI?.closeSheet();
       const selector = this.view === 'galaxy' ? '.mode-switch [data-action="galaxy"]' : this.selectedId ? `.body-button[data-body="${this.selectedId}"]` : '.mode-switch [data-action="explore"]';
       this.root.querySelector(selector)?.focus({ preventScroll: true });
     }
@@ -210,96 +202,6 @@ export class App {
     }
     if (event.target.id === 'time-speed') this.clock.setSpeed(event.target.value);
   };
-
-  handlePointerDown = (event) => {
-    const target = event.target;
-    const input = target?.closest?.('[data-input]')?.dataset.input;
-    if (this.mode !== 'flight') return;
-    if (input) {
-      event.preventDefault(); event.target.classList.add('pressed'); event.target.setPointerCapture?.(event.pointerId); this.flight.setInput(input, true);
-      return;
-    }
-    if (event.pointerType !== 'touch' || target?.closest?.('button, a, select, input')) return;
-    event.preventDefault();
-    this.touchPointers.add(event.pointerId);
-    if (target?.closest?.('[data-touch-thrust]')) this.beginTouchThrust(event);
-    else if (!this.virtualJoystick) this.beginVirtualJoystick(event);
-    if (this.touchPointers.size > 1) this.flight.setInput('boost', true);
-  };
-  handlePointerMove = (event) => {
-    if (this.mode !== 'flight' || event.pointerType !== 'touch') return;
-    if (this.virtualJoystick?.pointerId === event.pointerId) this.updateVirtualJoystick(event);
-  };
-  handlePointerUp = (event) => {
-    const button = event.target?.closest?.('[data-input]');
-    if (button) {
-      button.classList.remove('pressed'); this.flight.setInput(button.dataset.input, false);
-      return;
-    }
-    if (event.pointerType !== 'touch') return;
-    if (this.virtualJoystick?.pointerId === event.pointerId) this.endVirtualJoystick(event);
-    if (this.touchThrustPointers.delete(event.pointerId)) this.flight.setInput('forward', false);
-    this.touchPointers.delete(event.pointerId);
-    if (this.touchPointers.size < 2) this.flight.setInput('boost', false);
-    if (this.touchThrustPointers.size === 0) this.root.querySelector('.touch-thrust-zone')?.classList.remove('active');
-    if (this.touchPointers.size === 0) this.root.querySelector('.touch-flight-hint')?.removeAttribute('hidden');
-  };
-
-  beginVirtualJoystick(event) {
-    const host = this.root.querySelector('#flight-touch-layer');
-    const joystick = this.root.querySelector('#virtual-joystick');
-    if (!host || !joystick) return;
-    const rect = host.getBoundingClientRect();
-    this.virtualJoystick = { pointerId: event.pointerId, x: event.clientX - rect.left, y: event.clientY - rect.top };
-    joystick.style.left = `${this.virtualJoystick.x}px`;
-    joystick.style.top = `${this.virtualJoystick.y}px`;
-    joystick.classList.add('active');
-    this.root.querySelector('.touch-flight-hint')?.setAttribute('hidden', '');
-    try { event.target.setPointerCapture?.(event.pointerId); } catch { /* synthetic pointer events cannot be captured */ }
-  }
-
-  updateVirtualJoystick(event) {
-    const joystick = this.root.querySelector('#virtual-joystick');
-    if (!this.virtualJoystick || !joystick) return;
-    const host = this.root.querySelector('#flight-touch-layer');
-    const rect = host.getBoundingClientRect();
-    const dx = event.clientX - rect.left - this.virtualJoystick.x;
-    const dy = event.clientY - rect.top - this.virtualJoystick.y;
-    const radius = 54;
-    const length = Math.hypot(dx, dy);
-    const scale = length > radius ? radius / length : 1;
-    const x = dx * scale, y = dy * scale;
-    joystick.querySelector('.virtual-joystick-knob').style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
-    const dead = radius * .2;
-    this.setVirtualAction('left', x < -dead);
-    this.setVirtualAction('right', x > dead);
-    this.setVirtualAction('pitchUp', y < -dead);
-    this.setVirtualAction('pitchDown', y > dead);
-  }
-
-  setVirtualAction(action, pressed) {
-    const active = this.virtualActions.has(action);
-    if (pressed === active) return;
-    if (pressed) this.virtualActions.add(action);
-    else this.virtualActions.delete(action);
-    this.flight.setInput(action, pressed);
-  }
-
-  endVirtualJoystick(event) {
-    try { event.target.releasePointerCapture?.(event.pointerId); } catch { /* synthetic or already-released pointer */ }
-    for (const action of this.virtualActions) this.flight.setInput(action, false);
-    this.virtualActions.clear();
-    this.virtualJoystick = null;
-    const joystick = this.root.querySelector('#virtual-joystick');
-    joystick?.classList.remove('active');
-  }
-
-  beginTouchThrust(event) {
-    this.touchThrustPointers.add(event.pointerId);
-    this.flight.setInput('forward', true);
-    try { event.target?.closest?.('[data-touch-thrust]')?.setPointerCapture?.(event.pointerId); } catch { /* synthetic pointer events cannot be captured */ }
-    this.root.querySelector('.touch-thrust-zone')?.classList.add('active');
-  }
 
   handleSceneClick = (event) => {
     if (this.cleanView || this.mode !== 'explore' || this.dragStart === null) return;
@@ -339,18 +241,20 @@ export class App {
     this.root.querySelector('#view-detail').textContent = body.data.name.toUpperCase();
     this.root.querySelector('.scene-location').innerHTML = `${body.data.name}<span>${body.data.type} · SOL SYSTEM</span>`;
     if (focus && this.mode === 'explore') this.cameraRig.focus(body);
-    if (this.mode === 'flight' && this.flight.active && focus) this.flight.setDestination(body);
+    // Selecting a world previews it. The Fly to button explicitly starts navigation.
+    this.touchUI?.closeSheet();
     this.updateLabels();
   }
 
   overview() {
+    this.touchUI?.closeSheet();
     if (this.mode === 'flight') this.exitFlight();
     this.showSolarSystem(false);
     this.selectedId = null; this.selectedBody = null; this.universe.selectBody(null);
     this.root.querySelectorAll('.overview-button').forEach(button => button.classList.toggle('active', button.dataset.action === 'overview'));
     this.renderObjectPanel(overviewPanel(), true);
     this.root.querySelectorAll('.body-button').forEach(button => { button.classList.remove('active'); button.setAttribute('aria-pressed', 'false'); });
-    this.root.querySelector('.scene-location').innerHTML = `Our solar system<span>NINE WORLDS · SOL SYSTEM</span>`;
+    this.root.querySelector('.scene-location').innerHTML = `Our solar system<span>SUN + 8 PLANETS · SOL SYSTEM</span>`;
     this.root.querySelector('#view-detail').textContent = 'SOL SYSTEM';
     const orbitHint = this.root.querySelector('.orbit-hint span');
     if (orbitHint) orbitHint.innerHTML = '<b>Drag</b> to rotate <i>·</i> <b>Scroll</b> to zoom <i>·</i> <b>Right drag</b> to pan';
@@ -377,6 +281,7 @@ export class App {
   }
 
   showGalaxy() {
+    this.touchUI?.closeSheet();
     this.renderer.setClearColor(0x010204);
     if (this.mode === 'flight') this.exitFlight();
     this.universe.focusDetail(null);
@@ -433,6 +338,8 @@ export class App {
   enterFlight(autopilot) {
     if (this.mode === 'flight') { if (autopilot && this.selectedBody) this.flight.setDestination(this.selectedBody); return; }
     if (this.view === 'galaxy') this.showSolarSystem(false);
+    this.touchUI?.resetGestures();
+    this.touchUI?.closeSheet();
     this.mode = 'flight'; document.body.dataset.mode = 'flight';
     this.universe.focusDetail(this.selectedId);
     this.preFlightPaused = this.clock.paused; this.clock.paused = true;
@@ -451,6 +358,7 @@ export class App {
 
   exitFlight() {
     if (this.mode !== 'flight') return;
+    this.touchUI?.resetGestures();
     this.flight.exit(); this.mode = 'explore'; document.body.dataset.mode = 'explore';
     this.clock.paused = this.preFlightPaused; this.cameraRig.controls.enabled = true;
     this.root.querySelectorAll('.mode-switch button').forEach(button => { const active = button.dataset.action === 'explore'; button.classList.toggle('active', active); button.setAttribute('aria-pressed', String(active)); });
@@ -460,7 +368,7 @@ export class App {
   }
 
   togglePause() {
-    if (this.mode === 'flight') { this.flight.brake(); return; }
+    if (this.mode === 'flight') { this.touchUI?.resetGestures(); this.flight.brake(); return; }
     this.clock.paused = !this.clock.paused;
     this.showToast(this.clock.paused ? 'Simulation paused' : 'Simulation running');
     this.updateSimulationUI();
@@ -472,11 +380,15 @@ export class App {
     const pause = this.root.querySelector('[data-action="pause"]');
     if (date) date.textContent = this.clock.date.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }).toUpperCase();
     if (state) { state.textContent = this.clock.paused ? 'PAUSED' : 'RUNNING'; state.className = this.clock.paused ? 'paused' : ''; }
-    if (pause && this.pauseButtonState !== this.clock.paused) {
-      this.pauseButtonState = this.clock.paused;
+    const pauseState = `${this.mode}:${this.clock.paused}`;
+    if (pause && this.pauseButtonState !== pauseState) {
+      this.pauseButtonState = pauseState;
       pause.innerHTML = `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">${this.clock.paused ? '<path d="m8 4 12 8-12 8V4Z" fill="currentColor" stroke="none"/>' : '<path d="M9 5v14M15 5v14" stroke-width="3"/>'}</svg>`;
-      pause.setAttribute('aria-label', this.clock.paused ? 'Resume simulation' : 'Pause simulation');
-      pause.setAttribute('title', this.clock.paused ? 'Resume simulation' : 'Pause simulation');
+      if (this.mode === 'flight') pause.innerHTML = icon('pause');
+      const pauseLabel = this.mode === 'flight' ? 'Stop spacecraft (orbital time is held during flight)' : this.clock.paused ? 'Resume simulation' : 'Pause simulation';
+      pause.setAttribute('aria-label', pauseLabel);
+      pause.setAttribute('title', pauseLabel);
+      this.root.querySelector('#time-speed').disabled = this.mode === 'flight';
     }
     if (this.mode === 'flight') this.updateFlightUI(this.flight._telemetry);
   }
@@ -504,15 +416,27 @@ export class App {
     host.innerHTML = '';
     if (!this.settings.labels || this.mode === 'flight' || this.view === 'galaxy') return;
     const width = this.renderer.domElement.clientWidth, height = this.renderer.domElement.clientHeight;
-    for (const body of this.universe?.bodies || []) {
+    const compact = this.touchUI?.media.matches;
+    const occupied = [];
+    const bodies = [...(this.universe?.bodies || [])].sort((a, b) => Number(b.id === this.selectedId) - Number(a.id === this.selectedId));
+    for (const body of bodies) {
       const point = body.position.clone().project(this.camera);
       if (point.z < -1 || point.z > 1) continue;
+      const x = (point.x * .5 + .5) * width;
+      const y = (-point.y * .5 + .5) * height + 8;
+      if (compact) {
+        const half = (body.data.name.length * 7 + 20) / 2;
+        const box = { left: x - half, right: x + half, top: y, bottom: y + 44 };
+        if (box.left < 4 || box.right > width - 4 || box.top < 80 || box.bottom > height - 48) continue;
+        if (occupied.some(other => box.left < other.right + 4 && box.right > other.left - 4 && box.top < other.bottom + 4 && box.bottom > other.top - 4)) continue;
+        occupied.push(box);
+      }
       const label = document.createElement('button');
       label.className = `body-label ${body.id === this.selectedId ? 'selected' : ''}`;
       label.dataset.body = body.id;
       label.textContent = body.data.name.toUpperCase();
-      label.style.left = `${(point.x * .5 + .5) * width}px`;
-      label.style.top = `${(-point.y * .5 + .5) * height + 8}px`;
+      label.style.left = `${x}px`;
+      label.style.top = `${y}px`;
       host.appendChild(label);
     }
   }
@@ -522,12 +446,15 @@ export class App {
     panel.innerHTML = content;
     panel.querySelector('.panel-eyebrow').insertAdjacentHTML('beforeend', `<button type="button" class="icon-button panel-close" data-action="close-panel" aria-label="Close description" title="Close description">${icon('close')}</button>`);
     if (reopen) panel.hidden = false;
+    this.touchUI?.syncDetails();
   }
 
   setCleanView(enabled) {
     if (this.cleanView === enabled) return;
     if (enabled) this.cleanViewReturnFocus = document.activeElement;
     this.closeModal();
+    this.touchUI?.closeSheet();
+    this.touchUI?.resetGestures();
     this.cleanView = enabled;
     this.lastCleanTap = null;
     document.body.classList.toggle('clean-view', enabled);
@@ -553,6 +480,7 @@ export class App {
 
   openModal(type) {
     if (this.cleanView) this.setCleanView(false);
+    this.touchUI?.resetGestures();
     const dialog = this.root.querySelector('#modal');
     this.root.querySelector('#modal-content').innerHTML = modalContent(type, this.settings);
     if (!dialog.open) dialog.showModal();
@@ -568,7 +496,7 @@ export class App {
     this.running = false; cancelAnimationFrame(this.frameId); this.bound.forEach(unbind => unbind());
     clearTimeout(this.cleanViewHintTimer); clearTimeout(this.toastTimer);
     document.body.classList.remove('clean-view');
-    this.cameraRig?.dispose(); this.flight?.dispose(); this.universe?.dispose(); this.galaxy?.dispose(); this.renderer?.dispose();
+    this.touchUI?.dispose(); this.cameraRig?.dispose(); this.flight?.dispose(); this.universe?.dispose(); this.galaxy?.dispose(); this.renderer?.dispose();
     if (import.meta.env?.DEV && window.__COSMIC__?.app === this) delete window.__COSMIC__;
   }
 }
