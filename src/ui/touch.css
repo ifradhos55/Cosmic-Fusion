@@ -109,12 +109,12 @@ body[data-touch-layout][data-mode=flight] .flight-telemetry > div { min-width: 0
 body[data-touch-layout][data-mode=flight] .flight-telemetry > div:last-child { text-align: right; }
 body[data-touch-layout][data-mode=flight] .flight-reticle { left: 50%; top: 43%; }
 body[data-touch-layout][data-mode=flight] .flight-touch-layer { display: block; position: absolute; inset: 0; pointer-events: none; user-select: none; -webkit-user-select: none; }
-.touch-steer-zone, .touch-thrust-zone { position: absolute; bottom: 66px; width: 40%; max-width: 290px; height: 38%; min-height: 95px; border: 1px solid #b6d2ec28; border-radius: 24px; background: linear-gradient(0deg, #8bacca0b, transparent); pointer-events: auto; touch-action: none; }
+.touch-steer-zone, .touch-thrust-zone { position: absolute; bottom: 66px; width: 40%; max-width: 290px; height: 38%; min-height: 95px; border: none; background: transparent; pointer-events: auto; touch-action: none; }
 .touch-steer-zone { left: var(--touch-gutter); }
 .touch-thrust-zone { right: max(16px, env(safe-area-inset-right)); opacity: 1; }
 .touch-zone-label { position: absolute; left: 0; right: 0; bottom: 15px; text-align: center; font-size: 10px; letter-spacing: 1.6px; color: #b4c4d5; pointer-events: none; }
 .touch-zone-label small { display: block; font-size: 10px; letter-spacing: 0; margin-top: 5px; color: #8499af; }
-.touch-steer-zone.active, .touch-thrust-zone.active { border-color: #dfbd7955; background: #dfbd790a; }
+.touch-steer-zone.active, .touch-thrust-zone.active { border: none; background: transparent; }
 .touch-steer-zone.active .touch-zone-label { opacity: .35; }
 .virtual-joystick { display: none; position: absolute; width: 108px; height: 108px; transform: translate(-50%, -50%); pointer-events: none; }
 .virtual-joystick.active { display: block; }
@@ -123,7 +123,7 @@ body[data-touch-layout][data-mode=flight] .flight-touch-layer { display: block; 
 .touch-throttle-meter { position: absolute; top: 15px; bottom: 54px; left: calc(50% - 2px); width: 4px; border-radius: 4px; background: #a0b9d61a; overflow: hidden; }
 .touch-throttle-meter i { position: absolute; bottom: 0; width: 100%; height: var(--thrust, 0%); background: #e8c588; }
 .touch-flight-actions { position: absolute; left: var(--touch-gutter); right: max(16px, env(safe-area-inset-right)); bottom: 10px; display: flex; justify-content: center; gap: 10px; pointer-events: auto; }
-.touch-flight-actions button { min-height: 48px; min-width: 84px; padding: 10px 12px; border: 1px solid #b8cde332; border-radius: 24px; background: #122033eb; display: flex; align-items: center; justify-content: center; gap: 7px; font-size: 12px; color: #d0dbe7; }
+.touch-flight-actions button { min-height: 48px; min-width: 64px; padding: 10px; border: 1px solid #b8cde322; border-radius: 24px; background: #0c152280; backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; gap: 7px; font-size: 12px; color: #c4d4e5; }
 .touch-flight-actions button[data-action=brake] { border-color: #dcb87870; color: #e4c080; }
 .touch-flight-actions button[data-touch-hold] { touch-action: none; }
 .touch-flight-actions button.active { background: #dcb878; color: #121a24; }
@@ -148,9 +148,9 @@ body[data-touch-layout] .toast { left: 50%; bottom: max(130px, env(safe-area-ins
   body[data-touch-layout][data-mode=flight] .flight-heading { top: 10px; }
   body[data-touch-layout][data-mode=flight] .flight-telemetry { top: 30px; }
   body[data-touch-layout][data-mode=flight] .velocity-track { display: none; }
-  .touch-steer-zone, .touch-thrust-zone { bottom: 12px; width: 29%; height: 57%; min-height: 90px; max-width: 260px; }
+  .touch-steer-zone, .touch-thrust-zone { bottom: 12px; width: 29%; height: 57%; min-height: 90px; max-width: 260px; border: none; background: transparent; }
   .touch-flight-actions { left: 33%; right: 33%; bottom: 12px; gap: 5px; }
-  .touch-flight-actions button { min-width: 48px; padding: 9px; flex-direction: column; gap: 3px; font-size: 10px; border-radius: 14px; }
+  .touch-flight-actions button { min-width: 44px; padding: 7px; flex-direction: column; gap: 3px; font-size: 9px; border-radius: 12px; background: #0c152280; backdrop-filter: blur(10px); border: 1px solid #b8cde322; color: #c4d4e5; }
 }
 @media (max-width: 370px) {
   body[data-touch-layout] .mode-switch button { font-size: 12px; }
@@ -172,4 +172,24 @@ body[data-touch-layout] .touch-help { display: block; }
 body[data-touch-layout][data-view=galaxy] .touch-view-tools { top: 140px; }
 @media (max-height: 520px) and (orientation: landscape) {
   body[data-touch-layout][data-view=galaxy] .touch-view-tools { top: 12px; }
+}
+
+body[data-touch-layout] .journey-options button {
+  padding: 12px 14px;
+  gap: 12px;
+  border-radius: 12px;
+  background: rgba(18, 26, 36, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(184, 205, 227, 0.15);
+}
+body[data-touch-layout] .journey-options strong {
+  font-size: 12px;
+  margin-bottom: 3px;
+}
+body[data-touch-layout] .journey-options small {
+  font-size: 9px;
+  line-height: 1.4;
+}
+body[data-touch-layout] .journey-options .icon {
+  width: 14px;
 }
