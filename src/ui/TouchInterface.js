@@ -7,6 +7,7 @@ export class TouchInterface {
     this.root = app.root;
     this.listeners = [];
     this.pointers = new Map();
+    this.cleanTap = null;
     this.sheet = null;
     this.portraitDismissed = false;
     this.media = matchMedia('(any-pointer: coarse), (max-width: 1024px)');
@@ -47,13 +48,17 @@ export class TouchInterface {
     this.joystick = this.root.querySelector('#virtual-joystick');
     this.thrust = this.root.querySelector('[data-touch-thrust]');
     this.on(this.root, 'pointerdown', this.pointerDown);
+    this.on(this.root, 'pointerup', this.cleanViewTap);
     this.on(window, 'pointermove', this.pointerMove, { passive: false });
     this.on(window, 'pointerup', this.pointerUp);
     this.on(window, 'pointercancel', this.pointerUp);
     this.on(this.root, 'lostpointercapture', this.pointerUp);
     this.on(window, 'blur', () => this.resetGestures());
     this.on(document, 'visibilitychange', () => { if (document.hidden) this.resetGestures(); });
-    this.on(window, 'resize', this.updateLayout);
+    this.resizeHandler = () => { this.resetGestures(); this.updateLayout(); };
+    this.on(window, 'resize', this.resizeHandler);
+    this.on(window, 'orientationchange', this.resetGestures);
+    if (window.visualViewport) this.on(window.visualViewport, 'resize', this.resizeHandler);
     this.on(this.media, 'change', this.updateLayout);
     this.on(window, 'keydown', event => {
       if (event.key === 'Escape' && this.sheet) { this.closeSheet(); event.preventDefault(); }
@@ -166,6 +171,17 @@ export class TouchInterface {
     else { this.app.flight.setInput('boost', true); control.setAttribute('aria-pressed', 'true'); }
   };
 
+  cleanViewTap = event => {
+    if (!this.app.cleanView || event.pointerType !== 'touch') return;
+    const now = event.timeStamp || performance.now();
+    const previous = this.cleanTap;
+    this.cleanTap = { time: now, x: event.clientX, y: event.clientY };
+    if (previous && now - previous.time < 1500 && Math.hypot(event.clientX - previous.x, event.clientY - previous.y) < 40) {
+      this.cleanTap = null;
+      this.app.setCleanView(false);
+    }
+  };
+
   pointerMove = event => {
     const point = this.pointers.get(event.pointerId);
     if (!point) return;
@@ -208,6 +224,7 @@ export class TouchInterface {
 
   dispose() {
     this.resetGestures();
+    this.resizeObserver?.disconnect();
     this.listeners.forEach(remove => remove());
     this.root.querySelector('.sidebar').inert = false;
     for (const attribute of ['data-touch-layout', 'data-touch-sheet', 'data-phone-portrait', 'data-portrait-ready']) document.body.removeAttribute(attribute);
