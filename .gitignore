@@ -4,3 +4,6 @@ node_modules/
 .idea/
 .vercel
 .env*.local
+_dotnet_backup/
+dist/
+work/

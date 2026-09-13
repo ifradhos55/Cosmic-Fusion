@@ -4,6 +4,8 @@ import { SCENE_CONFIG } from './config.js';
 import { createPlanetTexture, createSunFlareTexture, createCloudTexture } from './textures.js';
 import { planetData } from './data.js';
 import { createGalaxy, createBackgroundGalaxies } from './galaxy.js';
+import { createSpaceship } from './spaceship.js';
+import { initFlightControls, updateFlight } from './flightControls.js';
 
 // --- Setup Scene ---
 const container = document.getElementById('canvas-container');
@@ -12,7 +14,7 @@ scene.fog = new THREE.FogExp2(0x050505, 0.001);
 
 const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 15000);
 const SOLAR_CAM_POS = new THREE.Vector3(0, 60, 120);
-const GALAXY_CAM_POS = new THREE.Vector3(0, 1500, 2500);
+const GALAXY_CAM_POS = new THREE.Vector3(0, 257, 428);
 camera.position.copy(SOLAR_CAM_POS);
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
@@ -164,6 +166,14 @@ scene.add(dirLight);
 // --- SOLAR SYSTEM GROUP ---
 const solarSystemGroup = new THREE.Group();
 scene.add(solarSystemGroup);
+
+// --- SPACESHIP ---
+const spaceship = createSpaceship();
+spaceship.visible = false; // Hidden by default
+scene.add(spaceship); // Add to scene so it's not affected by solarSystemGroup scaling if we want, or add to solarSystemGroup. Adding to scene is usually safer for global movement.
+
+initFlightControls();
+let isSpaceshipMode = false;
 
 // --- GALAXY GROUP ---
 const galaxyGroup = new THREE.Group();
@@ -598,6 +608,8 @@ let isGalaxyView = false;
 let isTransitioning = false;
 const viewGalaxyBtn = document.getElementById('view-galaxy-btn');
 const viewSolarBtn = document.getElementById('view-solar-btn');
+const spaceshipBtn = document.getElementById('spaceship-btn');
+const spaceshipOverlay = document.getElementById('spaceship-overlay');
 
 // (Utility function 'lerp' is imported from utils.js, but was inline before. Used in animate loop now)
 // Actually lerp function from utils is general purpose. 
@@ -634,6 +646,85 @@ viewSolarBtn.addEventListener('click', () => {
     panel.classList.remove('active');
 });
 
+spaceshipBtn.addEventListener('click', () => {
+    isSpaceshipMode = !isSpaceshipMode;
+    const spaceshipHud = document.getElementById('spaceship-hud'); // Using the new HUD ID
+    
+    if (isSpaceshipMode) {
+        spaceshipBtn.textContent = 'EXIT SPACESHIP';
+        spaceshipBtn.style.borderColor = 'var(--accent-red)';
+        spaceshipBtn.style.color = 'var(--accent-red)';
+        
+        // Request pointer lock for mouse steering
+        document.body.requestPointerLock();
+        
+        // Enter flight mode
+        controls.enabled = false;
+        spaceship.visible = true;
+        
+        // Spawn ship exactly where the camera is and orient it properly
+        spaceship.position.copy(camera.position);
+        
+        // Get the direction the camera is looking
+        const lookDir = new THREE.Vector3(0, 0, -1).applyQuaternion(camera.quaternion);
+        
+        // Move the ship forward a bit so it's in front of the camera, not inside it
+        spaceship.position.add(lookDir.multiplyScalar(30));
+        
+        // Match rotation (the ship model is likely rotated 180 deg relative to camera view)
+        spaceship.quaternion.copy(camera.quaternion);
+        spaceship.rotateY(Math.PI); 
+        
+        if (spaceshipHud) spaceshipHud.classList.add('active');
+        
+        // Let the user free roam! Don't hide the galaxy or solar system toggles.
+        // We will hide the zoom controls and lock orbit since they don't apply to flight mode
+        lockOrbitBtn.style.display = 'none';
+        panel.classList.remove('active');
+        document.getElementById('zoom-controls').style.display = 'none';
+    } else {
+        spaceshipBtn.textContent = 'SPACESHIP VIEW';
+        spaceshipBtn.style.borderColor = '';
+        spaceshipBtn.style.color = '';
+        
+        // Release pointer lock
+        if (document.pointerLockElement) {
+            document.exitPointerLock();
+        }
+        
+        // Exit flight mode
+        controls.enabled = true;
+        spaceship.visible = false;
+        
+        if (spaceshipHud) spaceshipHud.classList.remove('active');
+        
+        // Restore UI
+        if (isGalaxyView) {
+            viewSolarBtn.style.display = 'block';
+        } else {
+            viewGalaxyBtn.style.display = 'block';
+            lockOrbitBtn.style.display = 'block';
+        }
+        document.getElementById('zoom-controls').style.display = 'flex';
+        
+        // Focus orbit controls on ship's last position
+        controls.target.copy(spaceship.position);
+    }
+});
+
+// --- Cockpit Interactivity ---
+document.querySelectorAll('.toggle-sw').forEach(sw => {
+    sw.addEventListener('click', () => {
+        sw.classList.toggle('on');
+        sw.classList.toggle('off');
+    });
+});
+document.querySelectorAll('.dash-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        btn.classList.toggle('lit');
+    });
+});
+
 // --- Focus Logic Variables ---
 let focusTarget = null;
 let isFocusing = false;
@@ -651,6 +742,10 @@ function animate() {
     requestAnimationFrame(animate);
 
     const dt = clock.getDelta();
+
+    if (isSpaceshipMode) {
+        updateFlight(spaceship, camera, dt);
+    }
 
     if (isTransitioning) {
         transitionTime += dt;
@@ -707,7 +802,7 @@ function animate() {
     }
 
     // --- Planet Focus Logic ---
-    if (focusTarget && !isGalaxyView && !isTransitioning) {
+    if (focusTarget && !isGalaxyView && !isTransitioning && !isSpaceshipMode) {
         // Calculate target camera position (relative to planet)
         // We want to be at a certain distance/offset from the planet
         const targetPos = new THREE.Vector3();

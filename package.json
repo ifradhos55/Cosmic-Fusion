@@ -1,18 +1,21 @@
 {
-  "name": "CosmicFusion",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "name": "cosmic-fusion",
+  "version": "2.0.0",
+  "description": "An interactive solar system observatory and spacecraft flight simulator.",
+  "type": "module",
   "private": true,
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "node --test tests/clock.test.mjs src/flight/*.test.js src/simulation/*.test.js src/rendering/*.test.js",
+    "test:smoke": "node tests/smoke.mjs"
+  },
   "dependencies": {
     "three": "^0.182.0"
   },
   "devDependencies": {
-    "vite": "^5.0.0"
+    "vite": "^5.4.21",
+    "playwright": "^1.58.2"
   }
 }
