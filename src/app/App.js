@@ -7,7 +7,7 @@ import { Galaxy } from '../simulation/Galaxy.js';
 import { BODY_DATA } from '../data/bodies.js';
 import { SimulationClock } from '../core/SimulationClock.js';
 import { mountShell, modalContent } from '../ui/Shell.js';
-import { objectPanel, overviewPanel, galaxyPanel } from '../ui/ObjectPanel.js';
+import { objectPanel, overviewPanel, galaxyPanel, flightPanel } from '../ui/ObjectPanel.js';
 import { icon } from '../ui/icons.js';
 
 const STORAGE_KEY = 'cosmic-fusion-settings';
@@ -19,7 +19,8 @@ export class App {
     this.clock = new SimulationClock();
     this.settings = { orbits: true, labels: true, quality: 'high' };
     try { this.settings = { ...this.settings, ...JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}') }; } catch { /* private browsing */ }
-    this.selectedId = 'earth';
+    this.selectedId = null;
+    this.selectedBody = null;
     this.mode = 'explore';
     this.view = 'solar';
     this.galaxyPerspective = 'structure';
@@ -58,7 +59,7 @@ export class App {
     this.universe.setQuality(this.settings.quality);
     this.galaxy.setQuality(this.settings.quality);
     this.flight = new FlightController({ camera: this.camera, domElement: this.renderer.domElement, scene: this.scene });
-    this.selectBody('earth', false);
+    this.overview();
     this.cameraRig.overview(true);
     this.bindEvents();
     this.updateLabels();
@@ -348,8 +349,10 @@ export class App {
     this.root.querySelectorAll('.overview-button').forEach(button => button.classList.toggle('active', button.dataset.action === 'overview'));
     this.renderObjectPanel(overviewPanel(), true);
     this.root.querySelectorAll('.body-button').forEach(button => { button.classList.remove('active'); button.setAttribute('aria-pressed', 'false'); });
-    this.root.querySelector('.scene-location').innerHTML = `The pale blue dot<span>EARTH · SOL SYSTEM</span>`;
+    this.root.querySelector('.scene-location').innerHTML = `Our solar system<span>NINE WORLDS · SOL SYSTEM</span>`;
     this.root.querySelector('#view-detail').textContent = 'SOL SYSTEM';
+    const orbitHint = this.root.querySelector('.orbit-hint span');
+    if (orbitHint) orbitHint.innerHTML = '<b>Drag</b> to rotate <i>·</i> <b>Scroll</b> to zoom <i>·</i> <b>Right drag</b> to pan';
     this.cameraRig.overview(); this.updateLabels();
   }
 
@@ -429,7 +432,6 @@ export class App {
   enterFlight(autopilot) {
     if (this.mode === 'flight') { if (autopilot && this.selectedBody) this.flight.setDestination(this.selectedBody); return; }
     if (this.view === 'galaxy') this.showSolarSystem(false);
-    if (!this.selectedBody) this.selectBody('earth', false);
     this.mode = 'flight'; document.body.dataset.mode = 'flight';
     this.universe.focusDetail(this.selectedId);
     this.preFlightPaused = this.clock.paused; this.clock.paused = true;
@@ -441,7 +443,7 @@ export class App {
     if (autopilot) this.flight.setDestination(this.selectedBody);
     this.root.querySelectorAll('.mode-switch button').forEach(button => { const active = button.dataset.action === 'flight'; button.classList.toggle('active', active); button.setAttribute('aria-pressed', String(active)); });
     this.root.querySelector('#view-label').textContent = 'FLIGHT DECK';
-    this.renderObjectPanel(objectPanel(this.selectedBody.data, true));
+    this.renderObjectPanel(this.selectedBody ? objectPanel(this.selectedBody.data, true) : flightPanel());
     this.updateFlightUI(this.flight._telemetry);
   }
 

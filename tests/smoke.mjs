@@ -106,6 +106,9 @@ try {
   const rendering = await assertRenderedScene(page);
 
   await page.waitForFunction(() => window.__COSMIC__?.app && document.body.dataset.mode === 'explore');
+  assert.equal(await page.evaluate(() => window.__COSMIC__.app.selectedBody), null, 'The initial scene should open as an overview without a selected planet');
+  assert.equal(await page.locator('.body-button.active').count(), 0, 'No planet should be marked active on first load');
+  assert.match(await page.locator('#body-title').textContent(), /Our solar/i);
   await page.locator('[data-action="galaxy"]').first().click();
   await page.waitForFunction(() => document.body.dataset.view === 'galaxy' && window.__COSMIC__.app.galaxy.group.visible);
   assert.match(await page.locator('#body-title').textContent(), /Milky\s*Way/);
@@ -176,6 +179,13 @@ try {
   await page.locator('[data-action="close-modal"]').click();
   await page.locator('#modal').waitFor({ state: 'hidden' });
   await page.locator('[data-action="overview"]').click();
+  await page.waitForFunction(() => window.__COSMIC__.app.selectedBody === null);
+  await page.locator('[data-action="flight"]').click();
+  await page.waitForFunction(() => document.body.dataset.mode === 'flight');
+  assert.equal(await page.evaluate(() => window.__COSMIC__.app.selectedBody), null, 'Free flight should not silently target Earth');
+  assert.match(await page.locator('#body-title').textContent(), /Free flight/i);
+  await page.locator('[data-action="explore"]').click();
+  await page.waitForFunction(() => document.body.dataset.mode === 'explore');
 
   await page.screenshot({ path: path.join(outputDirectory, 'desktop.png') });
   // Release the first WebGL context before exercising the mobile viewport.

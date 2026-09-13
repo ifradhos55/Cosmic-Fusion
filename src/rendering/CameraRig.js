@@ -6,7 +6,7 @@ export class CameraRig {
   constructor(camera, element) {
     this.camera = camera;
     this.controls = new OrbitControls(camera, element);
-    Object.assign(this.controls, { enableDamping: true, dampingFactor: 0.065, minDistance: 3, maxDistance: 480, enablePan: true, rotateSpeed: 0.6, zoomSpeed: 0.8 });
+    Object.assign(this.controls, { enableDamping: true, dampingFactor: 0.065, minDistance: 3, maxDistance: 480, enablePan: true, screenSpacePanning: true, rotateSpeed: 0.6, zoomSpeed: 0.8, zoomToCursor: true });
     this.body = null;
     this.transition = null;
     this.lastPosition = new THREE.Vector3();

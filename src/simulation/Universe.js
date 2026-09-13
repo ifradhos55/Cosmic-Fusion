@@ -33,7 +33,7 @@ export class Universe {
     this.bodies = [];
     this.orbits = new Map();
     this.textures = new Set();
-    this.selectedId = 'earth';
+    this.selectedId = null;
     this.orbitsVisible = true;
     this.disposed = false;
     this.anisotropy = Math.min(renderer?.capabilities.getMaxAnisotropy() || 4, 8);
@@ -44,7 +44,7 @@ export class Universe {
     for (const data of BODY_DATA) this._buildBody(data);
     this._buildMoon();
     this._buildAsteroids();
-    this.selectBody('earth', false);
+    this.selectBody(null, false);
     this.update(0, 0);
   }
 

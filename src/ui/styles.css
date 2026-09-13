@@ -155,3 +155,8 @@ body.clean-view .galaxy-perspectives, body.clean-view .sky-credit { display: non
   .touch-flight-hint[hidden] { display: none; }
   body.clean-view .flight-touch-layer { display: none; }
 }
+
+@media (pointer: fine) {
+  #scene canvas { cursor: grab; touch-action: none; }
+  #scene canvas:active { cursor: grabbing; }
+}
