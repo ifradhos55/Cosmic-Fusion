@@ -104,13 +104,18 @@ export class App {
     on(this.root, 'change', this.handleChange);
     on(window, 'resize', this.resize);
     on(window, 'keydown', this.handleKeyDown);
-    on(this.renderer.domElement, 'click', this.handleSceneClick);
     on(this.renderer.domElement, 'dblclick', () => { if (this.cleanView) this.setCleanView(false); });
     on(this.renderer.domElement, 'pointerdown', event => { this.dragStart = { x: event.clientX, y: event.clientY }; });
     on(this.renderer.domElement, 'pointerup', event => {
-      if (this.dragStart && Math.hypot(event.clientX - this.dragStart.x, event.clientY - this.dragStart.y) > 6) this.dragStart = null;
+      const isDrag = this.dragStart && Math.hypot(event.clientX - this.dragStart.x, event.clientY - this.dragStart.y) > 6;
+      if (isDrag) this.dragStart = null;
+      
+      const wasTap = this.dragStart !== null;
+      if (wasTap) this.handleSceneClick(event);
+
       if (!this.cleanView || event.pointerType !== 'touch') return;
-      if (!this.dragStart) { this.lastCleanTap = null; return; }
+      if (!wasTap) { this.lastCleanTap = null; return; }
+      
       const now = event.timeStamp;
       const previous = this.lastCleanTap;
       this.lastCleanTap = { time: now, x: event.clientX, y: event.clientY };
