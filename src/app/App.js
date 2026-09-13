@@ -444,6 +444,7 @@ export class App {
     if (autopilot) this.flight.setDestination(this.selectedBody);
     this.root.querySelectorAll('.mode-switch button').forEach(button => { const active = button.dataset.action === 'flight'; button.classList.toggle('active', active); button.setAttribute('aria-pressed', String(active)); });
     this.root.querySelector('#view-label').textContent = 'FLIGHT DECK';
+    if (!this.selectedBody) this.root.querySelector('.scene-location').innerHTML = 'Free flight<span>MANUAL NAVIGATION · SOL SYSTEM</span>';
     this.renderObjectPanel(this.selectedBody ? objectPanel(this.selectedBody.data, true) : flightPanel());
     this.updateFlightUI(this.flight._telemetry);
   }

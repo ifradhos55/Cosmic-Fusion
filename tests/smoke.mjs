@@ -184,6 +184,7 @@ try {
   await page.waitForFunction(() => document.body.dataset.mode === 'flight');
   assert.equal(await page.evaluate(() => window.__COSMIC__.app.selectedBody), null, 'Free flight should not silently target Earth');
   assert.match(await page.locator('#body-title').textContent(), /Free flight/i);
+  assert.match(await page.locator('.scene-location').textContent(), /Free flight/i);
   await page.locator('[data-action="explore"]').click();
   await page.waitForFunction(() => document.body.dataset.mode === 'explore');
 
