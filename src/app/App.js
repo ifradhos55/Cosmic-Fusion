@@ -317,10 +317,11 @@ export class App {
     if (event.target?.matches('input,select,textarea,[contenteditable="true"]') || event.ctrlKey || event.metaKey || event.altKey) return;
     if (event.key === '?' || (event.shiftKey && event.key === '/')) { event.preventDefault(); this.openModal('help'); return; }
     if (event.key.toLowerCase() === 'h') { event.preventDefault(); if (!event.repeat) this.setCleanView(!this.cleanView); return; }
-    if (event.key.toLowerCase() === 'l') { this.toggleOrbitLock(); return; }
+    const key = event.key?.toLowerCase();
+    if (key === 'l') { this.toggleOrbitLock(); return; }
     if (this.mode === 'flight') return;
     if (event.code === 'Space') { event.preventDefault(); this.togglePause(); }
-    if (event.key.toLowerCase() === 'r') { event.preventDefault(); this.overview(); }
+    if (key === 'r') { event.preventDefault(); this.overview(); }
     if (event.key === '1') this.overview();
     if (event.key === '2') this.showGalaxy();
   };
@@ -489,7 +490,7 @@ export class App {
     const view = this.root.querySelector('#flight-view');
     if (!speed) return;
     speed.innerHTML = `${telemetry.speed.toFixed(1)} <small>u/s</small>`;
-    distance.textContent = telemetry.distance ? `${telemetry.distance.toFixed(1)} u` : '—';
+    distance.textContent = telemetry.distance ? `${telemetry.distance.toFixed(1)} u` : 'N/A';
     target.textContent = telemetry.autopilot ? (telemetry.arrived ? `Holding · ${telemetry.targetName}` : `Autopilot · ${telemetry.targetName}`) : 'Free flight';
     state.textContent = telemetry.warning || (telemetry.boosting ? 'BOOST VECTOR' : telemetry.autopilot ? (telemetry.arrived ? 'STATION KEEPING' : 'ASSISTED NAVIGATION') : 'MANUAL FLIGHT');
     fill.style.width = `${Math.min(100, telemetry.speed / 180 * 100)}%`;

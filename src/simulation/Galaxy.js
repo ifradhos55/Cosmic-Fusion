@@ -41,7 +41,7 @@ export class Galaxy {
     const texture = new THREE.TextureLoader().load('/assets/textures/milky-way-eso.jpg', () => { this.skyReady = !this.disposed; });
     texture.colorSpace = THREE.SRGBColorSpace;
     this.sky = new THREE.Mesh(new THREE.SphereGeometry(1800, 64, 32), new THREE.MeshBasicMaterial({ map: texture, side: THREE.BackSide, depthWrite: false, toneMapped: false, fog: false }));
-    this.sky.name = 'Observed all-sky panorama — ESO/S. Brunier';
+    this.sky.name = 'Observed all-sky panorama: ESO/S. Brunier';
     this.sky.position.fromArray(SOLAR_POSITION);
     // Equirectangular panorama is in Galactic coordinates: center at l=0.
     this.sky.rotation.y = Math.atan2(SOLAR_POSITION[2], SOLAR_POSITION[0]);
