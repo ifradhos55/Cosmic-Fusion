@@ -4,6 +4,7 @@ import snapshot from '../public/data/ephemeris-snapshot.json' with { type: 'json
 
 const DAY = 86400000;
 const AGENT = 'CosmicFusion/2.1 (https://github.com/ifradhos55/Cosmic-Fusion)';
+const SATELLITE_TITLES = { jupiter: /\b(?:io|europa|ganymede|callisto)\b/i, saturn: /\b(?:titan|enceladus|mimas|iapetus|rhea|dione|tethys)\b/i, uranus: /\b(?:ariel|miranda|oberon|titania|umbriel)\b/i, neptune: /\btriton\b/i };
 const jdToTime = jd => Math.round((jd - 2440587.5) * DAY);
 const numeric = value => value !== null && value !== undefined && value !== '' && Number.isFinite(Number(value)) ? Number(value) : null;
 export const httpsURL = value => {
@@ -35,7 +36,8 @@ export function normalizeImages(raw, body) {
   return raw.collection.items.flatMap(item => {
     const data = item.data?.[0];
     const text = `${data?.title} ${data?.description}`;
-    if (!data?.nasa_id || /\b(?:illustration|artist|concept)\b/i.test(data.title || '') || data.media_type !== 'image' || !text.toLowerCase().includes(body) || /artist.{0,20}(concept|impression|illustration)|computer[- ]generated|simulation of|conceptual illustration/i.test(text)) return [];
+    if (!data?.nasa_id || /\b(?:illustration|artist|concept|simulation)\b/i.test(data.title || '') || data.media_type !== 'image' || !text.toLowerCase().includes(body) || /artist.{0,30}(concept|impression|illustration|rendering|depiction)|computer[- ]generated|simulation of|conceptual illustration/i.test(text)) return [];
+    if (SATELLITE_TITLES[body]?.test(data.title) && !data.title.toLowerCase().includes(body)) return [];
     // Accessible captions describe the actual photograph without the long
     // mission boilerplate that also makes laboratory photos match terrain.
     const subject = `${data.title || ''} ${data.description_508 || data.description?.split(/\n\s*\n/)[0] || ''}`;

@@ -74,3 +74,9 @@ test('terrain search excludes laboratory photos whose mission boilerplate mentio
   const values = normalizeImages({ collection: { items: [item('Twin Rover Twins', 'Engineering models in a garage at the Mars Yard.'), item('3D Glasses Used for Rover Driving', 'Vandi Verma, an engineer, is seen here working as a driver.'), item('MARDI Peeks Under Curiosity', 'This pair shows the Martian surface captured by the Mars Science Laboratory rover.')] } }, 'mars');
   assert.equal(values.length, 1); assert.equal(values[0].title, 'MARDI Peeks Under Curiosity');
 });
+
+test('planet cloud galleries exclude moon-only observations and simulated views', () => {
+  const item = title => ({ data: [{ nasa_id: title, media_type: 'image', title, description: 'Cassini and Juno observations of Saturn and Jupiter clouds.' }], links: [{ rel: 'alternate', render: 'image', href: 'https://images-assets.nasa.gov/image.jpg' }] });
+  assert.deepEqual(normalizeImages({ collection: { items: [item('Equatorial Titan Clouds'), item('Saturn clouds')] } }, 'saturn').map(value => value.title), ['Saturn clouds']);
+  assert.deepEqual(normalizeImages({ collection: { items: [item('What Juno Will See at Jupiter Simulation'), item('Jupiter clouds')] } }, 'jupiter').map(value => value.title), ['Jupiter clouds']);
+});
