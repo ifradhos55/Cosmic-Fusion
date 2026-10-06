@@ -5,8 +5,8 @@
  * https://ssd.jpl.nasa.gov/sats/discovery.html
  *
  * World radii and orbital distances are deliberately compressed for exploration.
- * Orbital/rotation periods remain in Earth days. Positions are illustrative,
- * circular orbits, not ephemerides for the displayed calendar date.
+ * Orbital/rotation periods remain in Earth days. Phase and inclination support
+ * the illustrative loading preview; installed JPL vectors set dated positions.
  */
 export const BODY_DATA = Object.freeze([
   { id: 'sun', name: 'Sun', type: 'G-type star', color: '#ffbe66', description: 'The star at the center of our solar system. A sphere of incandescent plasma that powers every world around it.', radius: 6, orbitRadius: 0, orbitalPeriod: 0, rotationPeriod: 25.4, diameter: 1392700, distanceAU: 0, temperature: '5,500°C', moons: 0, fact: 'Sunlight takes about 8 minutes and 20 seconds to reach Earth.', composition: 'Hydrogen · Helium', tilt: 7.25, phase: 0 },

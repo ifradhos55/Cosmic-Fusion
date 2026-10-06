@@ -21,6 +21,7 @@ jobs:
       - run: npm run test:smoke
       - run: npm run test:touch
       - run: npm run test:nasa
+      - run: npm run test:solar
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -29,4 +30,5 @@ jobs:
             work/smoke/
             work/touch/
             work/nasa/
+            work/solar/
           if-no-files-found: ignore

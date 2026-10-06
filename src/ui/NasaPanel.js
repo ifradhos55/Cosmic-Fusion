@@ -25,7 +25,7 @@ export class NasaPanel {
       <div class="nasa-toolbar"><p>Recent reports from NASA. Dates use real time, independent of the simulation clock.</p><button data-nasa-action="refresh">${icon('reset')}<span>Refresh feeds</span></button></div>
       <p class="nasa-summary" role="status" aria-live="polite">Open a feed to explore current observations.</p>
       <div class="nasa-grid">${['apod', 'weather', 'asteroids'].map(feed => `<section class="nasa-card nasa-${feed}" data-nasa-feed="${feed}" aria-label="${TITLES[feed]}"><h3>${TITLES[feed]}</h3><p>Waiting for NASA data.</p></section>`).join('')}</div>
-      <footer class="nasa-footer">The solar system remains an illustrative model. These feeds do not set planet positions or change flight physics. Space weather reports are research data from NASA CCMC and the Moon to Mars Space Weather Analysis Office.</footer>
+      <footer class="nasa-footer">Planet positions use a separate NASA JPL Horizons feed. These observation feeds retain their own dates and do not change flight physics. Space weather reports are research data from NASA CCMC and the Moon to Mars Space Weather Analysis Office.</footer>
     </dialog>`);
     this.dialog = root.querySelector('#nasa-panel');
     this.onClick = event => {

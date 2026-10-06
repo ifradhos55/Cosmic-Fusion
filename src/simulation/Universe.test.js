@@ -70,6 +70,18 @@ test('hiding orbital guides also keeps the Moon guide hidden when selection chan
   assert.equal(universe.moonOrbit.visible, false);
 });
 
+test('installing JPL tables preserves body references and uses true vectors for all selectable objects', async () => {
+  const { readFile } = await import('node:fs/promises');
+  const { Ephemeris, scenePosition } = await import('./ephemeris.js');
+  const { EPOCH } = await import('../core/SimulationClock.js');
+  const ephemeris = new Ephemeris(JSON.parse(await readFile(new URL('../../public/data/ephemeris-snapshot.json', import.meta.url))));
+  const at = Date.parse('2026-10-06T12:00:00Z'), earth = universe.getBody('earth'), reference = earth.position;
+  universe.setEphemeris(ephemeris, at); universe.update((at - EPOCH) / 86400000, 0);
+  assert.equal(earth.position, reference); assert.equal(universe.navigationBodies.length, 14);
+  for (const body of universe.navigationBodies) assert.ok(body.position.distanceTo(new THREE.Vector3(...scenePosition(ephemeris.at(body.id, at).position))) < 1e-9);
+  universe.setOrbits(false); assert.ok([...universe.orbits.values()].every(orbit => !orbit.visible));
+});
+
 test('disposing twice releases scene resources once and removes all owned content', () => {
   let geometryDisposals = 0, materialDisposals = 0;
   const sun = universe.getBody('sun');

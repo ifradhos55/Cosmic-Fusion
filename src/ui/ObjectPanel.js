@@ -7,11 +7,21 @@ export function objectPanel(data, isFlight = false) {
   return `<div class="panel-eyebrow"><span class="status-dot"></span> ${isFlight ? 'NAVIGATION TARGET' : 'IN FOCUS'}<span class="catalog-id">SOL / ${String(data.order ?? 3).padStart(2, '0')}</span></div>
     <h1 id="body-title">${data.name}</h1><div class="body-type">${data.type}</div>
     <p class="body-description">${data.description}</p>
-    <div class="distance-display"><span class="eyebrow">DISTANCE FROM SUN</span><div>${data.distanceAU || '0'}<span>AU</span></div><span class="distance-km">${data.distanceAU ? `${format(Math.round(data.distanceAU * 149.598))} million kilometers` : 'The heart of our solar system'}</span></div>
+    <div class="distance-display"><span class="eyebrow">DISTANCE FROM SUN <small data-position-label>REFERENCE MEAN</small></span><div><strong data-live-distance>${data.distanceAU || '0'}</strong><span>AU</span></div><span class="distance-km" data-live-distance-km>${data.distanceAU ? `${format(Math.round(data.distanceAU * 149.598))} million kilometers` : 'The heart of our solar system'}</span></div>
     <div class="body-facts"><div><span>Diameter</span><strong>${format(data.diameter)} <small>km</small></strong></div><div><span>Orbital period</span><strong>${orbital}</strong></div><div><span>Day length</span><strong>${rotation}</strong></div><div><span>Mean temperature</span><strong>${data.temperature}</strong></div></div>
     <div class="field-note"><div>${icon('sun')}<span class="eyebrow">FIELD NOTES</span></div><p>${data.fact}</p></div>
+    <button class="planet-data-link" data-action="planet-observations" aria-haspopup="dialog">${icon('signal')} Position, atmosphere and images ${icon('arrow')}</button>
     <button class="primary-button" data-action="autopilot">${icon('ship')}<span>Fly to ${data.name}</span>${icon('arrow')}</button>
     <div class="panel-footnote">${isFlight ? 'Assisted navigation · Safe approach' : 'Your spacecraft is ready when you are'}</div>`;
+}
+
+export function asteroidPanel(data, isFlight = false) {
+  return `<div class="panel-eyebrow"><span class="status-dot"></span>${isFlight ? 'NAVIGATION TARGET' : 'CATALOGUED OBJECT'}</div>
+    <h1 id="body-title">${data.name}</h1><div class="body-type">${data.type}</div><p class="body-description">A named solar system object positioned from NASA JPL Horizons. The visible marker is enlarged so it can be selected.</p>
+    <div class="distance-display"><span class="eyebrow">DISTANCE FROM SUN <small data-position-label>JPL EPHEMERIS</small></span><div><strong data-live-distance></strong><span>AU</span></div><span class="distance-km" data-live-distance-km></span></div>
+    <div class="body-facts"><div><span>Approximate diameter</span><strong>${format(data.diameter)} <small>km</small></strong></div><div><span>Position source</span><strong>NASA JPL</strong></div></div>
+    <button class="planet-data-link" data-action="planet-observations" aria-haspopup="dialog">${icon('signal')} Position and observations ${icon('arrow')}</button>
+    <button class="primary-button" data-action="autopilot">${icon('ship')}<span>Fly to ${data.name}</span>${icon('arrow')}</button><p class="panel-footnote">Orbital path is a guide from the current state vector</p>`;
 }
 
 export function overviewPanel() {

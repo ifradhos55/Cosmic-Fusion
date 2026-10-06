@@ -1,4 +1,5 @@
 import { icon } from './icons.js';
+import { CATALOGUE_ASTEROIDS } from '../data/observatories.js';
 
 export function sidebar(bodies) {
   return `<aside class="sidebar">
@@ -9,6 +10,8 @@ export function sidebar(bodies) {
     <button class="overview-button" data-action="nasa" aria-haspopup="dialog">${icon('signal')}<span>NASA observations</span></button>
     <div class="nav-section"><span class="eyebrow">CELESTIAL BODIES</span><span class="small-count">09</span></div>
     <nav class="body-nav" aria-label="Celestial bodies">${bodies.map((body, i) => `<button class="body-button" data-body="${body.id}" aria-pressed="false"><span class="planet-dot planet-${body.id}" style="--planet-color:${body.color}"></span><span>${body.name}</span><span class="body-number">${String(i).padStart(2, '0')}</span><span class="selected-dot"></span></button>`).join('')}</nav>
+    <div class="nav-section"><span class="eyebrow">CATALOGUED SMALL BODIES</span><span class="small-count">05</span></div>
+    <nav class="body-nav catalogue-nav" aria-label="Catalogued asteroids">${CATALOGUE_ASTEROIDS.map(body => `<button class="body-button" data-body="${body.id}" data-catalogue-body disabled aria-pressed="false" title="Loading JPL positions"><span class="asteroid-dot"></span><span>${body.name}</span></button>`).join('')}</nav>
     <button class="journey-card" data-action="journeys"><span class="journey-top">${icon('compass')}<span>GO A LITTLE FURTHER</span></span><strong>The next frontier</strong><span class="journey-bottom">Choose your next journey ${icon('arrow')}</span></button></div>
     <div class="sidebar-footer"><span class="online-dot"></span>ALL SYSTEMS NOMINAL <span class="version">V2.0</span></div>
   </aside>`;

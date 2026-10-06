@@ -52,3 +52,11 @@ test('only supported simulation speed settings are accepted', () => {
     assert.equal(clock.speed, validSpeed);
   }
 });
+
+
+test('anchoring to UTC keeps the date exact through pause and time warp', () => {
+  const clock = new SimulationClock(), at = Date.parse('2026-10-06T12:34:56Z');
+  clock.setDate(at); assert.equal(clock.date.getTime(), at);
+  clock.paused = true; clock.update(.1); assert.equal(clock.date.getTime(), at);
+  clock.paused = false; clock.update(.1); assert.equal(clock.date.getTime(), at + 864000);
+});

@@ -1,6 +1,7 @@
 import './ui/styles.css';
 import './ui/touch.css';
 import './ui/nasa.css';
+import './ui/observations.css';
 import { App } from './app/App.js';
 
 try {

@@ -4,6 +4,9 @@ import { createSurfaceTexture, createRadialGlow, createRingTexture, seededRandom
 import { createAtmosphere, createEarthMaterial, createSunMaterial, createRingMaterial, createPlanetMaterial } from './materials.js';
 
 import { PlanetTextureLibrary } from '../rendering/PlanetTextureLibrary.js';
+import { CatalogueAsteroids } from './CatalogueAsteroids.js';
+import { scenePosition, orbitGuide } from './ephemeris.js';
+import { EPOCH } from '../core/SimulationClock.js';
 
 const TAU = Math.PI * 2;
 const EARTH_ASSETS = {
@@ -44,6 +47,7 @@ export class Universe {
     for (const data of BODY_DATA) this._buildBody(data);
     this._buildMoon();
     this._buildAsteroids();
+    this.catalogue = new CatalogueAsteroids(this.group);
     this.selectBody(null, false);
     this.update(0, 0);
   }
@@ -244,14 +248,35 @@ export class Universe {
     this.group.add(this.asteroids);
   }
 
-  getBody(id) { return this.bodies.find(body => body.id === id); }
+  getBody(id) { return this.bodies.find(body => body.id === id) || this.catalogue?.bodies.find(body => body.id === id); }
+  get navigationBodies() { return [...this.bodies, ...(this.catalogue?.bodies.filter(body => body.mesh.visible) || [])]; }
+
+  setEphemeris(ephemeris, time) {
+    this.ephemeris = ephemeris;
+    for (const body of [...this.bodies, ...this.catalogue.bodies]) {
+      if (body.id === 'sun') continue;
+      const points = orbitGuide(ephemeris.at(body.id, time)).map(point => new THREE.Vector3(...point));
+      if (!points.length) continue;
+      const existing = this.orbits.get(body.id);
+      if (existing) { existing.geometry.dispose(); existing.geometry = new THREE.BufferGeometry().setFromPoints(points); }
+      else {
+        const guide = new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(points), new THREE.LineBasicMaterial({ color: 0xa2906e, transparent: true, opacity: .16, depthWrite: false }));
+        guide.name = `${body.data.name} osculating orbit`; guide.visible = this.orbitsVisible;
+        this.orbits.set(body.id, guide); this.group.add(guide);
+      }
+    }
+  }
 
   update(simulationDays = 0, deltaSeconds = 0) {
     if (this.disposed) return;
     this.elapsed += Math.max(0, deltaSeconds);
+    const time = EPOCH + simulationDays * 86400000;
     for (const body of this.bodies) {
       const { data } = body;
-      if (data.orbitRadius) {
+      const state = this.ephemeris?.at(body.id, time);
+      body.ephemeris = state || null;
+      if (state && data.orbitRadius) body.position.fromArray(scenePosition(state.position));
+      else if (data.orbitRadius && !this.ephemeris) {
         const angle = body.phase + (simulationDays % data.orbitalPeriod) / data.orbitalPeriod * TAU;
         const inclination = THREE.MathUtils.degToRad(data.inclination || 0);
         body.position.set(Math.cos(angle) * data.orbitRadius, Math.sin(angle) * data.orbitRadius * Math.sin(inclination), Math.sin(angle) * data.orbitRadius * Math.cos(inclination));
@@ -262,9 +287,13 @@ export class Universe {
       if (data.id === 'sun') body.mesh.material.uniforms.time.value = this.elapsed;
     }
     const moonAngle = (simulationDays % 27.3217) / 27.3217 * TAU + 2.4;
-    this.moon.position.set(Math.cos(moonAngle) * 5.1, Math.sin(moonAngle) * .45, Math.sin(moonAngle) * 5.1);
+    const moonState = this.ephemeris?.at('moon', time);
+    this.moon.visible = !this.ephemeris || Boolean(moonState);
+    if (moonState) this.moon.position.fromArray(scenePosition(moonState.position, true));
+    else this.moon.position.set(Math.cos(moonAngle) * 5.1, Math.sin(moonAngle) * .45, Math.sin(moonAngle) * 5.1);
     this.moon.rotation.y = -moonAngle;
     this.asteroids.rotation.y = -(simulationDays % 1600) / 1600 * TAU;
+    this.catalogue?.update(this.ephemeris, time);
   }
 
   selectBody(id, closeUp = true) {

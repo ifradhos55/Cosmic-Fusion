@@ -1,3 +1,4 @@
+import { mockSolarPositions, observationTime } from './solar-fixtures.mjs';
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
 import { spawn } from 'node:child_process';
@@ -9,7 +10,7 @@ const baseURL = process.env.NASA_BASE_URL || 'http://127.0.0.1:5175';
 const output = path.join(root, 'work/nasa');
 const { chromium } = process.env.PLAYWRIGHT_MODULE_PATH
   ? await import(pathToFileURL(path.resolve(process.env.PLAYWRIGHT_MODULE_PATH, 'index.mjs')).href) : await import('playwright');
-const now = Date.now(), day = value => new Date(value).toISOString().slice(0, 10);
+const now = observationTime, day = value => new Date(value).toISOString().slice(0, 10);
 const payload = (feed, data) => ({ feed, fetchedAt: new Date(now).toISOString(), nextRefreshAt: new Date(now + 3_600_000).toISOString(),
   stale: false, demo: feed === 'asteroids', source: 'https://science.nasa.gov/', window: { start: day(now), end: day(now + 6 * 86_400_000) }, data });
 const fixtures = {
@@ -65,6 +66,7 @@ try {
     });
     await page.route('https://assets.science.nasa.gov/**', route => route.fulfill({ contentType: 'image/svg+xml',
       body: '<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500"><rect width="800" height="500" fill="#081220"/><ellipse cx="400" cy="250" rx="220" ry="80" fill="#c5b6da"/><ellipse cx="400" cy="250" rx="150" ry="28" fill="#e5dccb"/></svg>' }));
+    await mockSolarPositions(page);
     await page.goto(baseURL, { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => window.__COSMIC__?.app?.nasa);
     const portrait = page.locator('[data-touch-action="portrait"]');

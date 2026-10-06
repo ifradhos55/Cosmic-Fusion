@@ -24,9 +24,9 @@ npm run preview     # Serve the production build locally
 
 Select a planet from the world selector to focus the camera and open its information panel. Drag the scene to orbit around the selected world and scroll or pinch to zoom. Overview frames the solar system. Pause, playback speed, and reset controls manage simulation time. Flight mode holds the orbital clock so destinations stay approachable.
 
-The simulation starts at **0.1 days per second**. Close a description with its **×** button; selecting a planet opens it again. Choose **Clean view** or press **H** to hide the navigation, sidebars, labels, and every control while the scene fills the browser window. Press **H** or **Escape**, or double-click/double-tap the scene, to restore the interface. Clean view works in Explore, Galaxy, and Flight deck independently of browser fullscreen.
+The simulation opens at the current UTC time in **Live now** mode. The default time warp setting is **0.1 days per second**. Close a description with its **×** button; selecting a planet opens it again. Choose **Clean view** or press **H** to hide the navigation, sidebars, labels, and every control while the scene fills the browser window. Press **H** or **Escape**, or double-click/double-tap the scene, to restore the interface. Clean view works in Explore, Galaxy, and Flight deck independently of browser fullscreen.
 
-The simulation uses compressed distances and enlarged planets to make exploration practical. Orbital and rotation periods are based on Earth days, but trajectories are illustrative circular orbits. The displayed date tracks elapsed simulation time from January 1, 2026; it does not represent a precise astronomical ephemeris. Spacecraft speeds use simulation units, rather than physical kilometers per second.
+Planet, Moon and catalogued asteroid directions and orbital motion use NASA JPL Horizons vector tables at the displayed UTC time. Cubic Hermite interpolation preserves position and velocity between six-hour samples. Distances are compressed with one shared radial mapping, and planet sizes are enlarged. Rotation uses reference periods rather than measured body attitude. Spacecraft speeds use simulation units; flight is an assisted navigation model, not gravitational dynamics.
 
 ## NASA observations
 
@@ -36,7 +36,7 @@ Open **NASA updates** in the header or **NASA observations** in Worlds. On touch
 - **Space weather:** the past seven UTC dates of DONKI notifications from NASA CCMC and the Moon to Mars Space Weather Analysis Office. Reports may describe observations, analysis or forecasts. The panel shows the twelve most recent notifications.
 - **Asteroid approaches:** Earth close approaches across seven UTC dates starting today, using NASA JPL NeoWs. Upcoming approaches include estimated size ranges, miss distance in kilometers and lunar distances, speed and JPL orbit links. The potentially hazardous designation is a classification, not an impact prediction.
 
-These are periodically refreshed NASA records, not a continuous sensor stream. They use the current real date even when the simulation is paused or time warp is active. The simulated planets remain illustrative and are not driven by these feeds.
+These are periodically refreshed NASA records, not a continuous sensor stream. They use the current real date even when the simulation is paused or time warp is active. Planet positions use the separate JPL Horizons integration described below.
 
 APOD uses NASA's September 2026 [replacement API](https://github.com/nasa/apod-api). Space weather uses the September 30, 2026 [replacement DONKI endpoint](https://ccmc.gsfc.nasa.gov/news/major-updates/). The old api.nasa.gov DONKI endpoint currently redirects to an announcement page.
 
@@ -46,7 +46,23 @@ Without a personal key, NeoWs uses NASA's shared `DEMO_KEY`, which permits 30 re
 
 Requests stop when the panel closes and automatic checks run only while it is visible. Failed feeds remain independent of working feeds. A server instance can retain the last successful result for up to a day during an outage, clearly marked **Saved update**, with its original timestamp. Cold server instances may have no saved result. Nothing is replaced with sample data when NASA is unavailable.
 
-`npm run preview` includes the same API adapter as development. A plain static host needs an equivalent `/api/nasa` backend; `dist/` alone does not contain one.
+`npm run preview` includes the same API adapter as development. A plain static host needs equivalent `/api/nasa` and `/api/solar` backends; `dist/` alone does not contain one.
+
+## Planetary positions, weather and imagery
+
+Select a world and open **Position, atmosphere and images** in its details. Touch users open **Details** after selecting a world in **Worlds**. Every section loads independently and can be closed without leaving the simulation.
+
+- **Position:** heliocentric J2000 ecliptic coordinates, distance from the Sun and Earth, orbital speed and light travel time. Values retain physical AU, kilometers and seconds even though the scene uses compressed distances.
+- **Live now:** follows current UTC. Choose a time warp to advance through the loaded range, pause to hold the date, or use Live now to return to the clock. Time warp stops at the last loaded date. Flight holds its launch date and scene positions, and installs refreshed tables when you return to Explore.
+- **Catalogued small bodies:** Ceres, Pallas, Vesta, Eros and Apophis are selectable and can be flight destinations. Their markers are enlarged illustrative shapes. The decorative belt is a statistical backdrop, not a measured asteroid catalogue. NeoWs approaches remain a separate dated list because miss distances alone cannot locate objects in 3D.
+- **Earth atmosphere:** latest NOAA observations from New York, Los Angeles and Honolulu, plus the latest published NASA EPIC sunlit Earth image. Station readings are local measurements, not global weather. Missing measurements show Unavailable; image dates can lag the present.
+- **Mars atmosphere:** latest published Curiosity REMS sol, air and ground temperatures, pressure and available conditions. Readings older than two days are marked historical. These outreach measurements describe Gale Crater, not the whole planet.
+- **Other atmospheres:** sourced reference conditions. Mercury has an exosphere; gas and ice giants have no solid terrain. No public live weather feed is claimed where one does not exist.
+- **Terrain and atmosphere images:** NASA mission archive photographs and scientific maps, with archive dates, image details, credit and source links. Venus uses radar terrain. Giant planets show clouds. These images are not live terrain or replacements for global texture maps.
+
+[Horizons](https://ssd-api.jpl.nasa.gov/doc/horizons.html) requests are sequential within each server instance. Tables cover 34 days around the requested UTC date and are cached for twelve hours. A checked-in genuine JPL snapshot retains its original timestamp and provides a bounded fallback during an outage. Outside the table range, the app does not extrapolate positions. Before any table loads, the scene is labeled as an illustrative preview. Guides are osculating ellipses derived from the current state, not predicted flight trajectories.
+
+The public [NASA image catalogue](https://images.nasa.gov/docs/images.nasa.gov_api_docs.pdf), [EPIC](https://epic.gsfc.nasa.gov/about/api), Curiosity weather and [NOAA observations](https://www.weather.gov/documentation/services-web-api) do not need the NeoWs API key. Images are cached for a day, EPIC and Mars for an hour, and station readings for fifteen minutes. Requests use fixed endpoints, bounded caches and failure backoff. Each panel keeps its observation date separate from its fetch date and the simulation date.
 
 ## Graphics and the Milky Way
 
@@ -91,7 +107,11 @@ Mouse steering is optional and activated explicitly from the flight controls. Es
 | `src/flight/` | Spacecraft model, flight controller, autopilot, and collision mathematics |
 | `src/ui/` | Interface components, icons, and responsive application styles |
 | `server/nasa.js` | NASA adapters, validation, caching, failure handling and HTTP handler |
-| `api/nasa.js` | Vercel function entry point |
+| `server/solar.js` | JPL vectors, NASA imagery, Curiosity, EPIC and NOAA adapters |
+| `api/nasa.js`, `api/solar.js` | Vercel function entry points |
+| `src/data/SolarData.js` | Client request lifecycle and ephemeris installation |
+| `src/simulation/ephemeris.js` | Interpolation, physical units and display mapping |
+| `src/ui/PlanetObservations.js` | Per-world position, atmosphere and imagery panels |
 | `tests/` | Clock tests and browser integration checks |
 | `public/` | Static assets served directly by Vite |
 | `legacy/` | Archived pre-2.0 monolithic source kept for reference |
@@ -105,11 +125,14 @@ npx playwright install chromium
 npm run test:smoke
 npm run test:touch
 npm run test:nasa
+npm run test:solar
 ```
 
 The unit tests cover simulation time, flight mathematics, navigation, and collision protection. The browser smoke test launches Chromium, verifies nonblank WebGL rendering, exercises planet selection and time controls, checks thrust, braking, autopilot and camera modes, and captures desktop and mobile layouts. It fails on uncaught browser errors or failed local resources.
 
 NASA tests cover the new upstream schemas, UTC date windows, numeric units, HTML handling, key redaction, shared requests, cache expiration, rate limits and saved results. The NASA browser test uses deterministic feed fixtures to check desktop and touch layouts, independent failures, keyboard input isolation, closing, and refreshing. It does not consume NASA API quota.
+
+Solar tests cover Horizons parsing, interpolation, physical units, shared and sequential requests, date validation, saved tables, missing weather values and image attribution. The solar browser test checks current positions, asteroid navigation, UTC and time warp, atmospheric limits, independent failures and five screen layouts. All browser suites use the genuine saved vector table at a frozen test date and do not consume public API quota.
 
 The smoke test reuses a server at `http://127.0.0.1:5173`, or starts and stops its own Vite server. Screenshots are written to `work/smoke/`. Set `SMOKE_BASE_URL` to use another development server, `SMOKE_OUTPUT_DIR` to change the screenshot directory, or `CHROME_PATH` to use an existing Chromium/Chrome executable. `PLAYWRIGHT_MODULE_PATH` optionally points to an external Playwright package directory.
 

@@ -148,3 +148,21 @@ test('touch steering is proportional and release slows the ship', () => {
   assert.equal(flight.touchSteering.length(), 0);
   flight.dispose();
 });
+
+test('real JPL configurations arrive safely despite compressed neighboring orbits', async () => {
+  const { readFile } = await import('node:fs/promises');
+  const { Ephemeris, scenePosition } = await import('../simulation/ephemeris.js');
+  const { BODY_DATA } = await import('../data/bodies.js');
+  const { CATALOGUE_ASTEROIDS } = await import('../data/observatories.js');
+  const ephemeris = new Ephemeris(JSON.parse(await readFile(new URL('../../public/data/ephemeris-snapshot.json', import.meta.url))));
+  const at = Date.parse('2026-10-06T12:00:00Z');
+  const bodies = [...BODY_DATA, ...CATALOGUE_ASTEROIDS.map(data => ({ ...data, radius: .3 }))].map(data => ({ id: data.id, data, radius: data.radius, position: new THREE.Vector3(...scenePosition(ephemeris.at(data.id, at).position)) }));
+  for (const destination of bodies) {
+    const flight = setup(); flight.enter(); flight.setDestination(destination);
+    for (let frame = 0; frame < 60 * 40; frame++) flight.update(1 / 60, bodies);
+    assert.equal(flight._telemetry.arrived, true, `${destination.id} must reach a clear stopping point`);
+    assert.ok(flight.velocity.length() < .1);
+    for (const obstacle of bodies) assert.ok(flight.ship.position.distanceTo(obstacle.position) > collisionRadius(obstacle.radius), `${destination.id} approach must clear ${obstacle.id}`);
+    flight.dispose();
+  }
+});

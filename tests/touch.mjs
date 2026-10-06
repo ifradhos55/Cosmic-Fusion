@@ -1,3 +1,4 @@
+import { mockSolarPositions } from './solar-fixtures.mjs';
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
 import { chromium } from 'playwright';
@@ -30,6 +31,7 @@ try {
   for (const [name, width, height] of devices) {
     const page = await browser.newPage({ viewport: { width, height }, isMobile: true, hasTouch: true, deviceScaleFactor: 1 });
     page.on('pageerror', error => failures.push(`${name}: ${error.message}`));
+    await mockSolarPositions(page);
     await page.goto(base, { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => window.__COSMIC__?.app?.touchUI);
     if (width < 600 && height > width) {

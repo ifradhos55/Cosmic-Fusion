@@ -1,3 +1,4 @@
+import { mockSolarPositions } from './solar-fixtures.mjs';
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
@@ -100,6 +101,7 @@ try {
   // The simulation loads large local texture maps progressively. DOM readiness
   // is the useful boundary here; the explicit canvas and render checks below
   // prove that the WebGL surface is actually alive.
+  await mockSolarPositions(page);
   await page.goto(baseURL, { waitUntil: 'domcontentloaded' });
   await page.locator('canvas').waitFor({ state: 'visible', timeout: 60000 });
   await page.waitForTimeout(1000);
@@ -197,6 +199,7 @@ try {
   observePage(mobile);
   mobile.setDefaultTimeout(15000);
   mobile.setDefaultNavigationTimeout(60000);
+  await mockSolarPositions(mobile);
   await mobile.goto(baseURL, { waitUntil: 'domcontentloaded' });
   await mobile.waitForFunction(() => window.__COSMIC__?.app);
   await mobile.waitForTimeout(1000);

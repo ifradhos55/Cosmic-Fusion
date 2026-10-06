@@ -168,6 +168,7 @@ export class FlightController {
     if (this._approach.lengthSq() < .01) this._approach.copy(UP);
     this._approach.normalize();
     this._autopilot = true;
+    this._approachValidated = false;
     this._arrived = false;
     this._waypoint = null;
     this._targetSampleValid = false;
@@ -204,7 +205,10 @@ export class FlightController {
     this._bodies = bodies;
     if (this._elapsed > this._warningUntil) this._warning = '';
     const boosting = this.inputs.has('boost') && !this._autopilot && !this.inputs.has('brake');
-    if (this._autopilot && this._destination) this._sampleTargetVelocity(dt);
+    if (this._autopilot && this._destination) {
+      if (!this._approachValidated) this._chooseClearApproach(bodies);
+      this._sampleTargetVelocity(dt);
+    }
     if (this._mouse.lengthSq() > 0) {
       this._rotate(-this._mouse.y * .002, -this._mouse.x * .002, 0);
       this._mouse.set(0, 0);
@@ -288,6 +292,26 @@ export class FlightController {
     this._waypoint = obstacle.center.clone().addScaledVector(side, obstacle.radius * 2.2);
     this._showWarning('Navigation assist · routing around a celestial body', 2);
     return this._waypoint;
+  }
+
+  _chooseClearApproach(bodies) {
+    const center = bodyPosition(this._destination);
+    const distance = arrivalRadius(this._destination.radius);
+    const candidates = [this._approach.clone()];
+    // Enlarged planets can occupy a neighboring body's preferred stopping
+    // point. Choose a nearby clear point once, then keep the approach stable.
+    for (let i = 0; i < 64; i++) {
+      const y = 1 - 2 * (i + .5) / 64, angle = i * Math.PI * (3 - Math.sqrt(5));
+      const radius = Math.sqrt(1 - y * y);
+      candidates.push(new THREE.Vector3(Math.cos(angle) * radius, y, Math.sin(angle) * radius));
+    }
+    candidates.sort((a, b) => b.dot(this._approach) - a.dot(this._approach));
+    for (const direction of candidates) {
+      const point = center.clone().addScaledVector(direction, distance);
+      if (bodies.some(body => body !== this._destination && body.id !== this._destination.id && bodyPosition(body) && point.distanceTo(bodyPosition(body)) < collisionRadius(body.radius) + Math.max(3, body.radius * .3) + 1)) continue;
+      this._approach.copy(direction); break;
+    }
+    this._approachValidated = true;
   }
 
   _updateAutopilot(dt, bodies) {

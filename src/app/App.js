@@ -7,10 +7,13 @@ import { Galaxy } from '../simulation/Galaxy.js';
 import { BODY_DATA } from '../data/bodies.js';
 import { SimulationClock } from '../core/SimulationClock.js';
 import { mountShell, modalContent } from '../ui/Shell.js';
-import { objectPanel, overviewPanel, galaxyPanel, flightPanel } from '../ui/ObjectPanel.js';
+import { objectPanel, asteroidPanel, overviewPanel, galaxyPanel, flightPanel } from '../ui/ObjectPanel.js';
 import { icon } from '../ui/icons.js';
 import { TouchInterface } from '../ui/TouchInterface.js';
 import { NasaPanel } from '../ui/NasaPanel.js';
+import { PlanetObservations } from '../ui/PlanetObservations.js';
+import { SolarData } from '../data/SolarData.js';
+import { AU_KM } from '../simulation/ephemeris.js';
 
 const STORAGE_KEY = 'cosmic-fusion-settings';
 
@@ -19,6 +22,8 @@ export class App {
   constructor(root) {
     this.root = root;
     this.clock = new SimulationClock();
+    this.clock.setDate(Date.now());
+    this.livePositions = true;
     this.settings = { orbits: true, labels: true, quality: matchMedia('(any-pointer: coarse)').matches ? 'balanced' : 'high' };
     try { this.settings = { ...this.settings, ...JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}') }; } catch { /* private browsing */ }
     this.selectedId = null;
@@ -40,7 +45,7 @@ export class App {
 
   start() {
     mountShell(this.root, BODY_DATA);
-    this.root.querySelector('#time-speed').value = String(this.clock.speed);
+    this.root.querySelector('#time-speed').value = 'live';
     document.body.dataset.mode = 'explore';
     document.body.dataset.view = 'solar';
     document.body.classList.remove('clean-view');
@@ -61,6 +66,8 @@ export class App {
     this.cameraRig.overview(true);
     this.touchUI = new TouchInterface(this);
     this.nasa = new NasaPanel(this.root);
+    this.solarData = new SolarData(this);
+    this.observations = new PlanetObservations(this);
     this.bindEvents();
     this.updateLabels();
     this.running = true;
@@ -68,6 +75,7 @@ export class App {
     this.frameId = requestAnimationFrame(this.frame);
     this.resize();
     this.cameraRig.overview(true);
+    this.solarData.start();
     if (import.meta.env?.DEV) window.__COSMIC__ = { app: this };
   }
 
@@ -76,18 +84,25 @@ export class App {
     const dt = Math.min((now - this.lastFrame) / 1000 || 0, 0.12);
     this.lastFrame = now;
     if (this.mode === 'explore') {
-      this.clock.update(dt);
+      if (this.livePositions && !this.clock.paused) this.clock.setDate(Date.now());
+      else this.clock.update(dt);
+      const ephemeris = this.universe.ephemeris;
+      if (ephemeris && this.clock.date.getTime() > ephemeris.end) {
+        this.clock.setDate(ephemeris.end); this.clock.paused = true; this.livePositions = false;
+        this.showToast('Reached the loaded JPL dates. Use Live now or load another date range from a planet’s observations.');
+      }
       this.universe.update(this.clock.days, dt);
       if (this.view === 'galaxy') this.galaxy.update(dt);
       this.cameraRig.update(dt);
     } else {
       // Flight is deliberately a local navigation layer: freeze orbital drift while flying.
-      this.flight.update(dt, this.universe.bodies);
+      this.flight.update(dt, this.universe.navigationBodies);
     }
     this.updateSimulationUI();
     this.renderer.render(this.scene, this.camera);
     if (now - this.lastTelemetry > 80) {
       this.updateLabels();
+      this.updatePositionUI();
       this.lastTelemetry = now;
     }
     this.frameId = requestAnimationFrame(this.frame);
@@ -160,7 +175,9 @@ export class App {
     else if (action === 'galaxy') this.showGalaxy();
     else if (action === 'overview') this.overview();
     else if (action === 'pause') this.togglePause();
-    else if (action === 'reset-time') { this.clock.reset(); this.showToast('Simulation date reset to January 1, 2026'); }
+    else if (action === 'reset-time' || action === 'live-now') {
+      this.returnToLive();
+    }
     else if (action === 'zoom-in') this.cameraRig.zoom(.72);
     else if (action === 'zoom-out') this.cameraRig.zoom(1.4);
     else if (action === 'recenter') this.view === 'galaxy' ? this.setGalaxyPerspective(this.galaxyPerspective) : this.mode === 'flight' ? this.flight.reset(this.selectedBody) : (this.selectedBody ? this.cameraRig.focus(this.selectedBody) : this.cameraRig.overview());
@@ -182,6 +199,10 @@ export class App {
       this.touchUI?.resetGestures();
       this.flight.releaseControls();
       this.nasa.open();
+    }
+    else if (action === 'planet-observations' && this.selectedBody) {
+      this.closeModal(); this.touchUI?.closeSheet(); this.touchUI?.resetGestures(); this.flight.releaseControls();
+      this.observations.open(this.selectedBody);
     }
     else if (action === 'close-modal') this.closeModal();
     else if (action === 'close-panel') {
@@ -214,8 +235,19 @@ export class App {
       this.persistSettings();
       return;
     }
-    if (event.target.id === 'time-speed') this.clock.setSpeed(event.target.value);
+    if (event.target.id === 'time-speed') {
+      if (event.target.value === 'live') this.returnToLive();
+      else { this.livePositions = false; this.clock.setSpeed(event.target.value); }
+    }
   };
+
+  returnToLive() {
+    if (this.mode === 'flight') this.exitFlight();
+    this.livePositions = true; this.clock.paused = false; this.clock.setDate(Date.now());
+    this.root.querySelector('#time-speed').value = 'live';
+    this.solarData.install(); this.solarData.loadPositions();
+    this.showToast('Following current UTC positions');
+  }
 
   handleSceneClick = (event) => {
     if (this.cleanView || this.mode !== 'explore' || this.dragStart === null) return;
@@ -246,11 +278,11 @@ export class App {
   selectBody(id, focus = true) {
     if (this.view === 'galaxy') this.showSolarSystem(false);
     const body = this.universe?.getBody(id);
-    if (!body) return;
+    if (!body || (body.data.isAsteroid && !body.mesh.visible)) return;
     this.selectedId = id;
     this.selectedBody = body;
     this.universe.selectBody(id, focus || this.mode === 'flight');
-    this.renderObjectPanel(objectPanel(body.data, this.mode === 'flight'), true);
+    this.renderObjectPanel(body.data.isAsteroid ? asteroidPanel(body.data, this.mode === 'flight') : objectPanel(body.data, this.mode === 'flight'), true);
     this.root.querySelectorAll('.body-button').forEach(button => { const active = button.dataset.body === id; button.classList.toggle('active', active); button.setAttribute('aria-pressed', String(active)); });
     this.root.querySelectorAll('.overview-button').forEach(button => button.classList.remove('active'));
     this.root.querySelector('#view-detail').textContent = body.data.name.toUpperCase();
@@ -367,7 +399,7 @@ export class App {
     this.root.querySelectorAll('.mode-switch button').forEach(button => { const active = button.dataset.action === 'flight'; button.classList.toggle('active', active); button.setAttribute('aria-pressed', String(active)); });
     this.root.querySelector('#view-label').textContent = 'FLIGHT DECK';
     if (!this.selectedBody) this.root.querySelector('.scene-location').innerHTML = 'Free flight<span>MANUAL NAVIGATION · SOL SYSTEM</span>';
-    this.renderObjectPanel(this.selectedBody ? objectPanel(this.selectedBody.data, true) : flightPanel());
+    this.renderObjectPanel(this.selectedBody ? (this.selectedBody.data.isAsteroid ? asteroidPanel(this.selectedBody.data, true) : objectPanel(this.selectedBody.data, true)) : flightPanel());
     this.updateFlightUI(this.flight._telemetry);
   }
 
@@ -376,9 +408,10 @@ export class App {
     this.touchUI?.resetGestures();
     this.flight.exit(); this.mode = 'explore'; document.body.dataset.mode = 'explore';
     this.clock.paused = this.preFlightPaused; this.cameraRig.controls.enabled = true;
+    this.solarData?.install();
     this.root.querySelectorAll('.mode-switch button').forEach(button => { const active = button.dataset.action === 'explore'; button.classList.toggle('active', active); button.setAttribute('aria-pressed', String(active)); });
     this.root.querySelector('#view-label').textContent = 'ORBITAL VIEW';
-    if (this.selectedBody) { this.renderObjectPanel(objectPanel(this.selectedBody.data)); this.cameraRig.focus(this.selectedBody); }
+    if (this.selectedBody) { this.renderObjectPanel(this.selectedBody.data.isAsteroid ? asteroidPanel(this.selectedBody.data) : objectPanel(this.selectedBody.data)); this.cameraRig.focus(this.selectedBody); }
     else this.overview();
   }
 
@@ -393,8 +426,10 @@ export class App {
     const date = this.root.querySelector('#simulation-date');
     const state = this.root.querySelector('#time-state');
     const pause = this.root.querySelector('[data-action="pause"]');
-    if (date) date.textContent = this.clock.date.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }).toUpperCase();
-    if (state) { state.textContent = this.clock.paused ? 'PAUSED' : 'RUNNING'; state.className = this.clock.paused ? 'paused' : ''; }
+    if (date) date.textContent = this.clock.date.toLocaleDateString('en-US', { timeZone: 'UTC', month: 'short', day: '2-digit', year: 'numeric' }).toUpperCase();
+    if (state) { state.textContent = this.clock.paused ? 'PAUSED' : this.livePositions ? 'LIVE UTC' : 'TIME WARP'; state.className = this.clock.paused ? 'paused' : ''; }
+    const liveButton = this.root.querySelector('[data-action="live-now"]');
+    liveButton?.setAttribute('aria-pressed', String(this.livePositions));
     const pauseState = `${this.mode}:${this.clock.paused}`;
     if (pause && this.pauseButtonState !== pauseState) {
       this.pauseButtonState = pauseState;
@@ -428,12 +463,14 @@ export class App {
   updateLabels() {
     const host = this.root.querySelector('#body-labels');
     if (!host) return;
-    host.innerHTML = '';
-    if (!this.settings.labels || this.mode === 'flight' || this.view === 'galaxy') return;
+    host.hidden = !this.settings.labels || this.mode === 'flight' || this.view === 'galaxy';
+    if (host.hidden) return;
+    this.labelNodes ||= new Map();
+    const visible = new Set();
     const width = this.renderer.domElement.clientWidth, height = this.renderer.domElement.clientHeight;
     const compact = this.touchUI?.media.matches;
     const occupied = [];
-    const bodies = [...(this.universe?.bodies || [])].sort((a, b) => Number(b.id === this.selectedId) - Number(a.id === this.selectedId));
+    const bodies = [...(this.universe?.navigationBodies || [])].sort((a, b) => Number(b.id === this.selectedId) - Number(a.id === this.selectedId));
     for (const body of bodies) {
       const point = body.position.clone().project(this.camera);
       if (point.z < -1 || point.z > 1) continue;
@@ -446,14 +483,33 @@ export class App {
         if (occupied.some(other => box.left < other.right + 4 && box.right > other.left - 4 && box.top < other.bottom + 4 && box.bottom > other.top - 4)) continue;
         occupied.push(box);
       }
-      const label = document.createElement('button');
+      let label = this.labelNodes.get(body.id);
+      if (!label) { label = document.createElement('button'); this.labelNodes.set(body.id, label); host.appendChild(label); }
+      visible.add(body.id); label.hidden = false;
       label.className = `body-label ${body.id === this.selectedId ? 'selected' : ''}`;
       label.dataset.body = body.id;
       label.textContent = body.data.name.toUpperCase();
       label.style.left = `${x}px`;
       label.style.top = `${y}px`;
-      host.appendChild(label);
     }
+    for (const [id, label] of this.labelNodes) if (!visible.has(id)) label.hidden = true;
+  }
+
+  updatePositionUI() {
+    const label = this.root.querySelector('#ephemeris-status');
+    if (label) label.textContent = this.solarData?.status === 'ready' ? (this.mode === 'flight' ? 'JPL POSITIONS · FLIGHT SNAPSHOT' : this.livePositions ? 'LIVE POSITIONS · NASA JPL' : 'JPL POSITIONS · TIME WARP')
+      : this.solarData?.status === 'saved' ? 'JPL POSITIONS · SAVED TABLE' : this.solarData?.positionLoading ? 'LOADING NASA JPL POSITIONS' : 'POSITIONS UNAVAILABLE · ILLUSTRATIVE VIEW';
+    for (const button of this.root.querySelectorAll('[data-catalogue-body]')) {
+      button.disabled = !this.universe.getBody(button.dataset.body)?.mesh.visible;
+      button.title = button.disabled ? 'JPL positions unavailable' : 'Focus this object';
+    }
+    if (!this.selectedBody) return;
+    const metrics = this.universe.ephemeris?.metrics(this.selectedBody.id, this.clock.date.getTime());
+    if (!metrics) return;
+    const value = this.root.querySelector('[data-live-distance]'), km = this.root.querySelector('[data-live-distance-km]'), status = this.root.querySelector('[data-position-label]');
+    if (value) value.textContent = metrics.sunAU.toFixed(4);
+    if (km) km.textContent = `${Math.round(metrics.sunAU * AU_KM).toLocaleString('en-US')} kilometers`;
+    if (status) status.textContent = 'JPL EPHEMERIS';
   }
 
   renderObjectPanel(content, reopen = false) {
@@ -494,6 +550,7 @@ export class App {
   }
 
   openModal(type) {
+    this.observations?.close();
     this.nasa?.close();
     if (this.cleanView) this.setCleanView(false);
     this.touchUI?.resetGestures();
@@ -501,7 +558,7 @@ export class App {
     this.root.querySelector('#modal-content').innerHTML = modalContent(type, this.settings);
     if (!dialog.open) dialog.showModal();
   }
-  closeModal() { this.nasa?.close(); const dialog = this.root.querySelector('#modal'); if (dialog?.open) dialog.close(); }
+  closeModal() { this.observations?.close(); this.nasa?.close(); const dialog = this.root.querySelector('#modal'); if (dialog?.open) dialog.close(); }
   showToast(message) { const toast = this.root.querySelector('#toast'); toast.textContent = message; toast.classList.add('show'); clearTimeout(this.toastTimer); this.toastTimer = setTimeout(() => toast.classList.remove('show'), 2600); }
   persistSettings() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(this.settings)); } catch { /* private browsing */ } }
   async toggleFullscreen() { try { if (!document.fullscreenElement) await document.documentElement.requestFullscreen(); else await document.exitFullscreen(); } catch { this.showToast('Fullscreen is not available here'); } }
@@ -512,7 +569,7 @@ export class App {
     this.running = false; cancelAnimationFrame(this.frameId); this.bound.forEach(unbind => unbind());
     clearTimeout(this.cleanViewHintTimer); clearTimeout(this.toastTimer);
     document.body.classList.remove('clean-view');
-    this.nasa?.dispose(); this.touchUI?.dispose(); this.cameraRig?.dispose(); this.flight?.dispose(); this.universe?.dispose(); this.galaxy?.dispose(); this.renderer?.dispose();
+    this.solarData?.dispose(); this.observations?.dispose(); this.nasa?.dispose(); this.touchUI?.dispose(); this.cameraRig?.dispose(); this.flight?.dispose(); this.universe?.dispose(); this.galaxy?.dispose(); this.renderer?.dispose();
     if (import.meta.env?.DEV && window.__COSMIC__?.app === this) delete window.__COSMIC__;
   }
 }
