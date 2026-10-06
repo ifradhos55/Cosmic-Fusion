@@ -35,7 +35,11 @@ export function normalizeImages(raw, body) {
   return raw.collection.items.flatMap(item => {
     const data = item.data?.[0];
     const text = `${data?.title} ${data?.description}`;
-    if (!data?.nasa_id || data.media_type !== 'image' || !text.toLowerCase().includes(body) || /artist.{0,20}(concept|impression|illustration)|computer[- ]generated|simulation of|conceptual illustration/i.test(text)) return [];
+    if (!data?.nasa_id || /\b(?:illustration|artist|concept)\b/i.test(data.title || '') || data.media_type !== 'image' || !text.toLowerCase().includes(body) || /artist.{0,20}(concept|impression|illustration)|computer[- ]generated|simulation of|conceptual illustration/i.test(text)) return [];
+    // Accessible captions describe the actual photograph without the long
+    // mission boilerplate that also makes laboratory photos match terrain.
+    const subject = `${data.title || ''} ${data.description_508 || data.description?.split(/\n\s*\n/)[0] || ''}`;
+    if (/engineering models?|rover twins?|mars yard|garage|3d glasses|seen here working|launch pad|press conference|clean room|assembly facility|testing ground|vehicle system test bed|ground-based test|(?:scientist|engineer).{0,120}(?:poses|stands|seen|working)/i.test(subject)) return [];
     const image = nasaURL(item.links?.find(link => link.rel === 'alternate' && link.render === 'image')?.href || item.links?.find(link => link.rel === 'preview')?.href);
     if (!image) return [];
     return [{ id: plainText(data.nasa_id, 120), title: plainText(data.title, 240), description: plainText(data.description, 3000),

@@ -58,7 +58,7 @@ test('weather normalization preserves missing measurements and rejects incompati
 });
 test('terrain catalogue strips upstream markup and excludes artist concepts and untrusted image hosts', () => {
   const item = (title, image = 'https://images-assets.nasa.gov/image.jpg') => ({ data: [{ nasa_id: 'PIA123', media_type: 'image', title, description: 'Mars rover <script>bad()</script> terrain', date_created: '2020-01-01', secondary_creator: '<b>NASA/JPL</b>' }], links: [{ rel: 'alternate', render: 'image', href: image }] });
-  const data = normalizeImages({ collection: { items: [item('Mars terrain'), item('Artist concept of Mars'), item('Mars image', 'https://example.com/image.jpg')] } }, 'mars');
+  const data = normalizeImages({ collection: { items: [item('Mars terrain'), item('Artist concept of Mars'), item('Illustration of Mars'), item('Mars image', 'https://example.com/image.jpg')] } }, 'mars');
   assert.equal(data.length, 1); assert.equal(data[0].credit, 'NASA/JPL'); assert.equal(data[0].description, 'Mars rover terrain'); assert.ok(data[0].source.includes('/details/PIA123'));
 });
 
@@ -67,4 +67,10 @@ test('slow upstream failures leave enough time to return a saved table before th
   const read = createSolarService({ seed: snapshot, now: () => now, fetchImpl: async () => { calls++; now += 12000; throw Error('Timeout'); } });
   const value = await read('ephemeris');
   assert.equal(value.status, 200); assert.equal(value.body.stale, true); assert.equal(calls, 4); assert.ok(now - start < 55000);
+});
+
+test('terrain search excludes laboratory photos whose mission boilerplate mentions planetary terrain', () => {
+  const item = (title, caption) => ({ data: [{ nasa_id: title, media_type: 'image', title, description: 'NASA Curiosity explores Mars surface terrain.', description_508: caption }], links: [{ rel: 'alternate', render: 'image', href: 'https://images-assets.nasa.gov/image.jpg' }] });
+  const values = normalizeImages({ collection: { items: [item('Twin Rover Twins', 'Engineering models in a garage at the Mars Yard.'), item('3D Glasses Used for Rover Driving', 'Vandi Verma, an engineer, is seen here working as a driver.'), item('MARDI Peeks Under Curiosity', 'This pair shows the Martian surface captured by the Mars Science Laboratory rover.')] } }, 'mars');
+  assert.equal(values.length, 1); assert.equal(values[0].title, 'MARDI Peeks Under Curiosity');
 });
