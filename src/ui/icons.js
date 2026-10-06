@@ -1,4 +1,5 @@
 const paths = {
+  signal: '<path d="M3 17h3l3-10 5 14 3-10 2 6h2"/><path d="M3 3h18"/>',
   orbit: '<ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(-35 12 12)"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="1"/>',
   grid: '<rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="3" width="6" height="6" rx="1"/><rect x="3" y="15" width="6" height="6" rx="1"/><rect x="15" y="15" width="6" height="6" rx="1"/>',
   ship: '<path d="m12 3 8 17-8-4-8 4 8-17Z"/><path d="M12 10v6M9 21h6"/>',

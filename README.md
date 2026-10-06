@@ -13,7 +13,7 @@ npm ci
 npm run dev -- --host 127.0.0.1
 ```
 
-Open [http://localhost:5173](http://localhost:5173). The application runs entirely in the browser; it does not require an account, a backend, or API credentials.
+Open [http://localhost:5173](http://localhost:5173). The simulation runs in the browser. NASA observations use a small server endpoint, included in the local Vite server and deployed as a Vercel function. No account is required to try the shared demo key.
 
 ```sh
 npm run build       # Production web application in dist/
@@ -27,6 +27,26 @@ Select a planet from the world selector to focus the camera and open its informa
 The simulation starts at **0.1 days per second**. Close a description with its **×** button; selecting a planet opens it again. Choose **Clean view** or press **H** to hide the navigation, sidebars, labels, and every control while the scene fills the browser window. Press **H** or **Escape**, or double-click/double-tap the scene, to restore the interface. Clean view works in Explore, Galaxy, and Flight deck independently of browser fullscreen.
 
 The simulation uses compressed distances and enlarged planets to make exploration practical. Orbital and rotation periods are based on Earth days, but trajectories are illustrative circular orbits. The displayed date tracks elapsed simulation time from January 1, 2026; it does not represent a precise astronomical ephemeris. Spacecraft speeds use simulation units, rather than physical kilometers per second.
+
+## NASA observations
+
+Open **NASA updates** in the header or **NASA observations** in Worlds. On touch devices, the graph icon beside the mode selector opens the same panel. Each feed shows its publication or event date, the last successful fetch, and the next scheduled check in UTC.
+
+- **Astronomy picture:** the latest published Astronomy Picture of the Day, with its explanation, credit and original article. Video entries link to NASA rather than embedding external players.
+- **Space weather:** the past seven UTC dates of DONKI notifications from NASA CCMC and the Moon to Mars Space Weather Analysis Office. Reports may describe observations, analysis or forecasts. The panel shows the twelve most recent notifications.
+- **Asteroid approaches:** Earth close approaches across seven UTC dates starting today, using NASA JPL NeoWs. Upcoming approaches include estimated size ranges, miss distance in kilometers and lunar distances, speed and JPL orbit links. The potentially hazardous designation is a classification, not an impact prediction.
+
+These are periodically refreshed NASA records, not a continuous sensor stream. They use the current real date even when the simulation is paused or time warp is active. The simulated planets remain illustrative and are not driven by these feeds.
+
+APOD uses NASA's September 2026 [replacement API](https://github.com/nasa/apod-api). Space weather uses the September 30, 2026 [replacement DONKI endpoint](https://ccmc.gsfc.nasa.gov/news/major-updates/). The old api.nasa.gov DONKI endpoint currently redirects to an announcement page.
+
+For production, obtain a free key from [NASA Open APIs](https://api.nasa.gov/) and add `NASA_API_KEY` to the Vercel project's server environment, then redeploy. For local use, copy `.env.example` to `.env.local` and replace `DEMO_KEY`. Keep this variable server-side. Do not use a `VITE_` prefix. Keys never appear in browser requests or responses.
+
+Without a personal key, NeoWs uses NASA's shared `DEMO_KEY`, which permits 30 requests per IP per hour and 50 per day. Asteroid data is cached for two hours in demo mode and one hour with a personal key. APOD is cached for one hour and DONKI for fifteen minutes; their current public endpoints do not need a key. The Vercel CDN shares successful responses, while each server instance coalesces simultaneous requests. Refresh does not bypass these caches. A busy deployment can still exhaust the shared demo quota, so use a personal key for public traffic.
+
+Requests stop when the panel closes and automatic checks run only while it is visible. Failed feeds remain independent of working feeds. A server instance can retain the last successful result for up to a day during an outage, clearly marked **Saved update**, with its original timestamp. Cold server instances may have no saved result. Nothing is replaced with sample data when NASA is unavailable.
+
+`npm run preview` includes the same API adapter as development. A plain static host needs an equivalent `/api/nasa` backend; `dist/` alone does not contain one.
 
 ## Graphics and the Milky Way
 
@@ -70,6 +90,8 @@ Mouse steering is optional and activated explicitly from the flight controls. Es
 | `src/simulation/` | Celestial bodies, procedural textures, materials, stars, and orbital motion |
 | `src/flight/` | Spacecraft model, flight controller, autopilot, and collision mathematics |
 | `src/ui/` | Interface components, icons, and responsive application styles |
+| `server/nasa.js` | NASA adapters, validation, caching, failure handling and HTTP handler |
+| `api/nasa.js` | Vercel function entry point |
 | `tests/` | Clock tests and browser integration checks |
 | `public/` | Static assets served directly by Vite |
 | `legacy/` | Archived pre-2.0 monolithic source kept for reference |
@@ -82,9 +104,12 @@ npm run build
 npx playwright install chromium
 npm run test:smoke
 npm run test:touch
+npm run test:nasa
 ```
 
 The unit tests cover simulation time, flight mathematics, navigation, and collision protection. The browser smoke test launches Chromium, verifies nonblank WebGL rendering, exercises planet selection and time controls, checks thrust, braking, autopilot and camera modes, and captures desktop and mobile layouts. It fails on uncaught browser errors or failed local resources.
+
+NASA tests cover the new upstream schemas, UTC date windows, numeric units, HTML handling, key redaction, shared requests, cache expiration, rate limits and saved results. The NASA browser test uses deterministic feed fixtures to check desktop and touch layouts, independent failures, keyboard input isolation, closing, and refreshing. It does not consume NASA API quota.
 
 The smoke test reuses a server at `http://127.0.0.1:5173`, or starts and stops its own Vite server. Screenshots are written to `work/smoke/`. Set `SMOKE_BASE_URL` to use another development server, `SMOKE_OUTPUT_DIR` to change the screenshot directory, or `CHROME_PATH` to use an existing Chromium/Chrome executable. `PLAYWRIGHT_MODULE_PATH` optionally points to an external Playwright package directory.
 

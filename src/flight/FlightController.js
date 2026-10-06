@@ -49,7 +49,7 @@ export class FlightController {
     this._bodies = [];
     this._telemetry = { speed: 0, boosting: false, autopilot: false, arrived: false, distance: 0, targetName: 'Free flight', view: this.view, pointerLocked: false, warning: '' };
     this._onKeyDown = (event) => {
-      if (!this.active || /INPUT|TEXTAREA|SELECT/.test(event.target?.tagName) || event.target?.isContentEditable) return;
+      if (!this.active || document.querySelector('dialog[open]') || /INPUT|TEXTAREA|SELECT/.test(event.target?.tagName) || event.target?.isContentEditable) return;
       const action = KEY_ACTION[event.code];
       if (action) { event.preventDefault(); this.setInput(action, true); }
     };
@@ -74,6 +74,11 @@ export class FlightController {
   }
 
   get pointerLocked() { return document.pointerLockElement === this.domElement; }
+
+  releaseControls() {
+    this._clearInputs();
+    if (this.pointerLocked) document.exitPointerLock?.();
+  }
 
   enter(targetBody) {
     if (this.active) return;

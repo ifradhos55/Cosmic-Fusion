@@ -10,6 +10,7 @@ import { mountShell, modalContent } from '../ui/Shell.js';
 import { objectPanel, overviewPanel, galaxyPanel, flightPanel } from '../ui/ObjectPanel.js';
 import { icon } from '../ui/icons.js';
 import { TouchInterface } from '../ui/TouchInterface.js';
+import { NasaPanel } from '../ui/NasaPanel.js';
 
 const STORAGE_KEY = 'cosmic-fusion-settings';
 
@@ -59,6 +60,7 @@ export class App {
     this.overview();
     this.cameraRig.overview(true);
     this.touchUI = new TouchInterface(this);
+    this.nasa = new NasaPanel(this.root);
     this.bindEvents();
     this.updateLabels();
     this.running = true;
@@ -174,6 +176,13 @@ export class App {
     else if (action === 'settings') this.openModal('settings');
     else if (action === 'journeys') this.openModal('journeys');
     else if (action === 'about') this.openModal('about');
+    else if (action === 'nasa') {
+      this.closeModal();
+      this.touchUI?.closeSheet();
+      this.touchUI?.resetGestures();
+      this.flight.releaseControls();
+      this.nasa.open();
+    }
     else if (action === 'close-modal') this.closeModal();
     else if (action === 'close-panel') {
       this.root.querySelector('#object-panel').hidden = true;
@@ -220,6 +229,7 @@ export class App {
   };
 
   handleKeyDown = (event) => {
+    if (this.root.querySelector('dialog[open]')) return;
     if (event.key === 'Escape' && this.cleanView) { event.preventDefault(); this.setCleanView(false); return; }
     if (event.target?.matches('input,select,textarea,[contenteditable="true"]') || event.ctrlKey || event.metaKey || event.altKey) return;
     if (event.key === '?' || (event.shiftKey && event.key === '/')) { event.preventDefault(); this.openModal('help'); return; }
@@ -484,13 +494,14 @@ export class App {
   }
 
   openModal(type) {
+    this.nasa?.close();
     if (this.cleanView) this.setCleanView(false);
     this.touchUI?.resetGestures();
     const dialog = this.root.querySelector('#modal');
     this.root.querySelector('#modal-content').innerHTML = modalContent(type, this.settings);
     if (!dialog.open) dialog.showModal();
   }
-  closeModal() { const dialog = this.root.querySelector('#modal'); if (dialog?.open) dialog.close(); }
+  closeModal() { this.nasa?.close(); const dialog = this.root.querySelector('#modal'); if (dialog?.open) dialog.close(); }
   showToast(message) { const toast = this.root.querySelector('#toast'); toast.textContent = message; toast.classList.add('show'); clearTimeout(this.toastTimer); this.toastTimer = setTimeout(() => toast.classList.remove('show'), 2600); }
   persistSettings() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(this.settings)); } catch { /* private browsing */ } }
   async toggleFullscreen() { try { if (!document.fullscreenElement) await document.documentElement.requestFullscreen(); else await document.exitFullscreen(); } catch { this.showToast('Fullscreen is not available here'); } }
@@ -501,7 +512,7 @@ export class App {
     this.running = false; cancelAnimationFrame(this.frameId); this.bound.forEach(unbind => unbind());
     clearTimeout(this.cleanViewHintTimer); clearTimeout(this.toastTimer);
     document.body.classList.remove('clean-view');
-    this.touchUI?.dispose(); this.cameraRig?.dispose(); this.flight?.dispose(); this.universe?.dispose(); this.galaxy?.dispose(); this.renderer?.dispose();
+    this.nasa?.dispose(); this.touchUI?.dispose(); this.cameraRig?.dispose(); this.flight?.dispose(); this.universe?.dispose(); this.galaxy?.dispose(); this.renderer?.dispose();
     if (import.meta.env?.DEV && window.__COSMIC__?.app === this) delete window.__COSMIC__;
   }
 }

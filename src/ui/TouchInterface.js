@@ -216,11 +216,11 @@ export class TouchInterface {
     try { if (point.control.hasPointerCapture(event.pointerId)) point.control.releasePointerCapture(event.pointerId); } catch { /* Capture already released. */ }
   };
 
-  resetGestures() {
+  resetGestures = () => {
     for (const pointerId of [...this.pointers.keys()]) this.pointerUp({ pointerId });
     this.app.flight.setTouchSteering(0, 0);
     this.app.flight.setTouchThrottle(0);
-  }
+  };
 
   dispose() {
     this.resetGestures();
