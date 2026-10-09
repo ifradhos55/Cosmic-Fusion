@@ -9,6 +9,32 @@
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 
 /* Keep descriptions dismissible in every layout, including the flight HUD. */
+.body-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-width: 44px;
+  min-height: 44px;
+  margin-top: 12px;
+  padding: 8px 14px;
+  border: 1px solid #a8bdd240;
+  border-radius: 8px;
+  background: #101b29eb;
+  color: #dbe5ef;
+  font-size: 12px;
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+.body-close .icon { width: 16px; height: 16px; }
+.body-close[hidden], body[data-view=galaxy] .body-close { display: none; }
+.body-close:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+@media (hover: hover) {
+  .body-close:hover { color: var(--gold); border-color: #dcb87880; background: #1d2938; }
+}
+@media (max-height: 500px) {
+  .body-close { margin-top: 6px; }
+}
 #object-panel[hidden] { display: none; }
 .panel-close { width: 28px; height: 28px; margin-left: auto; flex: none; }
 .panel-close .icon { width: 16px; height: 16px; }

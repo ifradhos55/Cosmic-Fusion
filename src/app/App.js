@@ -174,6 +174,10 @@ export class App {
     else if (action === 'flight') this.enterFlight(false);
     else if (action === 'galaxy') this.showGalaxy();
     else if (action === 'overview') this.overview();
+    else if (action === 'close-body') {
+      this.overview();
+      this.root.querySelector('.mode-switch [data-action="explore"]').focus({ preventScroll: true });
+    }
     else if (action === 'pause') this.togglePause();
     else if (action === 'reset-time' || action === 'live-now') {
       this.returnToLive();
@@ -281,6 +285,7 @@ export class App {
     if (!body || (body.data.isAsteroid && !body.mesh.visible)) return;
     this.selectedId = id;
     this.selectedBody = body;
+    this.root.querySelector('.body-close').hidden = false;
     this.universe.selectBody(id, focus || this.mode === 'flight');
     this.renderObjectPanel(body.data.isAsteroid ? asteroidPanel(body.data, this.mode === 'flight') : objectPanel(body.data, this.mode === 'flight'), true);
     this.root.querySelectorAll('.body-button').forEach(button => { const active = button.dataset.body === id; button.classList.toggle('active', active); button.setAttribute('aria-pressed', String(active)); });
@@ -298,6 +303,7 @@ export class App {
     if (this.mode === 'flight') this.exitFlight();
     this.showSolarSystem(false);
     this.selectedId = null; this.selectedBody = null; this.universe.selectBody(null);
+    this.root.querySelector('.body-close').hidden = true;
     this.root.querySelectorAll('.overview-button').forEach(button => button.classList.toggle('active', button.dataset.action === 'overview'));
     this.renderObjectPanel(overviewPanel(), true);
     this.root.querySelectorAll('.body-button').forEach(button => { button.classList.remove('active'); button.setAttribute('aria-pressed', 'false'); });
