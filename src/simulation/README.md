@@ -21,9 +21,27 @@ atmosphere meshes are visual layers, not selectable or collidable surfaces. The
 Moon is a visual satellite of Earth; `getBody('moon')` is not a catalog target.
 
 `update` accepts absolute Earth days and retains real orbital/rotation periods.
-Negative time works. Initial phases, circular orbital paths, body sizes and
-orbital radii are illustrative; they are not date-based ephemerides or a gravity
-solver. All procedural textures and star positions are deterministically seeded.
+Negative time works. Installed JPL tables supply date-based positions, including
+the Moon's geocentric vector. Before those tables load, circular paths and their
+phases are illustrative. Body sizes and orbital distances are compressed; this
+is not a gravity solver. Procedural textures and star positions are seeded.
+
+`orientation.js` puts geographic texture axes into that same J2000 ecliptic
+frame. The center of each equirectangular map is longitude 0° (+X on the sphere),
+north is +Y and east is -Z. Earth rotates its tilt group using mean Greenwich
+sidereal time and Lieske precession angles, leaving its root and lunar orbit
+unrotated. Clouds share the geographic frame with an illustrative drift.
+The Moon uses the IAU 2009 pole and prime-meridian series in NASA NAIF
+[pck00011](https://naif.jpl.nasa.gov/pub/naif/generic_kernels/pck/pck00011.tpc),
+including libration. Before JPL loads, its near side points directly at Earth.
+
+These are approximate cartographic orientations: Earth uses UTC as UT1, omits
+nutation and polar motion, and the lunar series uses TT≈TDB with the contemporary
+69.184-second TT−UTC offset (no historical/future leap-second lookup). They are
+not precision ITRF/DE440 attitudes. The Earth's mean sidereal calculation is
+described by [USNO](https://aa.usno.navy.mil/faq/GAST); precession uses the standard
+IAU 1976/Lieske angle polynomials. Enlarging Earth and the Moon changes their
+apparent geometry; physical geographic directions are anchored at their centers.
 
 The Earth maps in `src/data/textures` are reduced-resolution derivatives of the
 project's existing `public/assets/img/59-earth/textures` images. Day/night maps

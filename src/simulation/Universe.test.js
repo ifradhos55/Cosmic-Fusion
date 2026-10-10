@@ -79,6 +79,17 @@ test('installing JPL tables preserves body references and uses true vectors for 
   universe.setEphemeris(ephemeris, at); universe.update((at - EPOCH) / 86400000, 0);
   assert.equal(earth.position, reference); assert.equal(universe.navigationBodies.length, 14);
   for (const body of universe.navigationBodies) assert.ok(body.position.distanceTo(new THREE.Vector3(...scenePosition(ephemeris.at(body.id, at).position))) < 1e-9);
+  // Check the rendered world-space axes, including the Moon's parent hierarchy.
+  for (let time = ephemeris.start; time <= ephemeris.end; time += 86400000) {
+    universe.update((time - EPOCH) / 86400000, 0);
+    scene.updateMatrixWorld(true);
+    assert.ok(universe.moon.position.distanceTo(new THREE.Vector3(...scenePosition(ephemeris.at('moon', time).position, true))) < 1e-9);
+    const earthward = earth.position.clone().sub(universe.moon.getWorldPosition(new THREE.Vector3())).normalize();
+    const near = new THREE.Vector3(1, 0, 0).applyQuaternion(universe.moon.getWorldQuaternion(new THREE.Quaternion()));
+    assert.ok(near.dot(earthward) > .98, 'the rendered near side remains Earth-facing');
+    assert.ok(earth.root.quaternion.equals(new THREE.Quaternion()), 'daily spin cannot rotate the lunar orbit');
+    assert.ok(earth.mesh.quaternion.equals(new THREE.Quaternion()), 'no arbitrary surface spin is added to the geographic frame');
+  }
   universe.setOrbits(false); assert.ok([...universe.orbits.values()].every(orbit => !orbit.visible));
 });
 

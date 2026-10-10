@@ -7,6 +7,7 @@ import { PlanetTextureLibrary } from '../rendering/PlanetTextureLibrary.js';
 import { CatalogueAsteroids } from './CatalogueAsteroids.js';
 import { scenePosition, orbitGuide } from './ephemeris.js';
 import { EPOCH } from '../core/SimulationClock.js';
+import { earthOrientation, moonOrientation, lockedMoonOrientation } from './orientation.js';
 
 const TAU = Math.PI * 2;
 const EARTH_ASSETS = {
@@ -66,7 +67,7 @@ export class Universe {
     const root = new THREE.Group();
     root.name = data.name;
     const tiltGroup = new THREE.Group();
-    tiltGroup.rotation.z = THREE.MathUtils.degToRad(data.tilt || 0);
+    tiltGroup.rotation.z = data.id === 'earth' ? 0 : THREE.MathUtils.degToRad(data.tilt || 0);
     root.add(tiltGroup);
     const geometry = new THREE.SphereGeometry(data.radius, 96, 64);
     const texture = this._track(createSurfaceTexture(data.id, this.anisotropy));
@@ -79,7 +80,6 @@ export class Universe {
     const mesh = new THREE.Mesh(geometry, material);
     mesh.name = `${data.name} surface`;
     mesh.userData.bodyId = data.id;
-    mesh.rotation.y = data.id === 'earth' ? 2.7 : 0;
     const flattening = { earth: .99665, jupiter: .9351, saturn: .902, uranus: .9771, neptune: .9829 }[data.id] || 1;
     mesh.scale.y = flattening;
     tiltGroup.add(mesh);
@@ -282,8 +282,12 @@ export class Universe {
         body.position.set(Math.cos(angle) * data.orbitRadius, Math.sin(angle) * data.orbitRadius * Math.sin(inclination), Math.sin(angle) * data.orbitRadius * Math.cos(inclination));
       }
       // Separate axial tilt from spin so clouds and rings share the right axis.
-      body.mesh.rotation.y = (data.id === 'earth' ? 2.7 : 0) + (simulationDays % Math.abs(data.rotationPeriod)) / data.rotationPeriod * TAU;
-      if (body.clouds) body.clouds.rotation.y = body.mesh.rotation.y + simulationDays * .03;
+      if (data.id === 'earth') {
+        // Rotate the geography and its layers together, leaving the root in the
+        // inertial frame so Earth's daily rotation cannot drag the Moon around.
+        earthOrientation(time, body.tiltGroup.quaternion);
+        if (body.clouds) body.clouds.rotation.y = simulationDays * .03;
+      } else body.mesh.rotation.y = (simulationDays % Math.abs(data.rotationPeriod)) / data.rotationPeriod * TAU;
       if (data.id === 'sun') body.mesh.material.uniforms.time.value = this.elapsed;
     }
     const moonAngle = (simulationDays % 27.3217) / 27.3217 * TAU + 2.4;
@@ -291,7 +295,8 @@ export class Universe {
     this.moon.visible = !this.ephemeris || Boolean(moonState);
     if (moonState) this.moon.position.fromArray(scenePosition(moonState.position, true));
     else this.moon.position.set(Math.cos(moonAngle) * 5.1, Math.sin(moonAngle) * .45, Math.sin(moonAngle) * 5.1);
-    this.moon.rotation.y = -moonAngle;
+    if (moonState) moonOrientation(time, this.moon.quaternion);
+    else lockedMoonOrientation(this.moon.position, this.moon.quaternion);
     this.asteroids.rotation.y = -(simulationDays % 1600) / 1600 * TAU;
     this.catalogue?.update(this.ephemeris, time);
   }
