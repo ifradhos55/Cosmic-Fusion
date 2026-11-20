@@ -28,6 +28,20 @@ The simulation opens at the current UTC time in **Live now** mode. The default t
 
 Planet, Moon and catalogued asteroid directions and orbital motion use NASA JPL Horizons vector tables at the displayed UTC time. Cubic Hermite interpolation preserves position and velocity between six-hour samples. Distances are compressed with one shared radial mapping, and planet sizes are enlarged. Earth geography uses UTC-based mean sidereal rotation and precession into the J2000 frame. The Moon uses the IAU lunar pole and prime-meridian model, keeping its near side toward Earth with natural libration. Other worlds rotate using reference periods. Spacecraft speeds use simulation units; flight is an assisted navigation model, not gravitational dynamics.
 
+## NASA APIs
+
+Cosmic Fusion integrates seven public NASA APIs through server-side proxy endpoints (`/api/nasa` and `/api/solar`) with caching and failure isolation:
+
+| NASA API | Use case in Cosmic Fusion |
+| --- | --- |
+| [JPL Horizons API](https://ssd-api.jpl.nasa.gov/doc/horizons.html) | Fetches six-hour J2000 ecliptic vector tables to compute real-time and time-warped orbital positions, velocities, distances, and light travel times for all eight planets, the Moon, and five catalogued small bodies (Ceres, Pallas, Vesta, Eros, and Apophis). |
+| [Astronomy Picture of the Day (APOD)](https://github.com/nasa/apod-api) | Displays the latest featured NASA astronomy image, explanation, credits, and article link inside the **NASA observations** panel. |
+| [DONKI Space Weather API](https://ccmc.gsfc.nasa.gov/DONKI/) | Retrieves the past seven UTC days of NASA CCMC space weather notifications—including solar flares, coronal mass ejections, geomagnetic storms, and solar energetic particle events. |
+| [JPL NeoWs (Near Earth Object Web Service)](https://api.nasa.gov/) | Lists upcoming Earth asteroid close approaches over a seven-day UTC window with estimated diameters, miss distances (km and lunar distances), relative speeds, hazard classifications, and JPL orbit links. |
+| [NASA Image and Video Library API](https://images.nasa.gov/docs/images.nasa.gov_api_docs.pdf) | Curates authentic NASA mission archive photography and scientific maps (SDO, MESSENGER, Magellan, Landsat, Curiosity, Juno, Cassini, and Voyager) for each world's **Terrain and atmosphere images** tab. |
+| [DSCOVR EPIC API](https://epic.gsfc.nasa.gov/about/api) | Supplies the latest published sunlit full-disc Earth and cloud imagery in Earth's **Atmosphere** tab (displayed alongside local surface observations from the [NOAA Weather API](https://www.weather.gov/documentation/services-web-api)). |
+| [Mars Curiosity REMS Weather Feed](https://mars.nasa.gov/msl/weather/) | Provides published Gale Crater surface weather from the Curiosity rover—including sol date, air and ground temperatures, atmospheric pressure, wind speed, and sky conditions—in Mars's **Atmosphere** tab. |
+
 ## NASA observations
 
 Open **NASA updates** in the header or **NASA observations** in Worlds. On touch devices, the graph icon beside the mode selector opens the same panel. Each feed shows its publication or event date, the last successful fetch, and the next scheduled check in UTC.
